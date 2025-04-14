@@ -2,21 +2,13 @@
   <footer id="main-footer" class="main-footer">
     <div class="footer-content">
       <div class="copyright">
-        <span class="time">@ 2019 - {{ thisYear }} By </span>
+        <span class="time">@ {{ startYear }} - {{ thisYear }} By </span>
         <a :href="theme.siteMeta.author.link" class="author link" target="_blank">
           {{ theme.siteMeta.author.name }}
         </a>
-        <a class="icp link" href="https://beian.miit.gov.cn/" target="_blank">
+        <a v-if="theme.icp" class="icp link" href="https://beian.miit.gov.cn/" target="_blank">
           <i class="iconfont icon-safe" />
           {{ theme.icp }}
-        </a>
-        <a
-          class="upyun link"
-          href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
-          target="_blank"
-        >
-          <i class="iconfont icon-upyun" />
-          又拍云
         </a>
       </div>
       <div class="meta">
@@ -54,13 +46,23 @@ const store = mainStore();
 const { theme } = useData();
 const { footerIsShow } = storeToRefs(store);
 
-// 视窗监听器
+// Window Observer
 const observer = ref(null);
 
-// 实时年份
+// Year when the Website is Established
+const startYear = computed(() => {
+  const startYear = theme.value.since;
+  if (startYear) {
+    return new Date(startYear).getFullYear();
+  } else {
+    return new Date().getFullYear();
+  }
+});
+
+// Year of the Current Year
 const thisYear = computed(() => new Date().getFullYear());
 
-// 监听页脚视窗
+// Footer Window Observer
 const isShowFooter = () => {
   const footerDom = document.getElementById("main-footer");
   if (!footerDom) return false;
@@ -70,7 +72,6 @@ const isShowFooter = () => {
       footerIsShow.value = entry.isIntersecting ? true : false;
     });
   });
-  // 添加监视器
   observer.value?.observe(footerDom);
 };
 
@@ -96,6 +97,7 @@ onBeforeUnmount(() => {
     color 0.3s,
     border 0.3s,
     background-color 0.3s;
+
   .footer-content {
     display: flex;
     flex-wrap: wrap;
@@ -108,6 +110,7 @@ onBeforeUnmount(() => {
     color: var(--main-font-color);
     line-height: 1;
     min-height: 32px;
+
     .copyright {
       .icp {
         .iconfont {
@@ -115,6 +118,7 @@ onBeforeUnmount(() => {
           opacity: 0.6;
         }
       }
+
       .upyun {
         .iconfont {
           font-size: 20px;
@@ -122,25 +126,31 @@ onBeforeUnmount(() => {
         }
       }
     }
+
     .meta {
       display: flex;
       flex-direction: row;
       align-items: center;
+
       .power {
         margin-right: 4px;
+
         .by {
           font-weight: normal;
           opacity: 0.8;
           margin-right: 6px;
         }
       }
+
       .rss {
         margin-right: 4px;
+
         .iconfont {
           font-weight: normal;
           margin-right: 6px;
         }
       }
+
       .cc {
         .iconfont {
           margin: 0 2px;
@@ -148,6 +158,7 @@ onBeforeUnmount(() => {
         }
       }
     }
+
     .link {
       display: inline-flex;
       flex-direction: row;
@@ -164,19 +175,23 @@ onBeforeUnmount(() => {
         color 0.3s,
         background-color 0.3s;
       cursor: pointer;
+
       .iconfont {
         font-size: 22px;
         margin-right: 4px;
         transition: color 0.3s;
       }
+
       &:hover {
         color: var(--main-color);
         background-color: var(--main-color-bg);
+
         .iconfont {
           color: var(--main-color);
         }
       }
     }
+
     @media (max-width: 768px) {
       font-size: 14px;
       .meta {
