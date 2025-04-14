@@ -377,19 +377,6 @@ export const themeConfig = {
       table_id: "",
     },
   },
-  // 音乐播放器
-  // https://github.com/imsyy/Meting-API
-  music: {
-    enable: false,
-    // url
-    url: "https://api-meting.example.com",
-    // id
-    id: 9379831714,
-    // netease / tencent / kugou
-    server: "netease",
-    // playlist / album / song
-    type: "playlist",
-  },
   // 搜索
   // https://www.algolia.com/
   search: {

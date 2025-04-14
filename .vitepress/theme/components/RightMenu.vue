@@ -169,38 +169,6 @@
               </span>
             </div>
           </div>
-          <!-- 播放器控制 -->
-          <div v-if="playerShow" class="all-menu general player">
-            <div class="data">
-              <span class="name">{{ playerData.name }}</span>
-              <span class="artist">{{ playerData.artist }}</span>
-            </div>
-            <div class="volume" @click.stop>
-              <i
-                class="iconfont icon-volume-down"
-                @click="playerVolume = Math.max(0, playerVolume - 0.1)"
-              />
-              <Slider :value="playerVolume" @update="(val) => (playerVolume = val)" />
-              <i
-                class="iconfont icon-volume-up"
-                @click="playerVolume = Math.min(1, playerVolume + 0.1)"
-              />
-            </div>
-            <div class="control" @click.stop>
-              <div class="btn" title="上一曲" @click="playerControl('prev')">
-                <i class="iconfont icon-prev"></i>
-              </div>
-              <div v-if="playState" class="btn" title="暂停" @click="playerControl('toggle')">
-                <i class="iconfont icon-pause"></i>
-              </div>
-              <div v-else class="btn" title="播放" @click="playerControl('toggle')">
-                <i class="iconfont icon-play"></i>
-              </div>
-              <div class="btn" title="下一曲" @click="playerControl('next')">
-                <i class="iconfont icon-next"></i>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </Transition>
@@ -226,8 +194,7 @@ import { smoothScrolling, shufflePost, copyText, copyImage, downloadImage } from
 const router = useRouter();
 const store = mainStore();
 const { theme } = useData();
-const { useRightMenu, themeType, playerShow, playerVolume, playState, playerData } =
-  storeToRefs(store);
+const { useRightMenu, themeType } = storeToRefs(store);
 
 // 右键菜单数据
 const rightMenuX = ref(0);
@@ -374,26 +341,6 @@ const rightMenuFunc = async (type) => {
   }
 };
 
-// 播放器控制
-const playerControl = (type) => {
-  if (typeof $player !== "object" || !type) return false;
-  switch (type) {
-    case "toggle":
-      $player?.toggle();
-      break;
-    case "next":
-      $player?.skipForward();
-      $player?.play();
-      break;
-    case "prev":
-      $player?.skipBack();
-      $player?.play();
-      break;
-    default:
-      return false;
-  }
-};
-
 // 选中内容是否为链接
 const isLink = (data) => {
   if (!data) return false;
@@ -475,64 +422,6 @@ defineExpose({ openRightMenu });
       &.general {
         padding-top: 12px;
         border-top: 1px solid var(--main-card-border);
-      }
-    }
-    .player {
-      .data {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        span {
-          width: 100%;
-          padding: 0 8px;
-          text-align: center;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        .artist {
-          font-size: 14px;
-          margin-top: 4px;
-          color: var(--main-font-second-color);
-        }
-      }
-      .volume {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 6px;
-        margin-top: 1rem;
-        width: 100%;
-        .iconfont {
-          color: var(--main-font-second-color);
-          font-size: 20px;
-          transition: color 0.3s;
-          cursor: pointer;
-          &:first-child {
-            margin-right: 6px;
-          }
-          &:last-child {
-            margin-left: 6px;
-          }
-          &:hover {
-            color: var(--main-color);
-          }
-        }
-      }
-      .control {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        margin-top: 8px;
-        .btn {
-          padding: 6px;
-          margin-bottom: 0;
-          .iconfont {
-            font-size: 26px;
-          }
-        }
       }
     }
     .btn {

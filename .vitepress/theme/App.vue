@@ -30,8 +30,6 @@
     <div :class="['left-menu', { hidden: footerIsShow }]">
       <!-- 全局设置 -->
       <Settings />
-      <!-- 全局播放器 -->
-      <Player />
     </div>
   </Teleport>
   <!-- 右键菜单 -->

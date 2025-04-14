@@ -50,7 +50,6 @@
     "@vite-pwa/vitepress": "^0.4.0",
     "@vueuse/core": "^11.3.0",
     "algoliasearch": "^5.19.0",
-    "aplayer": "^1.10.1",
     "dayjs": "^1.11.13",
     "instantsearch.js": "^4.77.0",
     "lodash-es": "^4.17.21",
