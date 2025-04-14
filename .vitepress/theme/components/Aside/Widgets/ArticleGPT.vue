@@ -2,7 +2,7 @@
 <template>
   <div v-if="frontmatter.articleGPT" class="article-gpt s-card">
     <div class="title">
-      <span class="name" @click="router.go('/posts/2024/0218')">
+      <span class="name">
         <i class="iconfont icon-robot"></i>
         文章摘要
         <i class="iconfont icon-up"></i>
@@ -15,20 +15,12 @@
     </div>
     <div class="meta">
       <span class="tip">此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结</span>
-      <a
-        href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre"
-        class="report"
-        target="_blank"
-      >
-        投诉
-      </a>
     </div>
   </div>
 </template>
 
 <script setup>
 const { frontmatter } = useData();
-const router = useRouter();
 
 // 摘要数据
 const loading = ref(true);
