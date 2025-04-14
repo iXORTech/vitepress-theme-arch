@@ -1,6 +1,6 @@
 <!-- AI 摘要（假） -->
 <template>
-  <div v-if="frontmatter.articleGPT" class="article-gpt s-card">
+  <div v-if="theme.fakeGPT && frontmatter.articleGPT" class="article-gpt s-card">
     <div class="title">
       <span class="name">
         <i class="iconfont icon-robot"></i>
@@ -20,6 +20,7 @@
 </template>
 
 <script setup>
+const { theme } = useData();
 const { frontmatter } = useData();
 
 // 摘要数据
