@@ -7,7 +7,6 @@ import {
   getAllCategories,
   getAllArchives,
 } from "./theme/utils/getPostData.mjs";
-import { jumpRedirect } from "./theme/utils/commonTools.mjs";
 import { getThemeConfig } from "./init.mjs";
 import markdownConfig from "./theme/utils/markdownConfig.mjs";
 import AutoImport from "unplugin-auto-import/vite";
@@ -67,10 +66,6 @@ export default withPwa(
         .replace(/\.md$/, "");
       pageData.frontmatter.head ??= [];
       pageData.frontmatter.head.push(["link", { rel: "canonical", href: canonicalUrl }]);
-    },
-    // transformHtml
-    transformHtml: (html) => {
-      return jumpRedirect(html, themeConfig);
     },
     // buildEnd
     buildEnd: async (config) => {

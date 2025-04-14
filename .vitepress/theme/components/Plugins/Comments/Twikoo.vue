@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-import { jumpRedirect } from "@/utils/commonTools";
 import initComments from "@/utils/initComments";
 
 const props = defineProps({
@@ -32,7 +31,6 @@ const initTwikoo = async () => {
       onCommentLoaded: () => {
         console.log("评论已加载完毕");
         if (props.fill) fillComments(props.fill);
-        jumpRedirect(null, theme.value, true);
       },
     });
     return twikoo.value;

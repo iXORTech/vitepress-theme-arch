@@ -1,5 +1,4 @@
 import { mainStore } from "@/store";
-import { jumpRedirect } from "./commonTools.mjs";
 
 // 必要数据
 let loadingTimer = null;
@@ -69,8 +68,6 @@ const changeLoading = (option = {}) => {
     () => {
       console.log("加载动画延时结束");
       store.loadingStatus = false;
-      // 替换链接
-      // jumpRedirect(null, true);
       // 清除定时器
       clearTimeout(loadingTimer);
     },

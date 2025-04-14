@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-import { jumpRedirect } from "@/utils/commonTools";
 import initComments from "@/utils/initComments";
 
 const route = useRoute();
@@ -41,11 +40,9 @@ const initArtalk = async () => {
     });
     artalk.value?.on("list-loaded", () => {
       console.log("评论已加载完毕");
-      jumpRedirect(null, theme.value, true);
     });
     artalk.value?.on("comment-updated", () => {
       console.log("评论已更新完毕");
-      jumpRedirect(null, theme.value, true);
     });
     if (typeof $comment === "undefined" && typeof window !== "undefined") {
       window.$comment = artalk.value;
