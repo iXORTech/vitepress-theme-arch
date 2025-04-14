@@ -22,9 +22,6 @@ test.html
 themeConfig.mjs
 !.vitepress/theme/assets/themeConfig.mjs
 
-posts/*
-!posts/2024/1010.md
-
 # Editor directories and files
 .vscode/*
 .vscode
