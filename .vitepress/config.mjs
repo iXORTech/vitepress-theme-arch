@@ -106,7 +106,7 @@ export default withPwa(
       },
       // 服务器
       server: {
-        port: 9877,
+        port: 5173,
       },
       // 构建
       build: {
