@@ -19,16 +19,57 @@
           <span class="set-label">全站字体</span>
           <div class="set-options">
             <span
-              :class="['options', { choose: fontFamily === 'hmos' }]"
-              @click="fontFamily = 'hmos'"
+              :class="['options', { choose: fontFamily === 'plex-serif' }]"
+              @click="fontFamily = 'plex-serif'"
             >
-              HarmonyOS Sans
+              IBM Plex Serif
             </span>
             <span
-              :class="['options', { choose: fontFamily === 'lxgw' }]"
-              @click="fontFamily = 'lxgw'"
+              :class="['options', { choose: fontFamily === 'plex-sans' }]"
+              @click="fontFamily = 'plex-sans'"
             >
-              霞鹜文楷
+              IBM Plex Sans
+            </span>
+          </div>
+        </div>
+        <div class="set-item">
+          <span class="set-label">全站代码字体</span>
+          <div class="set-options">
+            <span
+              :class="['options', { choose: codeFontFamily === 'plex-mono' }]"
+              @click="codeFontFamily = 'plex-mono'"
+            >
+              IBM Plex Mono
+            </span>
+            <span
+              :class="['options', { choose: codeFontFamily === 'monaspace-neon' }]"
+              @click="codeFontFamily = 'monaspace-neon'"
+            >
+              Monaspace Neon
+            </span>
+            <span
+              :class="['options', { choose: codeFontFamily === 'monaspace-argon' }]"
+              @click="codeFontFamily = 'monaspace-argon'"
+            >
+              Monaspace Argon
+            </span>
+            <span
+              :class="['options', { choose: codeFontFamily === 'monaspace-xenon' }]"
+              @click="codeFontFamily = 'monaspace-xenon'"
+            >
+              Monaspace Xenon
+            </span>
+            <span
+              :class="['options', { choose: codeFontFamily === 'monaspace-radon' }]"
+              @click="codeFontFamily = 'monaspace-radon'"
+            >
+              Monaspace Radon
+            </span>
+            <span
+              :class="['options', { choose: codeFontFamily === 'monaspace-krypton' }]"
+              @click="codeFontFamily = 'monaspace-krypton'"
+            >
+              Monaspace Krypton
             </span>
           </div>
         </div>
@@ -122,8 +163,7 @@ import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 
 const store = mainStore();
-const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroundUrl, bannerType } =
-  storeToRefs(store);
+const { themeType, fontFamily, codeFontFamily, fontSize, infoPosition, backgroundType, backgroundUrl, bannerType } = storeToRefs(store);
 </script>
 
 <style lang="scss" scoped>

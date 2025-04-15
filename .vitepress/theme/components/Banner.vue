@@ -150,7 +150,7 @@ onBeforeUnmount(() => {
     }
   }
   .title {
-    font-family: "Site Title";
+    font-family: "XiaolaiMonoSC";
     font-weight: bold;
     font-size: 2.75rem;
   }
@@ -207,6 +207,7 @@ onBeforeUnmount(() => {
     justify-content: space-between;
     margin-bottom: 2rem;
     .title {
+      font-family: "XiaolaiMonoSC", monospace;
       display: flex;
       flex-direction: column;
       .title-small {

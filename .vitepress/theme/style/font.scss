@@ -1,8 +1,10 @@
-@font-face {
-  font-family: "Site Title";
-  font-display: swap;
-  src: url("/fonts/title.ttf");
-}
+@import url("https://cdn.jsdelivr.net/npm/@ibm/plex-sans/css/ibm-plex-sans-all.css");
+@import url("https://cdn.jsdelivr.net/npm/@ibm/plex-serif/css/ibm-plex-serif-all.css");
+@import url("https://cdn.jsdelivr.net/npm/@ibm/plex-mono/css/ibm-plex-mono-all.css");
+@import url("https://cdn.jsdelivr.net/npm/@ibm/plex-math/css/ibm-plex-math-all.css");
+@import url("https://cdn.jsdelivr.net/gh/iXORTech/webfonts@main/monaspace/monaspace.css");
+@import url("https://cdn.jsdelivr.net/gh/iXORTech/webfonts@main/lxgw-wenkai-lite/lxgw-wenkai-lite.css");
+@import url("https://cdn.jsdelivr.net/gh/iXORTech/webfonts@main/xiaolai-mono-sc.css");
 
 html,
 body,

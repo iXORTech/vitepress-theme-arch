@@ -181,7 +181,6 @@ onUnmounted(() => {
             margin: 4px;
             vertical-align: inherit;
             border-radius: 6px;
-            font-family: "Fira Code", var(--main-font-family), monospace;
           }
           pre {
             code {

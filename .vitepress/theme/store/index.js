@@ -34,7 +34,8 @@ export const mainStore = defineStore("main", {
       // 背景模糊
       backgroundBlur: false,
       // 全站字体
-      fontFamily: "hmos",
+      fontFamily: "plex-serif",
+      codeFontFamily: "plex-mono",
       // 全站字体大小
       fontSize: 16,
       // 信息显示位置
@@ -112,6 +113,7 @@ export const mainStore = defineStore("main", {
         "backgroundBlur",
         "backgroundType",
         "fontFamily",
+        "codeFontFamily",
         "fontSize",
         "infoPosition",
         "backgroundUrl",

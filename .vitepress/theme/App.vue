@@ -46,8 +46,16 @@ import { calculateScroll, specialDayGray } from "@/utils/helper";
 const route = useRoute();
 const store = mainStore();
 const { frontmatter, page, theme } = useData();
-const { loadingStatus, footerIsShow, themeValue, themeType, backgroundType, fontFamily, fontSize } =
-  storeToRefs(store);
+const {
+  loadingStatus,
+  footerIsShow,
+  themeValue,
+  themeType,
+  backgroundType,
+  fontFamily,
+  codeFontFamily,
+  fontSize,
+} = storeToRefs(store);
 
 // 右键菜单
 const rightMenuRef = ref(null);
@@ -108,9 +116,24 @@ const changeSiteThemeType = () => {
 // 切换系统字体样式
 const changeSiteFont = () => {
   try {
+    console.log("当前字体：", fontFamily.value);
     const htmlElement = document.documentElement;
-    htmlElement.classList.remove("lxgw", "hmos");
+    htmlElement.classList.remove("plex-serif", "plex-sans");
     htmlElement.classList.add(fontFamily.value);
+    // For Code Blocks Powered by Shiki and Inline Code
+    const codeHtmlElements = document.getElementsByTagName("code");
+    for (let i = 0; i < codeHtmlElements.length; i++) {
+      const codeHtmlElement = codeHtmlElements[i];
+      codeHtmlElement.classList.remove(
+        "plex-mono",
+        "monaspace-neon",
+        "monaspace-argon",
+        "monaspace-xenon",
+        "monaspace-radon",
+        "monaspace-krypton",
+      );
+      codeHtmlElement.classList.add(codeFontFamily.value);
+    }
     htmlElement.style.fontSize = fontSize.value + "px";
   } catch (error) {
     console.error("切换系统字体样式失败", error);
@@ -124,6 +147,10 @@ watch(
 );
 watch(
   () => fontFamily.value,
+  () => changeSiteFont(),
+);
+watch(
+  () => codeFontFamily.value,
   () => changeSiteFont(),
 );
 
@@ -161,9 +188,11 @@ onBeforeUnmount(() => {
   animation: show 0.5s forwards;
   animation-duration: 0.5s;
   display: block;
+
   &.loading {
     display: none;
   }
+
   @media (max-width: 768px) {
     padding: 1rem 1.5rem;
     &.is-post {
@@ -171,6 +200,7 @@ onBeforeUnmount(() => {
     }
   }
 }
+
 .left-menu {
   position: fixed;
   left: 20px;
@@ -179,6 +209,7 @@ onBeforeUnmount(() => {
   transition:
     opacity 0.3s,
     transform 0.3s;
+
   &.hidden {
     opacity: 0;
     transform: translateY(100px);

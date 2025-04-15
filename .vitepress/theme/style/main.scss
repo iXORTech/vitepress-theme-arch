@@ -31,8 +31,7 @@
   --main-color-white: #ffffff40;
   --main-color-gray: #999;
   --main-color-red: #ff3842;
-  --main-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
-    Cantarell, "Helvetica Neue", sans-serif;
+  --main-font-family: "IBM Plex Serif", "IBM Plex Math", "LXGW WenKai Lite", serif;
 }
 
 html.dark {
@@ -54,15 +53,18 @@ html.dark {
 
 // 字体
 html {
-  &.hmos {
-    --main-font-family: "HarmonyOS_Regular", sans-serif;
+  &.plex-serif {
+    --main-font-family: "IBM Plex Serif", "IBM Plex Math", "LXGW WenKai Lite", serif;
   }
-  &.lxgw {
-    --main-font-family: "LXGW WenKai Screen", sans-serif;
+
+  &.plex-sans {
+    --main-font-family: "IBM Plex Sans", "IBM Plex Math", "LXGW WenKai Lite", sans-serif;
   }
+
   .iconfont {
     font-size: 1rem;
   }
+
   button {
     font-family: var(--main-font-family);
   }
@@ -75,11 +77,14 @@ html {
     --main-font-second-color: #c6c6c6;
     --main-card-background: #1b1c20de;
     --main-card-second-background: #21232ab5;
+
     .main-nav {
       backdrop-filter: blur(20px);
+
       &.top {
         backdrop-filter: blur(0);
       }
+
       @media (max-width: 768px) {
         &.down {
           .nav-center {
@@ -88,9 +93,11 @@ html {
         }
       }
     }
+
     .loading {
       backdrop-filter: blur(20px);
     }
+
     .tags-cloud {
       .all-tags {
         &::after {
@@ -116,6 +123,32 @@ html {
     // 代码高亮
     pre {
       code {
+        &.plex-mono {
+          font-family: "IBM Plex Mono", monospace !important;
+        }
+
+        &.monaspace-neon {
+          font-family: "Monaspace Krypton", monospace !important;
+        }
+
+        &.monaspace-argon {
+          font-family: "Monaspace Argon", monospace !important;
+        }
+
+        &.monaspace-xenon {
+          font-family: "Monaspace Xenon", monospace !important;
+        }
+
+        &.monaspace-radon {
+          font-family: "Monaspace Radon", monospace !important;
+        }
+
+        &.monaspace-krypton {
+          font-family: "Monaspace Krypton", monospace !important;
+        }
+
+        font-family: "IBM Plex Mono", monospace;
+
         .line {
           span {
             color: var(--shiki-dark) !important;
@@ -124,6 +157,7 @@ html {
       }
     }
   }
+
   // 全站置灰
   &.gray {
     filter: grayscale(100%);
@@ -137,18 +171,19 @@ body {
   background-color: var(--main-site-background);
   animation: show forwards 0.5s;
   overflow-x: hidden;
-  transition:
-    color 0.3s,
-    background-color 0.3s;
+  transition: color 0.3s,
+  background-color 0.3s;
 }
 
 a {
   text-decoration: none;
   color: var(--main-font-color);
   transition: all 0.3s;
+
   .iconfont {
     transition: all 0.3s;
   }
+
   &:hover {
     color: var(--main-color);
   }
@@ -165,11 +200,11 @@ a {
       right: 0;
       left: 4px;
       background: var(--main-scrolling-bar);
-      transition:
-        background 0.3s,
-        left 0.3s;
+      transition: background 0.3s,
+      left 0.3s;
       cursor: pointer;
     }
+
     &:hover {
       &::before {
         left: 2px;
@@ -177,6 +212,7 @@ a {
       }
     }
   }
+
   // 全局模糊
   &.blur {
     filter: blur(20px);
@@ -192,6 +228,7 @@ a {
   box-shadow: 0 8px 16px -4px var(--main-border-shadow);
   transition: all 0.3s;
   cursor: pointer;
+
   &:hover {
     &.hover {
       border-color: var(--main-color);
@@ -210,6 +247,7 @@ a {
   background-color: var(--main-scrollbar-bar);
   border-radius: 8px;
   cursor: pointer;
+
   &:hover {
     background-color: var(--main-color);
   }
@@ -226,6 +264,7 @@ a {
   .fancybox__progress {
     background: var(--main-color) !important;
   }
+
   .fancybox__thumb {
     &::after {
       border-width: 2px !important;
