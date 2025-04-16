@@ -265,15 +265,6 @@ export const themeConfig = {
     tags: {
       enable: true,
     },
-    // 倒计时
-    countDown: {
-      enable: true,
-      // 倒计时日期
-      data: {
-        name: "春节",
-        date: "2025-01-29",
-      },
-    },
     // 站点数据
     siteData: {
       enable: true,

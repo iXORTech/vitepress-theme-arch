@@ -79,3 +79,44 @@ export const formatDate = (dateString) => {
     ? `${date.getMonth() + 1}/${date.getDate()}`
     : `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
 };
+
+/**
+ * 获取当前日期
+ * @returns {number} 当前日期
+ */
+export const getDay = () => {
+  const now = new Date();
+  return now.getDate();
+}
+
+/**
+ * 返回当前的月份的缩写（例如 "Jan."）
+ * @returns {string|number} 当前月份的缩写
+ */
+export const getMonth = () => {
+  const now = new Date();
+  const monthNames = [
+    "Jan.",
+    "Feb.",
+    "Mar.",
+    "Apr.",
+    "May.",
+    "Jun.",
+    "Jul.",
+    "Aug.",
+    "Sep.",
+    "Oct.",
+    "Nov.",
+    "Dec.",
+  ];
+  return monthNames[now.getMonth()];
+};
+
+/**
+ * 获取当前年份
+ * @returns {number} 当前年份
+ */
+export const getYear = () => {
+  const now = new Date();
+  return now.getFullYear();
+}

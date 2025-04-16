@@ -2,10 +2,9 @@
   <!-- 倒计时 -->
   <div class="count-down s-card">
     <div class="count-left">
-      <span class="text"> 距离 </span>
-      <span class="name">{{ theme.aside.countDown.data.name }}</span>
-      <span class="time"> {{ getDaysUntil(theme.aside.countDown.data.date) }} </span>
-      <span class="date">{{ theme.aside.countDown.data.date }}</span>
+      <span class="month">{{ getMonth() }}</span>
+      <span class="day">{{ getDay() }}</span>
+      <span class="year">{{ getYear() }}</span>
     </div>
     <div v-if="remainData" class="count-right">
       <div v-for="(item, tag, index) in remainData" :key="index" class="count-item">
@@ -30,9 +29,8 @@
 </template>
 
 <script setup>
-import { getTimeRemaining, getDaysUntil } from "@/utils/timeTools";
 
-const { theme } = useData();
+import { getTimeRemaining, getDay, getMonth, getYear } from "@/utils/timeTools";
 
 // 倒计时数据
 const remainData = ref(null);
@@ -71,18 +69,18 @@ onBeforeUnmount(() => {
       font-size: 14px;
       color: var(--main-font-second-color);
     }
-    .name {
+    .month {
       font-weight: bold;
       font-size: 18px;
       margin-top: 2px;
     }
-    .time {
+    .day {
       font-size: 30px;
       font-weight: bold;
       margin: 4px 0;
       color: var(--main-color);
     }
-    .date {
+    .year {
       font-size: 12px;
       opacity: 0.6;
     }
