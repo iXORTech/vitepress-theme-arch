@@ -126,10 +126,6 @@
           <span class="tip">数据</span>
           <span class="title2">访问统计</span>
           <div class="static-data">
-            <div v-for="(item, key, index) in statisticsData" :key="index" class="static-item">
-              <span class="static-name">{{ key }}</span>
-              <span class="static-num">{{ item }}</span>
-            </div>
           </div>
           <div class="image-desc opacity">
             <span class="left">
@@ -251,19 +247,6 @@ const skillsData = [
     link: "https://chat.openai.com/",
   },
 ];
-
-// 站点统计数据
-const statisticsData = ref(null);
-
-// 获取站点统计数据
-const getStatisticsData = async () => {
-  const result = await getStatistics(theme.value.tongji["51la"]);
-  statisticsData.value = result;
-};
-
-onMounted(() => {
-  getStatisticsData();
-});
 </script>
 
 <style lang="scss" scoped>

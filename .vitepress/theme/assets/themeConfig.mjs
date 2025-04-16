@@ -398,31 +398,4 @@ export const themeConfig = {
     js: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js",
     css: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css",
   },
-  // 外链中转
-  jumpRedirect: {
-    enable: true,
-    // 排除类名
-    exclude: [
-      "cf-friends-link",
-      "upyun",
-      "icp",
-      "author",
-      "rss",
-      "cc",
-      "power",
-      "social-link",
-      "link-text",
-      "travellings",
-      "post-link",
-      "report",
-      "more-link",
-      "skills-item",
-      "right-menu-link",
-      "link-card",
-    ],
-  },
-  // 站点统计
-  tongji: {
-    "51la": "",
-  },
 };

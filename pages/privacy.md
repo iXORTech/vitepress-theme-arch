@@ -23,9 +23,6 @@ card: true
 
 > 在访问时，本站内置的第三方服务会通过以下或更多途径，来获取您的以下或更多信息：
 
-- **百度统计工具** 会收集您的访问信息、访问操作过程，用于网站维护。[百度统计隐私政策](https://tongji.baidu.com/web/help/article?id=330&type=0)
-- **51la 统计工具** 会收集您的访问信息，用于网站维护。[51la 隐私政策](https://www.51.la/about/privacy)
-- **灵雀应用监控平台** 会收集您的访问操作过程和资源加载情况，用于网站维护。[51la 隐私政策](https://www.51.la/about/privacy)
 - **SUSTech Open Source Mirrors** 会收集您的访问信息，用于网站加速。[SUSTech Open Source Mirrors 简介](https://mirrors.sustech.edu.cn/about/)
 - **腾讯云** 会收集您的访问信息，用于提供网站服务。[腾讯云隐私政策](https://www.tencentcloud.com/zh/document/product/301/17345)
 - **多吉云** 会收集您的访问信息，用于提供网站服务。[多吉云隐私权政策](https://www.dogecloud.com/page/privacy-policy)
