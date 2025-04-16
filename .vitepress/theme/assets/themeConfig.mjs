@@ -1,34 +1,34 @@
-// 主题配置
+// Theme Configuration
 export const themeConfig = {
-  // 站点信息
+  // Site Metadata
   siteMeta: {
-    // 站点标题
-    title: "Curve",
-    // 站点描述
+    title: "VitePress Theme Curve",
     description: "Hello World",
-    // 站点logo
+    // The Welcome Message to be Shown on the Home Page
+    // Optional, if not provided, a welcome + title message will be used.
+    // welcomeMessage: "Welcome to my site.",
     logo: "/images/logo/logo.webp",
-    // 站点地址
-    site: "https://blog.imsyy.top",
-    // 语言
-    lang: "zh-CN",
-    // 作者
+    // URL
+    site: "https://example.tld",
+    // Language, currently available: en-US, zh-CN
+    lang: "en-US",
+    // Author Information
     author: {
       name: "Admin",
       cover: "/images/logo/logo.webp",
-      email: "114514@gmail.com",
-      link: "https://www.imsyy.top",
+      email: "admin@example.tld",
+      link: "https://example.tld",
     },
   },
-  // 备案信息
-  icp: "萌ICP备114514号",
-  // 建站日期
-  since: "2020-07-28",
-  // 每页文章数据
+  // Internet Content Provider License / 备案信息
+  // icp: "萌ICP备19700101号",
+  // Website Established Since (A Full Timestamp)
+  since: "1970-01-01T00:00:00.000Z",
+  // Number of Posts to Show per Page
   postSize: 8,
   // inject
   inject: {
-    // 头部
+    // Head
     // https://vitepress.dev/zh/reference/site-config#head
     header: [
       // favicon
@@ -40,7 +40,7 @@ export const themeConfig = {
           rel: "alternate",
           type: "application/rss+xml",
           title: "RSS",
-          href: "https://blog.imsyy.top/rss.xml",
+          href: "https://example.tld/rss.xml",
         },
       ],
       // 预载 CDN
@@ -60,23 +60,6 @@ export const themeConfig = {
           href: "https://mirrors.sustech.edu.cn",
         },
       ],
-      // HarmonyOS font
-      [
-        "link",
-        {
-          crossorigin: "anonymous",
-          rel: "stylesheet",
-          href: "https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css",
-        },
-      ],
-      [
-        "link",
-        {
-          crossorigin: "anonymous",
-          rel: "stylesheet",
-          href: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.css",
-        },
-      ],
       // iconfont
       [
         "link",
@@ -89,14 +72,6 @@ export const themeConfig = {
       // Embed code
       ["link", { rel: "preconnect", href: "https://use.sevencdn.com" }],
       ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
-      [
-        "link",
-        {
-          crossorigin: "anonymous",
-          href: "https://use.sevencdn.com/css2?family=Fira+Code:wght@300..700&display=swap",
-          rel: "stylesheet",
-        },
-      ],
       // 预载 DocSearch
       [
         "link",
@@ -142,97 +117,35 @@ export const themeConfig = {
       ],
     },
   ],
-  // 导航栏菜单 - 左侧
+  // Left Side Nav Menu (External Links)
   navMore: [
     {
-      name: "博客",
+      name: "Others",
       list: [
         {
           icon: "/images/logo/logo.webp",
-          name: "主站",
-          url: "/",
-        },
-        {
-          icon: "/images/logo/logo.webp",
-          name: "博客镜像站",
-          url: "https://blog-backup.imsyy.top/",
-        },
-      ],
-    },
-    {
-      name: "服务",
-      list: [
-        {
-          icon: "https://pic.efefee.cn/uploads/2024/04/08/6613465358077.png",
-          name: "起始页",
-          url: "https://nav.imsyy.top/",
-        },
-        {
-          icon: "https://pic.efefee.cn/uploads/2024/04/08/661346d418ad7.png",
-          name: "今日热榜",
-          url: "https://hot.imsyy.top/",
-        },
-        {
-          icon: "https://pic.efefee.cn/uploads/2024/04/08/66134722586fa.png",
-          name: "站点监测",
-          url: "https://status.imsyy.top/",
-        },
-      ],
-    },
-    {
-      name: "项目",
-      list: [
-        {
-          icon: "/images/logo/logo.webp",
-          name: "Curve",
-          url: "https://github.com/imsyy/vitepress-theme-curve",
-        },
-        {
-          icon: "https://pic.efefee.cn/uploads/2024/04/07/66124f5fc63c8.png",
-          name: "SPlayer",
-          url: "https://github.com/imsyy/SPlayer",
-        },
-        {
-          icon: "https://pic.efefee.cn/uploads/2024/04/08/6613465358077.png",
-          name: "Snavigation",
-          url: "https://github.com/imsyy/SPlayer",
-        },
-        {
-          icon: "/images/logo/logo.webp",
-          name: "Home",
-          url: "https://github.com/imsyy/home",
-        },
-        {
-          icon: "https://pic.efefee.cn/uploads/2024/04/08/661346d418ad7.png",
-          name: "DailyHotApi",
-          url: "https://github.com/imsyy/DailyHotApi",
-        },
-        {
-          icon: "https://pic.efefee.cn/uploads/2024/04/08/66134722586fa.png",
-          name: "site-status",
-          url: "https://github.com/imsyy/site-status",
+          name: "GitHub",
+          url: "https://github.com/Octocat",
         },
       ],
     },
   ],
-  // 封面配置
+  // Post Cover Configuration
   cover: {
-    // 是否开启双栏布局
+    // Display Two Columns of Post or Not
     twoColumns: false,
-    // 是否开启封面显示
+    // Display Cover
     showCover: {
-      // 是否开启封面显示 文章不设置cover封面会显示异常，可以设置下方默认封面
       enable: true,
-      // 封面布局方式: left | right | both
+      // Cover Layout: 'left' | 'right' | 'both'
       coverLayout: 'both',
-      // 默认封面(随机展示)
-      defaultCover: [
-        'https://example.com/1.avif',
-        'https://example.com/2.avif',
-        'https://example.com/3.avif'
-      ]
+      // Default Covers (displayed randomly)
+      // defaultCover: [
+      // ]
     }
   },
+  // Enable FakeGPT or Not
+  fakeGPT: true,
   // 页脚信息
   footer: {
     // 社交链接（请确保为偶数个）
