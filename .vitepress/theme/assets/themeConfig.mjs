@@ -1,6 +1,7 @@
-// Theme Configuration
+// Theme and Site Configuration
+// 主题与网站配置
 export const themeConfig = {
-  // Site Metadata
+  // Site Metadata | 站点数据
   siteMeta: {
     title: "VitePress Theme Curve",
     description: "Hello World",
@@ -8,11 +9,12 @@ export const themeConfig = {
     // Optional, if not provided, a welcome + title message will be used.
     // welcomeMessage: "Welcome to my site.",
     logo: "/images/logo/logo.webp",
-    // URL
+    // URL | 站点地址
     site: "https://example.tld",
-    // Language, currently available: en-US, zh-CN
+    // Language: 'en-US' | 'zh-CN'
+    // 语言: 'en-US' | 'zh-CN'
     lang: "en-US",
-    // Author Information
+    // Author Information | 作者信息
     author: {
       name: "Admin",
       cover: "/images/logo/logo.webp",
@@ -22,11 +24,12 @@ export const themeConfig = {
   },
   // Internet Content Provider License / 备案信息
   // icp: "萌ICP备19700101号",
-  // Website Established Since (A Full Timestamp)
+  // Website Established Since (A Full Unix Timestamp)
+  // 建站时间（完整的 Unix 时间戳）
   since: "1970-01-01T00:00:00.000Z",
   // Number of Posts to Show per Page
   postSize: 8,
-  // inject
+  // Inject
   inject: {
     // Head
     // https://vitepress.dev/zh/reference/site-config#head
@@ -43,15 +46,6 @@ export const themeConfig = {
           href: "https://example.tld/rss.xml",
         },
       ],
-      // 预载 CDN
-      [
-        "link",
-        {
-          crossorigin: "",
-          rel: "preconnect",
-          href: "https://s1.hdslb.com",
-        },
-      ],
       // iconfont
       [
         "link",
@@ -61,10 +55,10 @@ export const themeConfig = {
           href: "https://cdn2.codesign.qq.com/icons/g5ZpEgx3z4VO6j2/latest/iconfont.css",
         },
       ],
-      // Embed code
+      // Embed Code
       ["link", { rel: "preconnect", href: "https://use.sevencdn.com" }],
       ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
-      // 预载 DocSearch
+      // DocSearch
       [
         "link",
         {
@@ -75,7 +69,7 @@ export const themeConfig = {
       ],
     ],
   },
-  // 导航栏菜单
+  // Navigation Bar Configuration | 导航栏配置
   nav: [
     {
       text: "文库",
@@ -110,6 +104,7 @@ export const themeConfig = {
     },
   ],
   // Left Side Nav Menu (External Links)
+  // 左侧导航栏菜单（外部链接）
   navMore: [
     {
       name: "Others",
@@ -122,14 +117,15 @@ export const themeConfig = {
       ],
     },
   ],
-  // Post Cover Configuration
+  // Post Cover Configuration | 文章封面配置
   cover: {
-    // Display Two Columns of Post or Not
+    // Display Two Columns of Post or Not | 是否显示两列文章
     twoColumns: false,
-    // Display Cover
+    // Display Cover | 是否显示封面
     showCover: {
       enable: true,
       // Cover Layout: 'left' | 'right' | 'both'
+      // 封面布局: 'left' | 'right' | 'both'
       coverLayout: 'both',
       // Default Covers (displayed randomly)
       // defaultCover: [
@@ -138,9 +134,11 @@ export const themeConfig = {
   },
   // Enable FakeGPT or Not
   fakeGPT: true,
-  // 页脚信息
+  // Footer Information | 页脚信息
   footer: {
-    // 社交链接（请确保为偶数个）
+    // Social Links | 社交链接
+    // Make add an even number of items.
+    // 添加偶数个社交链接
     social: [
       {
         icon: "email",
@@ -167,7 +165,7 @@ export const themeConfig = {
         link: "https://twitter.com/iimmsyy",
       },
     ],
-    // sitemap
+    // Sitemap | 网站地图
     sitemap: [
       {
         text: "博客",
@@ -219,45 +217,42 @@ export const themeConfig = {
       },
     ],
   },
-  // 评论
+  // Comment System | 评论系统
   comment: {
     enable: false,
-    // 评论系统选择
+    // Comment System Type | 评论系统类型
     // artalk / twikoo
     type: "artalk",
-    // artalk
+    // Artalk
     // https://artalk.js.org/
     artalk: {
       site: "",
       server: "",
     },
-    // twikoo
+    // Twikoo
     // https://twikoo.js.org/
     twikoo: {
-      // 必填，若不想使用 CDN，可以使用 pnpm add twikoo 安装并引入
       js: "https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js",
       envId: "",
-      // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
-      region: "ap-shanghai",
       lang: "zh-CN",
     },
   },
-  // 侧边栏
+  // Right-Side Sidebar | 右侧边栏
   aside: {
-    // 站点简介
+    // Brief Description of the Site | 站点简介
     hello: {
       enable: true,
-      text: "这里有关于<strong>开发</strong>相关的问题和看法，也会有一些<strong>奇技淫巧</strong>的分享，其中大部分内容会侧重于<strong>前端开发</strong>。希望你可以在这里找到对你有用的知识和教程。",
+      text: "This is a simple <strong>VitePress</strong> theme.",
     },
-    // 目录
+    // Table of Contents | 文章目录
     toc: {
       enable: true,
     },
-    // 标签
+    // Tag Display | 标签展示
     tags: {
       enable: true,
     },
-    // 站点数据
+    // Site Data Display | 站点数据展示
     siteData: {
       enable: true,
     },
@@ -273,22 +268,36 @@ export const themeConfig = {
       table_id: "",
     },
   },
-  // 搜索
+  // AI Search | AI 搜索
   // https://www.algolia.com/
   search: {
     enable: false,
     appId: "",
     apiKey: "",
   },
-  // 打赏
+  // Sponsoring | 打赏, TODO
   rewardData: {
-    enable: true,
-    // 微信二维码
-    wechat: "https://pic.efefee.cn/uploads/2024/04/07/66121049d1e80.webp",
-    // 支付宝二维码
-    alipay: "https://pic.efefee.cn/uploads/2024/04/07/661206631d3b5.webp",
+    enable: false,
+    // GitHub Sponsors | GitHub 赞助
+    github: "",
+    // Buy Me a Coffee
+    // https://www.buymeacoffee.com/
+    buyMeACoffee: "",
+    // Patreon
+    // https://www.patreon.com/
+    patreon: "",
+    // Ko-fi
+    // https://ko-fi.com/
+    koFi: "",
+    // PayPal
+    // https://www.paypal.com/
+    paypal: "",
+    // WeChat QR Code | 微信二维码
+    wechat: "",
+    // Alipay QR Code | 支付宝二维码
+    alipay: "",
   },
-  // 图片灯箱
+  // Fancybox for Images | 图片灯箱
   fancybox: {
     enable: true,
     js: "https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js",
