@@ -23,7 +23,6 @@ card: true
 
 > 在访问时，本站内置的第三方服务会通过以下或更多途径，来获取您的以下或更多信息：
 
-- **SUSTech Open Source Mirrors** 会收集您的访问信息，用于网站加速。[SUSTech Open Source Mirrors 简介](https://mirrors.sustech.edu.cn/about/)
 - **腾讯云** 会收集您的访问信息，用于提供网站服务。[腾讯云隐私政策](https://www.tencentcloud.com/zh/document/product/301/17345)
 - **多吉云** 会收集您的访问信息，用于提供网站服务。[多吉云隐私权政策](https://www.dogecloud.com/page/privacy-policy)
 - **又拍云** 会收集您的访问信息，用于提供网站服务。[又拍云用户隐私政策](https://help.upyun.com/knowledge-base/%E7%94%A8%E6%88%B7%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96/)
