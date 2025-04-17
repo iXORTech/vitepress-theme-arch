@@ -14,17 +14,25 @@
             <!-- 菜单 -->
             <div class="menu-list">
               <div v-for="(item, index) in nav" :key="index" class="menu-item">
-                <span class="link-title"> {{ item.text }}</span>
-                <div v-if="item.items" class="link-child">
-                  <div
-                    v-for="(child, childIndex) in item.items"
-                    :key="childIndex"
-                    class="link-child-btn"
-                    @click="pageJump(child.link)"
-                  >
-                    <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
-                    <span class="name">{{ child.text }}</span>
+                <div v-if="item.items">
+                  <span class="link-title">{{ item.text }}</span>
+                  <div v-if="item.items" class="link-child">
+                    <div
+                      v-for="(child, childIndex) in item.items"
+                      :key="childIndex"
+                      class="link-child-btn"
+                      @click="pageJump(child.link)"
+                    >
+                      <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
+                      <span class="name">{{ child.text }}</span>
+                    </div>
                   </div>
+                </div>
+                <div v-else>
+                  <span class="link-child-btn-root" @click="pageJump(item.link)">
+                    <i v-if="item.icon" :class="`iconfont icon-${item.icon}`" />
+                    {{ item.text }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -77,6 +85,7 @@ const pageJump = (url) => {
   width: 100vw;
   height: 100vh;
   z-index: 3000;
+
   .menu-mask {
     position: absolute;
     top: 0;
@@ -86,6 +95,7 @@ const pageJump = (url) => {
     z-index: -1;
     background-color: var(--main-mask-background);
   }
+
   .menu-content {
     position: absolute;
     top: 0;
@@ -96,6 +106,7 @@ const pageJump = (url) => {
     border-radius: 12px 0 0 12px;
     padding: 20px;
     overflow: auto;
+
     .close-control {
       position: absolute;
       top: 10px;
@@ -111,6 +122,7 @@ const pageJump = (url) => {
         opacity 0.3s;
       border-radius: 50%;
       cursor: pointer;
+
       .iconfont {
         font-size: 18px;
         line-height: 1;
@@ -119,31 +131,71 @@ const pageJump = (url) => {
           color 0.3s,
           opacity 0.3s;
       }
+
       &:hover {
         background-color: var(--main-color);
+
         .iconfont {
           color: var(--main-card-background);
         }
       }
     }
+
     .menu-list {
       margin-bottom: 20px;
+
       &:last-child {
         margin-bottom: 0;
       }
     }
+
     .menu-item {
       margin-bottom: 12px;
+
       .link-title {
         font-size: 14px;
         margin-bottom: 12px;
         display: inline-block;
         color: var(--main-font-second-color);
       }
+
+      .link-child-btn-root {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 8px;
+        padding: 10px 12px;
+        background-color: var(--main-card-background);
+        border: 1px solid var(--main-card-border);
+        box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+        font-size: 15px;
+
+        .iconfont {
+          margin-right: 6px;
+          opacity: 0.6;
+        }
+
+        .name {
+          max-width: 80px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .num {
+          opacity: 0.4;
+          font-size: 12px;
+          margin-bottom: auto;
+          margin-left: 4px;
+        }
+      }
+
       .link-child {
         display: grid;
         gap: 12px;
         grid-template-columns: 1fr 1fr;
+
         .link-child-btn {
           display: flex;
           flex-direction: row;
@@ -155,16 +207,19 @@ const pageJump = (url) => {
           border: 1px solid var(--main-card-border);
           box-shadow: 0 8px 16px -4px var(--main-border-shadow);
           font-size: 15px;
+
           .iconfont {
             margin-right: 6px;
             opacity: 0.6;
           }
+
           .name {
             max-width: 80px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
           }
+
           .num {
             opacity: 0.4;
             font-size: 12px;
@@ -173,10 +228,12 @@ const pageJump = (url) => {
           }
         }
       }
+
       &:last-child {
         margin-bottom: 0;
       }
     }
+
     hr {
       margin: 1rem 0;
       opacity: 0.4;

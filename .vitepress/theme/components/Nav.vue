@@ -32,16 +32,27 @@
         <div class="nav-center">
           <div class="site-menu">
             <div v-for="(item, index) in theme.nav" :key="index" class="menu-item">
-              <span class="link-btn"> {{ item.text }}</span>
-              <div v-if="item.items" class="link-child">
+              <div v-if="item.items">
+                <span class="link-btn" v-if="item.items">{{ item.text }}</span>
+                <div class="link-child">
+                  <span
+                    v-for="(child, childIndex) in item.items"
+                    :key="childIndex"
+                    class="link-child-btn"
+                    @click="router.go(child.link)"
+                  >
+                    <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
+                    {{ child.text }}
+                  </span>
+                </div>
+              </div>
+              <div v-else>
                 <span
-                  v-for="(child, childIndex) in item.items"
-                  :key="childIndex"
-                  class="link-child-btn"
-                  @click="router.go(child.link)"
+                  class="link-btn"
+                  @click="router.go(item.link)"
                 >
-                  <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
-                  {{ child.text }}
+                  <i v-if="item.icon" :class="`iconfont icon-${item.icon}`" />
+                  {{ item.text }}
                 </span>
               </div>
             </div>
@@ -130,7 +141,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
-import { smoothScrolling, shufflePost } from "@/utils/helper";
+import { shufflePost, smoothScrolling } from "@/utils/helper";
 
 const router = useRouter();
 const store = mainStore();
@@ -146,6 +157,11 @@ const { site, theme, frontmatter, page } = useData();
   overflow: hidden;
   z-index: 1000;
   animation: show 0.3s backwards;
+
+  .active {
+    background: var(--main-color);
+  }
+
   .main-nav {
     display: flex;
     flex-direction: row;
@@ -160,6 +176,7 @@ const { site, theme, frontmatter, page } = useData();
     transition:
       background-color 0.3s,
       backdrop-filter 0.3s;
+
     &::after {
       content: "";
       position: absolute;
@@ -170,13 +187,16 @@ const { site, theme, frontmatter, page } = useData();
       background-color: var(--main-card-border);
       transition: opacity 0.3s;
     }
+
     &.top {
       background-color: transparent;
       outline: 0px;
+
       &::after {
         opacity: 0;
       }
     }
+
     &.top,
     &.up {
       .nav-all {
@@ -184,11 +204,13 @@ const { site, theme, frontmatter, page } = useData();
           transform: translateY(0);
           opacity: 1;
         }
+
         .site-title {
           transform: translateY(50px);
           opacity: 0;
         }
       }
+
       @media (max-width: 768px) {
         .nav-center {
           top: -80px;
@@ -196,6 +218,7 @@ const { site, theme, frontmatter, page } = useData();
       }
     }
   }
+
   .nav-all {
     position: relative;
     width: 100%;
@@ -205,17 +228,20 @@ const { site, theme, frontmatter, page } = useData();
     display: grid;
     grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
     align-items: center;
+
     .left-nav {
       display: flex;
       flex-direction: row;
       align-items: center;
       min-width: 200px;
+
       .more-menu {
         position: relative;
         margin-right: 4px;
         @media (max-width: 512px) {
           display: none;
         }
+
         .more-card {
           position: absolute;
           left: 0;
@@ -224,33 +250,40 @@ const { site, theme, frontmatter, page } = useData();
           visibility: hidden;
           transform-origin: left top;
           transform: scale(0.8) translateY(-5px);
+
           .more-item {
             margin-top: 0.8rem;
+
             &:first-child {
               margin-top: 0;
             }
+
             .more-name {
               font-size: 14px;
               display: inline-block;
               color: var(--main-font-second-color);
               margin-bottom: 0.6rem;
             }
+
             .more-list {
               display: grid;
               gap: 0.8rem;
               grid-template-columns: 1fr 1fr;
+
               .more-link {
                 display: flex;
                 align-items: center;
                 width: 150px;
                 padding: 6px 8px;
                 border-radius: 8px;
+
                 .link-icon {
                   width: 24px;
                   height: 24px;
                   border-radius: 50%;
                   margin-right: 8px;
                 }
+
                 &:hover {
                   color: var(--main-card-background);
                   background-color: var(--main-color);
@@ -258,6 +291,7 @@ const { site, theme, frontmatter, page } = useData();
               }
             }
           }
+
           &::after {
             content: "";
             position: absolute;
@@ -267,10 +301,12 @@ const { site, theme, frontmatter, page } = useData();
             height: 30px;
             z-index: 1;
           }
+
           &:hover {
             border-color: var(--main-color);
           }
         }
+
         &:hover {
           .more-card {
             opacity: 1;
@@ -279,6 +315,7 @@ const { site, theme, frontmatter, page } = useData();
           }
         }
       }
+
       .site-name {
         position: relative;
         display: flex;
@@ -293,6 +330,7 @@ const { site, theme, frontmatter, page } = useData();
         text-overflow: ellipsis;
         transition: transform 0.3s;
         cursor: pointer;
+
         &::after {
           content: "\e032";
           font-family: "iconfont";
@@ -311,6 +349,7 @@ const { site, theme, frontmatter, page } = useData();
           opacity: 0;
           transition: opacity 0.3s;
         }
+
         @media (min-width: 768px) {
           &:hover {
             &::after {
@@ -323,6 +362,7 @@ const { site, theme, frontmatter, page } = useData();
         }
       }
     }
+
     .nav-center {
       display: flex;
       align-items: center;
@@ -332,6 +372,7 @@ const { site, theme, frontmatter, page } = useData();
       height: 60px;
       overflow: hidden;
       transition: top 0.3s;
+
       .site-menu {
         position: absolute;
         width: fit-content;
@@ -346,6 +387,7 @@ const { site, theme, frontmatter, page } = useData();
         transition:
           transform 0.3s,
           opacity 0.3s;
+
         .menu-item {
           position: relative;
           padding: 0 0.4rem;
@@ -354,6 +396,7 @@ const { site, theme, frontmatter, page } = useData();
           align-items: center;
           margin: auto;
           cursor: pointer;
+
           .link-btn {
             display: flex;
             align-items: center;
@@ -368,6 +411,7 @@ const { site, theme, frontmatter, page } = useData();
               color 0.3s,
               background-color 0.3s;
           }
+
           .link-child {
             position: absolute;
             top: 35px;
@@ -387,6 +431,7 @@ const { site, theme, frontmatter, page } = useData();
               opacity 0.3s,
               visibility 0.3s,
               transform 0.3s;
+
             &::before {
               content: "";
               position: absolute;
@@ -395,6 +440,7 @@ const { site, theme, frontmatter, page } = useData();
               width: 100%;
               height: 20px;
             }
+
             .link-child-btn {
               display: flex;
               align-items: center;
@@ -407,22 +453,26 @@ const { site, theme, frontmatter, page } = useData();
                 padding 0.3s,
                 background-color 0.3s,
                 box-shadow 0.3s;
+
               .iconfont {
                 margin-right: 8px;
                 font-size: 20px;
                 transition: color 0.3s;
               }
+
               &:hover {
                 color: var(--main-card-background);
                 background-color: var(--main-color);
                 box-shadow: 0 8px 12px -3px var(--main-color-bg);
                 padding: 0.6rem 1rem;
+
                 .iconfont {
                   color: var(--main-card-background);
                 }
               }
             }
           }
+
           &:first-child {
             .link-child {
               &::after {
@@ -435,6 +485,7 @@ const { site, theme, frontmatter, page } = useData();
               }
             }
           }
+
           &:last-child {
             .link-child {
               &::after {
@@ -447,11 +498,13 @@ const { site, theme, frontmatter, page } = useData();
               }
             }
           }
+
           &:hover {
             .link-btn {
               color: var(--main-card-background);
               background-color: var(--main-color);
             }
+
             .link-child {
               transform: translateY(0) scale(1);
               opacity: 1;
@@ -460,6 +513,7 @@ const { site, theme, frontmatter, page } = useData();
           }
         }
       }
+
       .site-title {
         position: relative;
         display: inline-block;
@@ -477,6 +531,7 @@ const { site, theme, frontmatter, page } = useData();
           transform 0.3s,
           opacity 0.3s;
         cursor: pointer;
+
         &::after {
           content: "返回顶部";
           position: absolute;
@@ -495,14 +550,17 @@ const { site, theme, frontmatter, page } = useData();
           transition: opacity 0.3s;
           z-index: 1;
         }
+
         &:hover {
           &::after {
             opacity: 1;
           }
         }
+
         &:active {
           transform: scale(0.95);
         }
+
         @media (max-width: 768px) {
           &::after {
             display: none;
@@ -510,17 +568,21 @@ const { site, theme, frontmatter, page } = useData();
         }
       }
     }
+
     .right-nav {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
       min-width: 200px;
+
       .menu-btn {
         margin-left: 0.5rem;
+
         &.mobile {
           display: none;
         }
+
         @media (max-width: 768px) {
           &.mobile {
             display: flex;
@@ -530,6 +592,7 @@ const { site, theme, frontmatter, page } = useData();
           }
         }
       }
+
       .to-top {
         position: relative;
         display: flex;
@@ -539,6 +602,7 @@ const { site, theme, frontmatter, page } = useData();
         height: 35px;
         transition: all 0.3s;
         cursor: pointer;
+
         .to-top-btn {
           position: absolute;
           display: flex;
@@ -552,12 +616,14 @@ const { site, theme, frontmatter, page } = useData();
             width 0.3s,
             height 0.3s,
             background-color 0.3s;
+
           .num {
             position: absolute;
             font-size: 12px;
             color: var(--main-card-background);
             transition: opacity 0.1s;
           }
+
           .icon-up {
             position: absolute;
             color: var(--main-card-background);
@@ -572,37 +638,46 @@ const { site, theme, frontmatter, page } = useData();
           transform: scale(0);
           margin: 0;
         }
+
         &.long {
           width: 80px;
+
           .to-top-btn {
             width: 70px;
           }
         }
+
         &:hover {
           .to-top-btn {
             width: 35px;
             height: 35px;
             background-color: var(--main-color);
+
             .num {
               opacity: 0;
             }
+
             .icon-up {
               opacity: 1;
             }
           }
+
           &.long {
             width: 80px;
+
             .to-top-btn {
               width: 80px;
               height: 35px;
             }
           }
         }
+
         &:active {
           transform: scale(0.9);
         }
       }
     }
+
     @media (max-width: 768px) {
       display: flex;
       flex-direction: row;
@@ -620,6 +695,7 @@ const { site, theme, frontmatter, page } = useData();
         background-color: var(--main-card-background);
         border-bottom: 1px solid var(--main-card-border);
         z-index: 100;
+
         .site-title {
           font-size: 15px;
           height: auto;
@@ -627,6 +703,7 @@ const { site, theme, frontmatter, page } = useData();
       }
     }
   }
+
   .nav-btn {
     display: flex;
     align-items: center;
@@ -637,6 +714,7 @@ const { site, theme, frontmatter, page } = useData();
     transition: background-color 0.3s;
     border-radius: 50%;
     cursor: pointer;
+
     .iconfont {
       font-size: 20px;
       line-height: 1;
@@ -644,8 +722,10 @@ const { site, theme, frontmatter, page } = useData();
         color 0.3s,
         opacity 0.3s;
     }
+
     &:hover {
       background-color: var(--main-color);
+
       .iconfont {
         color: var(--main-card-background);
       }

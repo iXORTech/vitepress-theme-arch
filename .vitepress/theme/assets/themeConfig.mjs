@@ -7,7 +7,7 @@ export const themeConfig = {
     description: "Hello World",
     // The Welcome Message to be Shown on the Home Page
     // Optional, if not provided, a welcome + title message will be used.
-    // welcomeMessage: "Welcome to my site.",
+    welcomeMessage: "Welcome to my site.",
     logo: "/images/logo/logo.webp",
     // URL | 站点地址
     site: "https://example.tld",
