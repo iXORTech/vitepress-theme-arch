@@ -72,36 +72,21 @@ export const themeConfig = {
   // Navigation Bar Configuration | 导航栏配置
   nav: [
     {
-      text: "文库",
+      text: "Posts",
       items: [
-        { text: "文章列表", link: "/pages/archives", icon: "article" },
-        { text: "全部分类", link: "/pages/categories", icon: "folder" },
-        { text: "全部标签", link: "/pages/tags", icon: "hashtag" },
+        { text: "Archives", link: "/pages/archives", icon: "article" },
+        { text: "All Categories", link: "/pages/categories", icon: "folder" },
+        { text: "All Tags", link: "/pages/tags", icon: "hashtag" },
       ],
     },
     {
-      text: "专栏",
+      text: "Page Group",
       items: [
-        { text: "技术分享", link: "/pages/categories/技术分享", icon: "technical" },
-        { text: "我的项目", link: "/pages/project", icon: "code" },
-        { text: "效率工具", link: "/pages/tools", icon: "tools" },
+        { text: "Page 1", link: "/pages/demo-page-1", icon: "technical" },
+        { text: "Page 2", link: "/pages/demo-page-1", icon: "code" },
       ],
     },
-    {
-      text: "友链",
-      items: [
-        { text: "友链鱼塘", link: "/pages/friends", icon: "fish" },
-        { text: "友情链接", link: "/pages/link", icon: "people" },
-      ],
-    },
-    {
-      text: "我的",
-      items: [
-        { text: "畅所欲言", link: "/pages/message", icon: "chat" },
-        { text: "致谢名单", link: "/pages/thanks", icon: "reward" },
-        { text: "关于本站", link: "/pages/about", icon: "contacts" },
-      ],
-    },
+    { text: "About", link: "/pages/about", icon: "contacts" },
   ],
   // Left Side Nav Menu (External Links)
   // 左侧导航栏菜单（外部链接）
