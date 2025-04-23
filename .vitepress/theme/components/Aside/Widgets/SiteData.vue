@@ -2,34 +2,34 @@
 <template>
   <div class="site-data s-card">
     <div class="title">
-      <i class="iconfont icon-chart"></i>
+      <i class="font-awesome fa-solid fa-chart-bar"></i>
       <span class="title-name">站点数据</span>
     </div>
     <div class="all-data">
       <div class="data-item">
         <span class="name">
-          <i class="iconfont icon-article"></i>
+          <i class="font-awesome fa-solid fa-newspaper"></i>
           文章总数
         </span>
         <span class="num">{{ theme.postData?.length || 0 }} 篇</span>
       </div>
       <div class="data-item">
         <span class="name">
-          <i class="iconfont icon-date"></i>
+          <i class="font-awesome fa-solid fa-calendar-days"></i>
           建站天数
         </span>
         <span class="num">{{ daysFromNow(theme.since) }} 天</span>
       </div>
       <div class="data-item">
         <span class="name">
-          <i class="iconfont icon-visibility"></i>
+          <i class="font-awesome fa-solid fa-eye"></i>
           总访问量
         </span>
         <span class="num" id="busuanzi_value_site_pv">0</span>
       </div>
       <div class="data-item">
         <span class="name">
-          <i class="iconfont icon-account"></i>
+          <i class="font-awesome fa-solid fa-users"></i>
           总访客数
         </span>
         <span class="num" id="busuanzi_value_site_uv">0</span>
@@ -65,7 +65,7 @@ onMounted(() => {
         display: flex;
         flex-direction: row;
         align-items: center;
-        .iconfont {
+        .font-awesome {
           margin-right: 8px;
           opacity: 0.6;
           font-size: 18px;

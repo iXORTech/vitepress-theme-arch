@@ -3,7 +3,7 @@
   <div v-if="relatedData" class="related-post">
     <div class="title">
       <span class="name">
-        <i class="iconfont icon-star"></i>
+        <i class="font-awesome fa-solid fa-star"></i>
         相关推荐
       </span>
       <span class="shuffle" @click="router.go(shufflePost(theme.postData))"> 随便逛逛 </span>
@@ -68,7 +68,7 @@ onMounted(() => {
       align-items: center;
       font-size: 24px;
       font-weight: bold;
-      .iconfont {
+      .font-awesome {
         font-size: 26px;
         font-weight: normal;
         margin-right: 8px;

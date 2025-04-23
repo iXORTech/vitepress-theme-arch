@@ -31,7 +31,7 @@
             target="_blank"
           >
             <div class="skills-logo">
-              <i :class="`iconfont icon-${item.icon}`"></i>
+              <i :class="`font-awesome fa-solid fa-${item.icon}`"></i>
             </div>
             <span class="skills-name">{{ item.name }}</span>
           </a>
@@ -385,7 +385,7 @@ const skillsData = [
               margin-right: 8px;
               border-radius: 50%;
               background-color: var(--color);
-              .iconfont {
+              .font-awesome {
                 color: #fff;
               }
             }

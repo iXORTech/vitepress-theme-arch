@@ -3,9 +3,9 @@
   <div v-if="theme.fakeGPT && frontmatter.articleGPT" class="article-gpt s-card">
     <div class="title">
       <span class="name">
-        <i class="iconfont icon-robot"></i>
+        <i class="font-awesome fa-solid fa-robot"></i>
         文章摘要
-        <i class="iconfont icon-up"></i>
+        <i class="fa-solid fa-angle-right"></i>
       </span>
       <span :class="['logo', { loading }]" @click="showOther"> FakeGPT </span>
     </div>
@@ -108,12 +108,11 @@ onBeforeUnmount(() => {
       color: var(--main-color);
       font-weight: bold;
       cursor: pointer;
-      .icon-robot {
+      .fa-robot {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
-        font-weight: normal;
+        font-size: 16px;
         width: 26px;
         height: 26px;
         color: var(--main-card-background);
@@ -121,13 +120,11 @@ onBeforeUnmount(() => {
         border-radius: 50%;
         margin-right: 8px;
       }
-      .icon-up {
-        font-weight: normal;
+      .fa-angle-right {
         font-size: 12px;
         margin-left: 6px;
         opacity: 0.6;
         color: var(--main-color);
-        transform: rotate(90deg);
       }
     }
     .logo {

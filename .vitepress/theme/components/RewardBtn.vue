@@ -2,36 +2,21 @@
 <template>
   <div v-if="rewardData.enable" class="reward">
     <div class="reward-btn" @click="rewardShow = true">
-      <i class="iconfont icon-reward" />
+      <i class="font-awesome fa-solid fa-money-check-dollar" />
       <span class="text">赞赏博主</span>
     </div>
-    <!-- 设置面板 -->
+    <!-- 打赏面板 -->
     <Modal
       :show="rewardShow"
       :maxWidth="430"
       title="赞赏博主"
-      titleIcon="reward"
+      titleIcon="money-check-dollar"
       @mask-click="rewardShow = false"
       @modal-close="rewardShow = false"
     >
       <div class="reward-card">
         <span class="thank">🙏 感谢您赐予我前进的力量</span>
-        <div class="qr">
-          <a v-if="rewardData?.wechat" :href="rewardData.wechat" class="qr-img" target="_blank">
-            <img v-if="rewardData?.wechat" :src="rewardData.wechat" alt="微信" />
-            <span class="tip">
-              <i class="iconfont icon-wechat-pay" />
-              微信
-            </span>
-          </a>
-          <a v-if="rewardData?.alipay" :href="rewardData.alipay" class="qr-img" target="_blank">
-            <img v-if="rewardData?.alipay" :src="rewardData.alipay" alt="支付宝" />
-            <span class="tip">
-              <i class="iconfont icon-alipay" />
-              支付宝
-            </span>
-          </a>
-        </div>
+        <!-- TODO: ACTUAL LINK FOR SPONSORING -->
         <div v-if="showJump" class="all-list s-card hover" @click="toRewardList">
           <span class="title">全部赞赏者名单</span>
           <span class="tip">
@@ -85,9 +70,8 @@ const toRewardList = () => {
     color: #fff;
     background-color: var(--main-color-red);
     transition: box-shadow 0.5s;
-    .iconfont {
+    .font-awesome {
       color: #fff;
-      font-weight: normal;
       margin-right: 6px;
     }
     &:hover {
@@ -123,13 +107,13 @@ const toRewardList = () => {
         flex-direction: row;
         align-items: center;
         margin-top: 0.8rem;
-        .iconfont {
+        .font-awesome {
           margin-right: 6px;
           font-size: 18px;
         }
       }
       &:hover {
-        .iconfont {
+        .font-awesome {
           color: var(--main-color);
         }
       }

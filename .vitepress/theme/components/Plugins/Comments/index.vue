@@ -9,7 +9,7 @@
   >
     <div v-if="!fill" class="title">
       <span class="name">
-        <i class="iconfont icon-chat"></i>
+        <i class="font-awesome fa-solid fa-comments"></i>
         评论
       </span>
       <span class="tool" @click="router.go('/pages/privacy')"> 隐私政策 </span>
@@ -59,7 +59,7 @@ defineExpose({ scrollToComments });
       align-items: center;
       font-size: 24px;
       font-weight: bold;
-      .iconfont {
+      .font-awesome {
         font-size: 26px;
         font-weight: normal;
         margin-right: 8px;

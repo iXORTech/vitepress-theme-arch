@@ -15,12 +15,13 @@
       <div class="post-content">
         <div v-if="!simple && item?.categories" class="post-category">
           <span v-for="cat in item?.categories" :key="cat" class="cat-name">
-            <i class="iconfont icon-folder" />
+            <i class="font-awesome fa-solid fa-folder-open" />
             {{ cat }}
           </span>
           <!-- 置顶 -->
           <span v-if="item?.top" class="top">
-            <i class="iconfont icon-align-top" />
+            <!-- If using FA Pro, use fa-arrow-up-to-line. -->
+            <i class="font-awesome fa-solid fa-map-pin" />
             置顶
           </span>
         </div>
@@ -36,7 +37,7 @@
               class="tags-name"
               @click.stop="router.go(`/pages/tags/${tags}`)"
             >
-              <i class="iconfont icon-hashtag" />
+              <i class="font-awesome fa-solid fa-hashtag" />
               {{ tags }}
             </span>
           </div>
@@ -156,7 +157,7 @@ const toPost = (path) => {
           display: flex;
           flex-direction: row;
           align-items: center;
-          .iconfont {
+          .font-awesome {
             opacity: 0.8;
             margin-right: 6px;
             color: var(--main-font-second-color);
@@ -165,7 +166,7 @@ const toPost = (path) => {
         .top {
           margin-left: 12px;
           color: var(--main-color);
-          .iconfont {
+          .font-awesome {
             opacity: 0.8;
             color: var(--main-color);
           }
@@ -220,7 +221,7 @@ const toPost = (path) => {
             margin-right: 12px;
             white-space: nowrap;
             transition: color 0.3s;
-            .iconfont {
+            .font-awesome {
               font-weight: normal;
               opacity: 0.6;
               margin-right: 4px;
@@ -228,7 +229,7 @@ const toPost = (path) => {
             }
             &:hover {
               color: var(--main-color);
-              .iconfont {
+              .font-awesome {
                 color: var(--main-color);
               }
             }

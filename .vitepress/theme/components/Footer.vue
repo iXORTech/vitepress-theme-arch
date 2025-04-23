@@ -7,7 +7,7 @@
           {{ theme.siteMeta.author.name }}
         </a>
         <a v-if="theme.icp" class="icp link" href="https://beian.miit.gov.cn/" target="_blank">
-          <i class="iconfont icon-safe" />
+          <i class="font-awesome fa-solid fa-shield"></i>
           {{ theme.icp }}
         </a>
       </div>
@@ -20,7 +20,7 @@
           <span class="name">主题</span>
         </a>
         <a class="rss link" href="https://blog.imsyy.top/rss.xml" target="_blank">
-          <i class="iconfont icon-rss" />
+          <i class="font-awesome fa-solid fa-rss"></i>
           <span class="name">订阅</span>
         </a>
         <a
@@ -28,10 +28,10 @@
           href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
           target="_blank"
         >
-          <i class="iconfont icon-line" />
-          <i class="iconfont icon-by-line" />
-          <i class="iconfont icon-nc-line" />
-          <i class="iconfont icon-nd-line" />
+          <i class="font-awesome fa-brands fa-creative-commons"></i>
+          <i class="font-awesome fa-brands fa-creative-commons-by"></i>
+          <i class="font-awesome fa-brands fa-creative-commons-nc"></i>
+          <i class="font-awesome fa-brands fa-creative-commons-nd"></i>
         </a>
       </div>
     </div>
@@ -113,16 +113,9 @@ onBeforeUnmount(() => {
 
     .copyright {
       .icp {
-        .iconfont {
+        .font-awesome {
           font-size: 20px;
           opacity: 0.6;
-        }
-      }
-
-      .upyun {
-        .iconfont {
-          font-size: 20px;
-          font-weight: normal;
         }
       }
     }
@@ -145,15 +138,14 @@ onBeforeUnmount(() => {
       .rss {
         margin-right: 4px;
 
-        .iconfont {
-          font-weight: normal;
+        .font-awesome {
           margin-right: 6px;
         }
       }
 
       .cc {
-        .iconfont {
-          margin: 0 2px;
+        .font-awesome {
+          margin: 2px 2px 2px 2px;
           font-weight: normal;
         }
       }
@@ -176,7 +168,7 @@ onBeforeUnmount(() => {
         background-color 0.3s;
       cursor: pointer;
 
-      .iconfont {
+      .font-awesome {
         font-size: 22px;
         margin-right: 4px;
         transition: color 0.3s;
@@ -186,7 +178,7 @@ onBeforeUnmount(() => {
         color: var(--main-color);
         background-color: var(--main-color-bg);
 
-        .iconfont {
+        .font-awesome {
           color: var(--main-color);
         }
       }
@@ -201,7 +193,7 @@ onBeforeUnmount(() => {
     @media (max-width: 420px) {
       .copyright {
         .icp {
-          .iconfont {
+          .font-awesome {
             display: none;
           }
         }

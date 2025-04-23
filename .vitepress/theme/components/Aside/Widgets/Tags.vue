@@ -2,7 +2,7 @@
 <template>
   <div class="tags-cloud s-card">
     <div class="title">
-      <i class="iconfont icon-hashtag"></i>
+      <i class="font-awesome fa-solid fa-hashtag"></i>
       <span class="title-name">热门标签</span>
     </div>
     <div class="all-tags">

@@ -99,11 +99,11 @@ const route = useRoute();
     opacity: 0.4;
   }
   &::after {
-    content: "\e021";
+    content: "\f25e";
     position: absolute;
     top: -4rem;
     right: -4rem;
-    font-family: "iconfont";
+    font-family: "Font Awesome 6 Brands";
     opacity: 0.1;
     font-size: 16rem;
     transform: rotate(334deg);

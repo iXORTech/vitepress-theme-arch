@@ -2,7 +2,7 @@
   <!-- 目录 -->
   <div v-if="tocData && tocData?.length" class="toc s-card">
     <div class="toc-title">
-      <i class="iconfont icon-toc" />
+      <i class="font-awesome fa-solid fa-bars" />
       <span class="name">目录</span>
     </div>
     <div id="toc-all" class="toc-list" :style="{ '--height': activeTocHeight + 'px' }">
@@ -159,7 +159,7 @@ onBeforeUnmount(() => {
     align-items: center;
     padding: 18px;
     height: 58px;
-    .iconfont {
+    .font-awesome {
       margin-right: 8px;
       font-weight: bold;
       opacity: 0.6;

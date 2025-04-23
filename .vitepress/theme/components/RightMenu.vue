@@ -19,16 +19,16 @@
         >
           <div class="tools">
             <div class="btn" title="后退" @click="rightMenuFunc('back')">
-              <i class="iconfont icon-left"></i>
+              <i class="font-awesome fa-solid fa-angle-left"></i>
             </div>
             <div class="btn" title="前进" @click="rightMenuFunc('forward')">
-              <i class="iconfont icon-right"></i>
+              <i class="font-awesome fa-solid fa-angle-right"></i>
             </div>
             <div class="btn" title="刷新" @click="rightMenuFunc('reload')">
-              <i class="iconfont icon-refresh"></i>
+              <i class="font-awesome fa-solid fa-rotate-right"></i>
             </div>
             <div class="btn" title="返回顶部" @click="smoothScrolling">
-              <i class="iconfont icon-arrow-up"></i>
+              <i class="font-awesome fa-solid fa-arrow-up"></i>
             </div>
           </div>
           <div class="all-menu">
@@ -37,7 +37,7 @@
               class="btn"
               @click="router.go(shufflePost(theme.postData))"
             >
-              <i class="iconfont icon-shuffle"></i>
+              <i class="font-awesome fa-solid fa-shuffle"></i>
               <span class="name">随便逛逛</span>
             </div>
             <div
@@ -45,16 +45,16 @@
               class="btn"
               @click="router.go('/pages/categories')"
             >
-              <i class="iconfont icon-folder"></i>
+              <i class="font-awesome fa-solid fa-folder-open"></i>
               <span class="name">全部分类</span>
             </div>
             <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/pages/tags')">
-              <i class="iconfont icon-hashtag"></i>
+              <i class="font-awesome fa-solid fa-hashtag"></i>
               <span class="name">全部标签</span>
             </div>
             <!-- 链接类型 -->
             <div v-if="clickedType === 'link'" class="btn" @click="rightMenuFunc('open-link')">
-              <i class="iconfont icon-window"></i>
+              <i class="font-awesome fa-solid fa-window-maximize"></i>
               <span class="name">新标签页打开</span>
             </div>
             <div
@@ -64,7 +64,7 @@
                 copyText(clickedTypeData?.getAttribute('original-href') || clickedTypeData?.href)
               "
             >
-              <i class="iconfont icon-link"></i>
+              <i class="font-awesome fa-solid fa-link"></i>
               <span class="name">复制链接地址</span>
             </div>
             <!-- 图片类型 -->
@@ -73,7 +73,7 @@
               class="btn"
               @click="copyImage(clickedTypeData?.src)"
             >
-              <i class="iconfont icon-image-copy"></i>
+              <i class="font-awesome fa-solid fa-images"></i>
               <span class="name">复制此图片</span>
             </div>
             <div
@@ -81,7 +81,7 @@
               class="btn"
               @click="downloadImage(clickedTypeData?.src)"
             >
-              <i class="iconfont icon-download"></i>
+              <i class="font-awesome fa-solid fa-cloud-arrow-down"></i>
               <span class="name">下载此图片</span>
             </div>
             <!-- 输入框 -->
@@ -90,7 +90,7 @@
               class="btn"
               @click="rightMenuFunc('input-paste')"
             >
-              <i class="iconfont icon-paste"></i>
+              <i class="font-awesome fa-solid fa-paste"></i>
               <span class="name">粘贴文本</span>
             </div>
             <!-- 选中文本 -->
@@ -100,33 +100,15 @@
               class="btn right-menu-link"
               target="_blank"
             >
-              <i class="iconfont icon-link"></i>
+              <i class="font-awesome fa-solid fa-link"></i>
               <span class="name">在新标签页打开</span>
-            </a>
-            <a
-              v-if="clickedType === 'text' || clickedType === 'input'"
-              :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`"
-              class="btn right-menu-link"
-              target="_blank"
-            >
-              <i class="iconfont icon-baidu"></i>
-              <span class="name">使用百度搜索</span>
-            </a>
-            <a
-              v-if="clickedType === 'text' || clickedType === 'input'"
-              :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`"
-              class="btn right-menu-link"
-              target="_blank"
-            >
-              <i class="iconfont icon-bing"></i>
-              <span class="name">使用必应搜索</span>
             </a>
             <div
               v-if="clickedType === 'text' || clickedType === 'input'"
               class="btn"
               @click="copyText(clickedTypeData)"
             >
-              <i class="iconfont icon-copy"></i>
+              <i class="font-awesome fa-solid fa-copy"></i>
               <span class="name">复制选中文本</span>
             </div>
             <div
@@ -134,7 +116,7 @@
               class="btn"
               @click="commentCopy(clickedTypeData)"
             >
-              <i class="iconfont icon-chat"></i>
+              <i class="font-awesome fa-solid fa-comment"></i>
               <span class="name">评论选中内容</span>
             </div>
           </div>
@@ -142,25 +124,25 @@
           <div class="all-menu general">
             <!-- 版权协议 -->
             <div class="btn" @click="router.go('/pages/cc')">
-              <i class="iconfont icon-accessible"></i>
+              <i class="font-awesome fa-solid fa-copyright"></i>
               <span class="name">版权协议</span>
             </div>
             <!-- 隐私政策 -->
             <div class="btn" @click="router.go('/pages/privacy')">
-              <i class="iconfont icon-privacy"></i>
+              <i class="font-awesome fa-solid fa-shield-halved"></i>
               <span class="name">隐私政策</span>
             </div>
           </div>
           <div class="all-menu general">
             <!-- 复制地址 -->
             <div class="btn" @click="rightMenuFunc('copy-link')">
-              <i class="iconfont icon-copy"></i>
+              <i class="font-awesome fa-solid fa-copy"></i>
               <span class="name">复制本页地址</span>
             </div>
             <!-- 明暗模式 -->
             <div class="btn" @click.stop="store.changeThemeType">
               <i
-                :class="`iconfont icon-${themeType === 'auto' ? 'dark' : themeType === 'dark' ? 'light' : 'auto'}`"
+                :class="`font-awesome fa-solid fa-${themeType === 'auto' ? 'moon' : themeType === 'dark' ? 'sun' : 'wand-sparkles'}`"
               />
               <span class="name">
                 {{
@@ -176,7 +158,7 @@
     <Modal
       :show="commentCopyShow"
       title="快速评论"
-      titleIcon="chat"
+      titleIcon="comment"
       @mask-click="commentCopyClose"
       @modal-close="commentCopyClose"
     >
@@ -412,7 +394,7 @@ defineExpose({ openRightMenu });
       .btn {
         justify-content: flex-start;
         margin-bottom: 6px;
-        .iconfont {
+        .font-awesome {
           font-size: 20px;
         }
         &:last-child {
@@ -433,7 +415,7 @@ defineExpose({ openRightMenu });
       transition:
         color 0.3s,
         background-color 0.3s;
-      .iconfont {
+      .font-awesome {
         font-size: 20px;
         transition: color 0.3s;
       }
@@ -443,7 +425,7 @@ defineExpose({ openRightMenu });
       &:hover {
         color: var(--main-card-background);
         background-color: var(--main-color);
-        .iconfont {
+        .font-awesome {
           color: var(--main-card-background);
         }
       }

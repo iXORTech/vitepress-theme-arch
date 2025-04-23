@@ -46,13 +46,13 @@ export const themeConfig = {
           href: "https://example.tld/rss.xml",
         },
       ],
-      // iconfont
+      // FontAwesome
       [
         "link",
         {
           crossorigin: "anonymous",
           rel: "stylesheet",
-          href: "https://cdn2.codesign.qq.com/icons/g5ZpEgx3z4VO6j2/latest/iconfont.css",
+          href: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.css",
         },
       ],
       // Embed Code
@@ -74,19 +74,19 @@ export const themeConfig = {
     {
       text: "Posts",
       items: [
-        { text: "Archives", link: "/pages/archives", icon: "article" },
-        { text: "All Categories", link: "/pages/categories", icon: "folder" },
-        { text: "All Tags", link: "/pages/tags", icon: "hashtag" },
+        { text: "Archives", link: "/pages/archives", icon: "fa-solid fa-newspaper" },
+        { text: "All Categories", link: "/pages/categories", icon: "fa-solid fa-folder-open" },
+        { text: "All Tags", link: "/pages/tags", icon: "fa-solid fa-hashtag" },
       ],
     },
     {
       text: "Page Group",
       items: [
-        { text: "Page 1", link: "/pages/demo-page-1", icon: "technical" },
-        { text: "Page 2", link: "/pages/demo-page-1", icon: "code" },
+        { text: "Page 1", link: "/pages/demo-page-1", icon: "fa-solid fa-lightbulb" },
+        { text: "Page 2", link: "/pages/demo-page-1", icon: "fa-solid fa-code-branch" },
       ],
     },
-    { text: "About", link: "/pages/about", icon: "contacts" },
+    { text: "About", link: "/pages/about", icon: "fa-solid fa-address-card" },
   ],
   // Left Side Nav Menu (External Links)
   // 左侧导航栏菜单（外部链接）
@@ -126,28 +126,29 @@ export const themeConfig = {
     // 添加偶数个社交链接
     social: [
       {
-        icon: "email",
-        link: "mailto:one@imsyy.top",
+        // If using FA Pro, use fa-envelopes.
+        icon: "fa-solid fa-envelope",
+        link: "mailto:admin@example.tld",
       },
       {
-        icon: "github",
-        link: "https://www.github.com/imsyy/",
+        icon: "fa-brands fa-github",
+        link: "https://www.github.com/",
       },
       {
-        icon: "telegram",
-        link: "https://t.me/bottom_user",
+        icon: "fa-brands fa-linkedin",
+        link: "https://www.linkedin.com/in/",
       },
       {
-        icon: "bilibili",
-        link: "https://space.bilibili.com/98544142",
+        icon: "fa-brands fa-x-twitter",
+        link: "https://x.com/",
       },
       {
-        icon: "qq",
-        link: "https://res.abeim.cn/api/qq/?qq=1539250352",
+        icon: "fa-brands fa-bluesky",
+        link: "https://bsky.app/profile/",
       },
       {
-        icon: "twitter-x",
-        link: "https://twitter.com/iimmsyy",
+        icon: "fa-brands fa-discord",
+        link: "https://discord.gg/",
       },
     ],
     // Sitemap | 网站地图
@@ -259,10 +260,11 @@ export const themeConfig = {
     enable: false,
     appId: "",
     apiKey: "",
+    indexName: "",
   },
   // Sponsoring | 打赏, TODO
   rewardData: {
-    enable: false,
+    enable: true,
     // GitHub Sponsors | GitHub 赞助
     github: "",
     // Buy Me a Coffee

@@ -2,7 +2,7 @@
 <template>
   <div v-if="references" class="references s-card">
     <div class="title">
-      <i class="iconfont icon-quote"></i>
+      <i class="font-awesome fa-solid fa-quote-left"></i>
       <span class="title-text">参考资料</span>
     </div>
     <ul class="list">
@@ -39,7 +39,7 @@ const references = frontmatter.value?.references;
     color: var(--main-font-second-color);
     font-size: 15px;
     margin-bottom: 0.8rem;
-    .iconfont {
+    .font-awesome {
       margin-right: 4px;
       font-size: 18px;
       color: var(--main-font-second-color);

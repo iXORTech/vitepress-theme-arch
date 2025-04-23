@@ -12,7 +12,7 @@
           alt="link-img"
           @error="siteInfo.iconUrl = null"
         />
-        <i v-else class="iconfont icon-link"></i>
+        <i v-else class="font-awesome fa-solid fa-link"></i>
       </div>
       <div class="link-desc">
         <!-- 标题 -->
@@ -22,7 +22,7 @@
         <span v-if="desc" class="link-description">{{ desc }}</span>
         <span v-else class="link-description">{{ siteInfo?.description || "暂无站点描述" }}</span>
       </div>
-      <i class="link-go iconfont icon-up"></i>
+      <i class="link-go font-awesome fa-solid fa-angle-up"></i>
     </div>
   </a>
 </template>
@@ -111,7 +111,7 @@ onMounted(() => {
         width: 100%;
         height: 100%;
       }
-      .iconfont {
+      .font-awesome {
         display: flex;
         width: 100%;
         height: 100%;

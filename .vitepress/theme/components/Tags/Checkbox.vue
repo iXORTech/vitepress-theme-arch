@@ -37,9 +37,9 @@ const checkboxClick = () => {
       border 0.3s,
       background-color 0.3s;
     &::after {
-      content: "\e04e";
+      content: "\f14a";
       position: absolute;
-      font-family: "iconfont";
+      font-family: "Font Awesome 6 Free";
       font-size: 12px;
       color: var(--main-card-background);
       font-weight: bold;

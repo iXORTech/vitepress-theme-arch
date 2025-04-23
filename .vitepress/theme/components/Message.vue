@@ -11,7 +11,7 @@
         <div class="message-content">
           <span class="text">{{ messageContent || "默认消息内容" }}</span>
           <span v-if="messageClose" class="close">
-            <i class="iconfont icon-close"></i>
+            <i class="font-awesome fa-solid fa-xmark"></i>
           </span>
         </div>
       </div>
@@ -120,7 +120,7 @@ onMounted(() => {
       border-radius: 50%;
       transition: background-color 0.3s;
       cursor: pointer;
-      .iconfont {
+      .font-awesome {
         font-size: 14px;
         color: var(--main-card-background);
         opacity: 0.6;
@@ -128,7 +128,7 @@ onMounted(() => {
       }
       &:hover {
         background-color: var(--main-color-white);
-        .iconfont {
+        .font-awesome {
           opacity: 1;
         }
       }

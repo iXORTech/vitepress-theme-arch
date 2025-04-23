@@ -2,14 +2,14 @@
 <template>
   <div class="settings">
     <div class="set-btn s-card" @click="store.changeShowStatus('showSeetings')">
-      <i class="iconfont icon-style"></i>
+      <i class="font-awesome fa-solid fa-sliders"></i>
       <span class="set-text">个性化配置</span>
     </div>
     <!-- 设置面板 -->
     <Modal
       :show="store.showSeetings"
       title="个性化配置"
-      titleIcon="style"
+      titleIcon="sliders"
       @mask-click="store.changeShowStatus('showSeetings')"
       @modal-close="store.changeShowStatus('showSeetings')"
     >
@@ -177,7 +177,7 @@ const { themeType, fontFamily, codeFontFamily, fontSize, infoPosition, backgroun
     padding: 0;
     border-radius: 25px;
     box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
-    .iconfont {
+    .font-awesome {
       font-size: 22px;
       margin-left: 10px;
       transition: color 0.3s;
@@ -197,7 +197,7 @@ const { themeType, fontFamily, codeFontFamily, fontSize, infoPosition, backgroun
       color: var(--main-card-background);
       border-color: var(--main-color);
       background-color: var(--main-color);
-      .iconfont {
+      .font-awesome {
         color: var(--main-card-background);
       }
       .set-text {

@@ -14,11 +14,11 @@
           <!-- 标题 -->
           <div v-if="title" class="title">
             <div class="title-left">
-              <i v-if="titleIcon" :class="`iconfont icon-${titleIcon}`"></i>
+              <i v-if="titleIcon" :class="`font-awesome fa-solid fa-${titleIcon}`"></i>
               <span class="title-text">{{ title }}</span>
             </div>
             <!-- 关闭按钮 -->
-            <i v-if="showClose" class="iconfont icon-close close" @click="modalClose" />
+            <i v-if="showClose" class="font-awesome fa-solid fa-xmark close" @click="modalClose" />
           </div>
           <!-- 弹窗内容 -->
           <div class="modal-content" :style="{ '--height': maxHeight + 'vh' }">
@@ -118,7 +118,7 @@ watch(
       border-bottom: 1px solid var(--main-card-border);
       .title-left {
         width: 100%;
-        .iconfont {
+        .font-awesome {
           font-size: 1.25rem;
           margin-right: 8px;
         }

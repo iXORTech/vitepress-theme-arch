@@ -10,7 +10,7 @@
       </Transition>
     </div>
     <Transition name="fade" mode="out-in">
-      <i v-if="height === 'full'" class="iconfont icon-up" @click="scrollToHome" />
+      <i v-if="height === 'full'" class="font-awesome fa-solid fa-angle-down" @click="scrollToHome" />
     </Transition>
   </div>
   <div
@@ -168,12 +168,11 @@ onBeforeUnmount(() => {
       -webkit-box-orient: vertical;
     }
   }
-  .icon-up {
+  .fa-angle-down {
     font-size: 20px;
     position: absolute;
     bottom: 60px;
     left: calc(50% - 10px);
-    transform: rotate(180deg);
     animation: moveDown 2s ease-in-out infinite;
     cursor: pointer;
   }
@@ -246,7 +245,7 @@ onBeforeUnmount(() => {
       .footer-left {
         color: #fff;
       }
-      :deep(.iconfont) {
+      :deep(.font-awesome) {
         color: #fff !important;
       }
     }

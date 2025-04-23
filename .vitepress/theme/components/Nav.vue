@@ -5,7 +5,7 @@
         <!-- 导航栏左侧 -->
         <div class="left-nav">
           <div class="more-menu nav-btn" title="更多内容">
-            <i class="iconfont icon-menu" />
+            <i class="font-awesome fa-solid fa-compass"></i>
             <div class="more-card s-card">
               <div v-for="(item, index) in theme.navMore" :key="index" class="more-item">
                 <span class="more-name">{{ item.name }}</span>
@@ -41,17 +41,17 @@
                     class="link-child-btn"
                     @click="router.go(child.link)"
                   >
-                    <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
+                    <i v-if="child.icon" :class="`font-awesome ${child.icon}`" />
                     {{ child.text }}
                   </span>
                 </div>
               </div>
               <div v-else>
                 <span
-                  class="link-btn"
+                  class="link-btn-goto"
                   @click="router.go(item.link)"
                 >
-                  <i v-if="item.icon" :class="`iconfont icon-${item.icon}`" />
+                  <i v-if="item.icon" :class="`font-awesome ${item.icon}`" />
                   {{ item.text }}
                 </span>
               </div>
@@ -70,7 +70,7 @@
               href="https://www.travellings.cn/go.html"
               target="_blank"
             >
-              <i class="iconfont icon-subway"></i>
+              <i class="font-awesome fa-solid fa-train-subway"></i>
             </a>
           -->
           <!-- 随机文章 -->
@@ -79,7 +79,7 @@
             title="随机前往一篇文章"
             @click="router.go(shufflePost(theme.postData))"
           >
-            <i class="iconfont icon-shuffle"></i>
+            <i class="font-awesome fa-solid fa-shuffle"></i>
           </div>
           <!-- 搜索 -->
           <div
@@ -88,7 +88,7 @@
             title="全站搜索"
             @click="store.changeShowStatus('searchShow')"
           >
-            <i class="iconfont icon-search"></i>
+            <i class="font-awesome fa-solid fa-magnifying-glass"></i>
           </div>
           <!-- 中控台 -->
           <div
@@ -97,7 +97,7 @@
             title="打开中控台"
             @click="store.changeShowStatus('controlShow')"
           >
-            <i class="iconfont icon-dashboard" />
+            <i class="font-awesome fa-solid fa-terminal" />
           </div>
           <!-- 返回顶部 -->
           <div
@@ -115,7 +115,7 @@
                   {{ scrollData.percentage <= 90 ? scrollData.percentage : "返回顶部" }}
                 </span>
               </Transition>
-              <i class="iconfont icon-up"></i>
+              <i class="font-awesome fa-solid fa-angles-up"></i>
             </div>
           </div>
           <!-- 移动端菜单 -->
@@ -124,7 +124,7 @@
             title="打开菜单"
             @click="store.changeShowStatus('mobileMenuShow')"
           >
-            <i class="iconfont icon-toc" />
+            <i class="font-awesome fa-solid fa-bars" />
           </div>
         </div>
       </div>
@@ -332,8 +332,8 @@ const { site, theme, frontmatter, page } = useData();
         cursor: pointer;
 
         &::after {
-          content: "\e032";
-          font-family: "iconfont";
+          content: "\f015";
+          font-family: "Font Awesome 6 Free";
           display: flex;
           align-items: center;
           justify-content: center;
@@ -344,7 +344,7 @@ const { site, theme, frontmatter, page } = useData();
           height: 100%;
           color: var(--main-card-background);
           background-color: var(--main-color);
-          font-size: 22px;
+          font-size: 18px;
           border-radius: 25px;
           opacity: 0;
           transition: opacity 0.3s;
@@ -412,6 +412,27 @@ const { site, theme, frontmatter, page } = useData();
               background-color 0.3s;
           }
 
+          .link-btn-goto {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.2rem;
+            padding: 0 0.8rem 0 1rem;
+            font-weight: bold;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 50px;
+            transition:
+              color 0.3s,
+              background-color 0.3s;
+
+            .font-awesome {
+              margin-right: 8px;
+              font-size: 20px;
+              transition: color 0.3s;
+            }
+          }
+
           .link-child {
             position: absolute;
             top: 35px;
@@ -454,7 +475,7 @@ const { site, theme, frontmatter, page } = useData();
                 background-color 0.3s,
                 box-shadow 0.3s;
 
-              .iconfont {
+              .font-awesome {
                 margin-right: 8px;
                 font-size: 20px;
                 transition: color 0.3s;
@@ -466,7 +487,7 @@ const { site, theme, frontmatter, page } = useData();
                 box-shadow: 0 8px 12px -3px var(--main-color-bg);
                 padding: 0.6rem 1rem;
 
-                .iconfont {
+                .font-awesome {
                   color: var(--main-card-background);
                 }
               }
@@ -501,6 +522,11 @@ const { site, theme, frontmatter, page } = useData();
 
           &:hover {
             .link-btn {
+              color: var(--main-card-background);
+              background-color: var(--main-color);
+            }
+
+            .link-btn-goto {
               color: var(--main-card-background);
               background-color: var(--main-color);
             }
@@ -715,7 +741,7 @@ const { site, theme, frontmatter, page } = useData();
     border-radius: 50%;
     cursor: pointer;
 
-    .iconfont {
+    .font-awesome {
       font-size: 20px;
       line-height: 1;
       transition:
@@ -726,7 +752,7 @@ const { site, theme, frontmatter, page } = useData();
     &:hover {
       background-color: var(--main-color);
 
-      .iconfont {
+      .font-awesome {
         color: var(--main-card-background);
       }
     }

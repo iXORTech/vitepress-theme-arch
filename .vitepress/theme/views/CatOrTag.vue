@@ -17,7 +17,7 @@
         :href="`/pages/categories/${key}`"
         class="type-item s-card"
       >
-        <i class="iconfont icon-folder" />
+        <i class="font-awesome fa-solid fa-folder-open" />
         <span class="name">{{ key }}</span>
         <span class="num">{{ item.count }}</span>
       </a>
@@ -29,7 +29,7 @@
         :href="`/pages/tags/${key}`"
         class="type-item s-card"
       >
-        <i class="iconfont icon-hashtag" />
+        <i class="font-awesome fa-solid fa-hashtag" />
         <span class="name">{{ key }}</span>
         <span class="num">{{ item.count }}</span>
       </a>
@@ -83,7 +83,7 @@ const props = defineProps({
         font-weight: bold;
         transition: color 0.3s;
       }
-      .iconfont {
+      .font-awesome {
         margin-right: 8px;
         font-size: 1.25rem;
         opacity: 0.6;
@@ -104,7 +104,7 @@ const props = defineProps({
         transform: scale(1.05);
         background-color: var(--main-color);
         .name,
-        .iconfont {
+        .font-awesome {
           color: var(--main-card-background);
         }
       }

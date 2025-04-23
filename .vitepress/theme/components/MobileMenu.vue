@@ -9,7 +9,7 @@
           <div v-show="store.mobileMenuShow" class="menu-content s-card">
             <!-- 关闭按钮 -->
             <div class="close-control" @click="store.changeShowStatus('mobileMenuShow')">
-              <i class="iconfont icon-close"></i>
+              <i class="font-awesome fa-solid fa-xmark"></i>
             </div>
             <!-- 菜单 -->
             <div class="menu-list">
@@ -23,14 +23,14 @@
                       class="link-child-btn"
                       @click="pageJump(child.link)"
                     >
-                      <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
+                      <i v-if="child.icon" :class="`font-awesome fa-solid fa-${child.icon}`" />
                       <span class="name">{{ child.text }}</span>
                     </div>
                   </div>
                 </div>
                 <div v-else>
                   <span class="link-child-btn-root" @click="pageJump(item.link)">
-                    <i v-if="item.icon" :class="`iconfont icon-${item.icon}`" />
+                    <i v-if="item.icon" :class="`font-awesome fa-solid fa-${item.icon}`" />
                     {{ item.text }}
                   </span>
                 </div>
@@ -123,7 +123,7 @@ const pageJump = (url) => {
       border-radius: 50%;
       cursor: pointer;
 
-      .iconfont {
+      .font-awesome {
         font-size: 18px;
         line-height: 1;
         color: var(--main-font-second-color);
@@ -135,7 +135,7 @@ const pageJump = (url) => {
       &:hover {
         background-color: var(--main-color);
 
-        .iconfont {
+        .font-awesome {
           color: var(--main-card-background);
         }
       }
@@ -171,7 +171,7 @@ const pageJump = (url) => {
         box-shadow: 0 8px 16px -4px var(--main-border-shadow);
         font-size: 15px;
 
-        .iconfont {
+        .font-awesome {
           margin-right: 6px;
           opacity: 0.6;
         }
@@ -208,7 +208,7 @@ const pageJump = (url) => {
           box-shadow: 0 8px 16px -4px var(--main-border-shadow);
           font-size: 15px;
 
-          .iconfont {
+          .font-awesome {
             margin-right: 6px;
             opacity: 0.6;
           }

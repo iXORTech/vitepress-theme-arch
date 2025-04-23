@@ -36,7 +36,7 @@ const props = defineProps({
       display: flex;
       align-items: center;
       opacity: 0.75;
-      .iconfont {
+      .font-awesome {
         opacity: 0.6;
         margin-right: 6px;
       }

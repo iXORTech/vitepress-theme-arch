@@ -22,7 +22,7 @@
                 :href="`/pages/tags/${tags}`"
                 class="type-item"
               >
-                <i class="iconfont icon-hashtag" />
+                <i class="font-awesome fa-solid fa-hashtag" />
                 <span class="name">{{ tags }}</span>
               </a>
             </div>
@@ -103,13 +103,13 @@ const router = useRouter();
               .name {
                 transition: color 0.3s;
               }
-              .iconfont {
-                margin-right: 2px;
+              .font-awesome {
+                margin-right: 4px;
                 transition: color 0.3s;
               }
               &:hover {
                 .name,
-                .iconfont {
+                .font-awesome {
                   color: var(--main-color);
                 }
               }

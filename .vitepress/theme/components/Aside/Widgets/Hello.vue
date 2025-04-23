@@ -14,11 +14,11 @@
         <span class="desc">{{ theme.siteMeta.description }}</span>
       </div>
       <div class="link">
-        <a href="https://github.com/imsyy/" target="_blank" class="social-link">
-          <i class="iconfont icon-github"></i>
+        <a href="https://github.com/" target="_blank" class="social-link">
+          <i class="font-awesome fa-brands fa-github"></i>
         </a>
-        <a href="mailto:one@imsyy.top" target="_blank" class="social-link">
-          <i class="iconfont icon-email"></i>
+        <a href="https://www.linkedin.com/in/" target="_blank" class="social-link">
+          <i class="font-awesome fa-brands fa-linkedin"></i>
         </a>
       </div>
     </div>
@@ -174,7 +174,7 @@ onBeforeUnmount(() => {
         margin-left: 12px;
         background-color: var(--main-color-opacity);
         border-radius: 50%;
-        .iconfont {
+        .font-awesome {
           font-size: 22px;
           color: var(--main-card-background);
         }
@@ -184,7 +184,7 @@ onBeforeUnmount(() => {
         &:hover {
           transform: scale(1.1);
           background-color: var(--main-card-background);
-          .iconfont {
+          .font-awesome {
             color: var(--main-font-color);
           }
         }

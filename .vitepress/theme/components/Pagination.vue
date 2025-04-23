@@ -11,7 +11,7 @@
         )
       "
     >
-      <i class="iconfont icon-page-right" />
+      <i class="font-awesome fa-solid fa-angle-left" />
       <span class="page-text">上页</span>
     </div>
     <div class="page-number">
@@ -34,7 +34,7 @@
           @input="validateInput"
           @keydown.enter="fastJump"
         />
-        <i :class="['iconfont icon-arrow-right', { click: jumpInput }]" @click.stop="fastJump" />
+        <i :class="['font-awesome fa-solid fa-angle-right', { click: jumpInput }]" @click.stop="fastJump" />
       </div>
     </div>
     <div
@@ -43,7 +43,7 @@
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
       <span class="page-text">下页</span>
-      <i class="iconfont icon-page-right" />
+      <i class="font-awesome fa-solid fa-angle-right" />
     </div>
   </div>
 </template>
@@ -205,8 +205,7 @@ onMounted(() => {
       position: absolute;
       width: 80px;
       left: 0;
-      .iconfont {
-        transform: rotate(180deg);
+      .font-awesome {
         transition:
           color 0.3s,
           transform 0.3s;
@@ -223,7 +222,7 @@ onMounted(() => {
     &.next {
       left: auto;
       right: 0;
-      .iconfont {
+      .font-awesome {
         transform: rotate(0);
       }
       .page-text {
@@ -234,7 +233,7 @@ onMounted(() => {
     &:hover {
       border-color: var(--main-color);
       box-shadow: 0 8px 16px -4px var(--main-color-bg);
-      .iconfont {
+      .font-awesome {
         color: var(--main-color);
       }
       &.prev,
@@ -291,7 +290,7 @@ onMounted(() => {
         box-shadow: 0 8px 16px -4px var(--main-border-shadow);
         transition: all 0.3s;
       }
-      .iconfont {
+      .font-awesome {
         position: absolute;
         display: flex;
         align-items: center;
@@ -319,7 +318,7 @@ onMounted(() => {
           border-color: var(--main-color);
           box-shadow: 0 8px 16px -4px var(--main-color-bg);
         }
-        .iconfont {
+        .font-awesome {
           opacity: 0.2;
           pointer-events: none;
           &.click {

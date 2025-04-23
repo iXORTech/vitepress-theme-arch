@@ -5,7 +5,7 @@
       <div v-if="store.controlShow" class="control" @click="store.changeShowStatus('controlShow')">
         <!-- 关闭按钮 -->
         <div ref="closeControlRef" class="close-control">
-          <i class="iconfont icon-close"></i>
+          <i class="font-awesome fa-solid fa-xmark"></i>
         </div>
         <!-- 背景遮罩 -->
         <div class="control-mask" />
@@ -14,21 +14,23 @@
           <!-- 功能菜单 -->
           <div class="menu">
             <div class="menu-item open" title="显示模式切换" @click.stop="store.changeThemeType">
-              <i :class="`iconfont icon-${store.themeType}`"></i>
+              <i v-if="store.themeType === 'dark'" class="font-awesome fa-solid fa-moon"></i>
+              <i v-if="store.themeType === 'light'" class="font-awesome fa-solid fa-sun"></i>
+              <i v-if="store.themeType === 'auto'" class="font-awesome fa-solid fa-wand-sparkles"></i>
             </div>
             <div
               :class="['menu-item', { open: store.useRightMenu }]"
               title="右键菜单开关"
               @click.stop="rightMenuSwitch"
             >
-              <i class="iconfont icon-list"></i>
+              <i class="font-awesome fa-solid fa-list"></i>
             </div>
             <div
               :class="['menu-item', { open: store.backgroundBlur }]"
               title="背景模糊开关"
               @click.stop="store.changeShowStatus('backgroundBlur')"
             >
-              <i class="iconfont icon-blur"></i>
+              <i class="font-awesome fa-solid fa-eye-slash"></i>
             </div>
           </div>
         </div>
@@ -89,7 +91,7 @@ const rightMenuSwitch = () => {
       opacity 0.3s;
     border-radius: 50%;
     cursor: pointer;
-    .iconfont {
+    .font-awesome {
       font-size: 18px;
       line-height: 1;
       transition:
@@ -98,7 +100,7 @@ const rightMenuSwitch = () => {
     }
     &:hover {
       background-color: var(--main-color);
-      .iconfont {
+      .font-awesome {
         color: var(--main-card-background);
       }
     }
@@ -133,14 +135,14 @@ const rightMenuSwitch = () => {
           transform 0.3s,
           background-color 0.3s;
         cursor: pointer;
-        .iconfont {
+        .font-awesome {
           font-size: 24px;
           color: var(--main-font-color);
           transition: color 0.3s;
         }
         &.open {
           background-color: var(--main-color);
-          .iconfont {
+          .font-awesome {
             color: #fff;
           }
         }

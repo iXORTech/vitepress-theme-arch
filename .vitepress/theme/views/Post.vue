@@ -10,7 +10,7 @@
             :href="`/pages/categories/${item}`"
             class="cat-item"
           >
-            <i class="iconfont icon-folder" />
+            <i class="font-awesome fa-solid fa-folder-open" />
             <span class="name">{{ item }}</span>
           </a>
         </div>
@@ -21,7 +21,7 @@
             :href="`/pages/tags/${item}`"
             class="tag-item"
           >
-            <i class="iconfont icon-hashtag" />
+            <i class="font-awesome fa-solid fa-hashtag" />
             <span class="name">{{ item }}</span>
           </a>
         </div>
@@ -31,21 +31,21 @@
       </h1>
       <div class="other-meta">
         <span class="meta date">
-          <i class="iconfont icon-date" />
+          <i class="font-awesome fa-solid fa-calendar" />
           {{ formatTimestamp(postMetaData.date) }}
         </span>
         <span class="update meta">
-          <i class="iconfont icon-time" />
+          <i class="font-awesome fa-solid fa-clock" />
           {{ formatTimestamp(page?.lastUpdated || postMetaData.lastModified) }}
         </span>
         <!-- 热度 -->
         <span class="hot meta">
-          <i class="iconfont icon-fire" />
+          <i class="font-awesome fa-solid fa-fire" />
           <span id="twikoo_visitors" class="artalk-pv-count">0</span>
         </span>
         <!-- 评论数 -->
         <span class="chat meta hover" @click="commentRef?.scrollToComments">
-          <i class="iconfont icon-chat" />
+          <i class="font-awesome fa-solid fa-comments" />
           <span id="twikoo_comments" class="artalk-comment-count">0</span>
         </span>
       </div>
@@ -73,7 +73,7 @@
               :href="`/pages/tags/${item}`"
               class="tag-item"
             >
-              <i class="iconfont icon-hashtag" />
+              <i class="font-awesome fa-solid fa-hashtag" />
               <span class="name">{{ item }}</span>
             </a>
           </div>
@@ -82,7 +82,7 @@
             class="report"
             target="_blank"
           >
-            <i class="iconfont icon-report" />
+            <i class="font-awesome fa-solid fa-circle-exclamation"></i>
             反馈与投诉
           </a>
         </div>
@@ -147,13 +147,13 @@ onMounted(() => {
           border-radius: 8px;
           background-color: var(--main-mask-Inverse-background);
           opacity: 0.8;
-          .iconfont {
+          .font-awesome {
             margin-right: 6px;
           }
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);
-            .iconfont {
+            .font-awesome {
               color: var(--main-color);
             }
           }
@@ -172,7 +172,7 @@ onMounted(() => {
           font-weight: bold;
           border-radius: 8px;
           opacity: 0.8;
-          .iconfont {
+          .font-awesome {
             margin-right: 4px;
             opacity: 0.6;
             font-weight: normal;
@@ -180,7 +180,7 @@ onMounted(() => {
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);
-            .iconfont {
+            .font-awesome {
               color: var(--main-color);
             }
           }
@@ -205,7 +205,7 @@ onMounted(() => {
         font-size: 14px;
         border-radius: 8px;
         opacity: 0.8;
-        .iconfont {
+        .font-awesome {
           margin-right: 6px;
           transition: color 0.3s;
         }
@@ -213,7 +213,7 @@ onMounted(() => {
           padding-left: 0;
         }
         &.hot {
-          .iconfont {
+          .font-awesome {
             font-size: 18px;
           }
         }
@@ -225,7 +225,7 @@ onMounted(() => {
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);
-            .iconfont {
+            .font-awesome {
               color: var(--main-color);
             }
           }
@@ -277,7 +277,7 @@ onMounted(() => {
             border-radius: 8px;
             background-color: var(--main-card-border);
             margin-right: 12px;
-            .iconfont {
+            .font-awesome {
               margin-right: 4px;
               opacity: 0.6;
               font-weight: normal;
@@ -285,7 +285,7 @@ onMounted(() => {
             &:hover {
               color: var(--main-color);
               background-color: var(--main-color-bg);
-              .iconfont {
+              .font-awesome {
                 color: var(--main-color);
               }
             }
@@ -300,13 +300,13 @@ onMounted(() => {
           font-weight: bold;
           border-radius: 8px;
           background-color: var(--main-card-border);
-          .iconfont {
+          .font-awesome {
             margin-right: 6px;
           }
           &:hover {
             color: #efefef;
             background-color: var(--main-error-color);
-            .iconfont {
+            .font-awesome {
               color: #efefef;
             }
           }

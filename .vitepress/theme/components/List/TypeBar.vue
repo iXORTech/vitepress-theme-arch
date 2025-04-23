@@ -20,7 +20,7 @@
       </a>
     </div>
     <a href="/pages/categories" class="more-type">
-      <i class="iconfont icon-arrow-right" />
+      <i class="font-awesome fa-solid fa-angles-right" />
       更多
     </a>
   </div>
@@ -41,7 +41,7 @@
       </a>
     </div>
     <a href="/pages/tags" class="more-type">
-      <i class="iconfont icon-arrow-right" />
+      <i class="font-awesome fa-solid fa-angles-right" />
       更多
     </a>
   </div>
@@ -130,12 +130,12 @@ const currentTypeName = computed(() => {
     white-space: nowrap;
     margin-right: 4px;
     margin-left: 8px;
-    .iconfont {
+    .font-awesome {
       font-size: 0.9375rem;
       margin-right: 8px;
     }
     &:hover {
-      .iconfont {
+      .font-awesome {
         color: var(--main-color);
       }
     }

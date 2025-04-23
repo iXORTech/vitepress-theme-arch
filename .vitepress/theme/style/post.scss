@@ -209,14 +209,14 @@
         justify-content: center;
         background-color: transparent;
         border: none;
-        font-family: "iconfont";
+        font-family: "Font Awesome 6 Free";
         font-size: 20px;
         font-style: normal;
         z-index: 1;
         color: var(--main-font-color);
         cursor: pointer;
         &::after {
-          content: "\e01c";
+          content: "\f0c5";
           transition: color 0.3s;
         }
         &::before {
@@ -467,8 +467,8 @@
           background-color 0.3s;
         cursor: pointer;
         &::before {
-          content: "\e057";
-          font-family: "iconfont";
+          content: "\f0da";
+          font-family: "Font Awesome 6 Free";
           margin-right: 6px;
           font-size: 18px;
           transition: transform 0.3s;

@@ -14,7 +14,7 @@
         target="_blank"
         class="social-link"
       >
-        <i :class="`iconfont icon-${item.icon}`"></i>
+        <i :class="`font-awesome ${item.icon}`"></i>
       </a>
       <div class="logo" title="返回顶部" @click="smoothScrolling">
         <img :src="siteMeta.author.cover" alt="author" class="author" />
@@ -26,7 +26,7 @@
         target="_blank"
         class="social-link"
       >
-        <i :class="`iconfont icon-${item.icon}`"></i>
+        <i :class="`font-awesome ${item.icon}`"></i>
       </a>
     </div>
     <div class="footer-sitemap">
@@ -140,7 +140,7 @@ const socialLinkData = computed(() => {
       transition:
         transform 0.3s,
         background-color 0.3s;
-      .iconfont {
+      .font-awesome {
         font-size: 20px;
         color: var(--main-card-background);
       }
@@ -199,7 +199,7 @@ const socialLinkData = computed(() => {
           flex-direction: row;
           align-items: center;
           cursor: pointer;
-          .iconfont {
+          .font-awesome {
             font-weight: normal;
             margin-left: 6px;
             color: var(--main-font-second-color);
