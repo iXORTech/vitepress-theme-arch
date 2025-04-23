@@ -1,3 +1,10 @@
 views:
   archives:
-    posts: 文章
+    posts: "文章"
+  cat_or_tag:
+    all_categories: "全部分类"
+    all_tags: "全部标签"
+    categories_count_before: "共有"
+    categories_count_after: "个分类"
+    tags_count_before: "共有"
+    tags_count_after: "个标签"

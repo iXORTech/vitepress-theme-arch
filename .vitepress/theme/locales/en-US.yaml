@@ -1,3 +1,10 @@
 views:
   archives:
-    posts: Posts
+    posts: "Posts"
+  cat_or_tag:
+    all_categories: "All Categories"
+    all_tags: "All Tags"
+    categories_count_before: ""
+    categories_count_after: "categories in total"
+    tags_count_before: ""
+    tags_count_after: "tags in total"
