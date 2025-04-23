@@ -1,7 +1,7 @@
 <template>
   <div class="archives s-card">
     <div class="title">
-      <h1 class="name">文章</h1>
+      <h1 class="name">{{ i18n('views.archives.posts') }}</h1>
       <sup v-if="theme.postData?.length" class="num">{{ theme.postData.length }}</sup>
     </div>
     <div class="archives-list">
@@ -34,6 +34,9 @@
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 const { theme } = useData();
 const router = useRouter();
 </script>

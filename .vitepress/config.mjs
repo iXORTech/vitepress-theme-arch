@@ -12,6 +12,7 @@ import markdownConfig from "./theme/utils/markdownConfig.mjs";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import path from "path";
+import yaml from '@rollup/plugin-yaml'
 
 // 获取全局数据
 const postData = await getAllPosts();
@@ -84,6 +85,7 @@ export default withPwa(
           include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
           dts: ".vitepress/components.d.ts",
         }),
+        yaml(),
       ],
       resolve: {
         // 配置路径别名
