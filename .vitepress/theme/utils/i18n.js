@@ -34,7 +34,7 @@ export function useI18n() {
       value = value[k]
     }
 
-    return value || key
+    return value
   }
 
   return {
