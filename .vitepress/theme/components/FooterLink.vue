@@ -4,15 +4,15 @@
     <div v-if="showBar" class="footer-bar">
       <span class="site-title">{{ site.title }}</span>
       <span class="site-desc">{{ site.description }}</span>
-      <a href="/" class="to-home">了解更多</a>
+      <a class="to-home" href="/">了解更多</a>
     </div>
     <div class="footer-social">
       <a
         v-for="(item, index) in socialLinkData.first"
         :key="index"
         :href="item.link"
-        target="_blank"
         class="social-link"
+        target="_blank"
       >
         <i :class="`font-awesome ${item.icon}`"></i>
       </a>
@@ -23,8 +23,8 @@
         v-for="(item, index) in socialLinkData.second"
         :key="index"
         :href="item.link"
-        target="_blank"
         class="social-link"
+        target="_blank"
       >
         <i :class="`font-awesome ${item.icon}`"></i>
       </a>
@@ -82,22 +82,26 @@ const socialLinkData = computed(() => {
   margin-bottom: 3rem;
   padding: 0 1rem;
   animation: show 0.3s backwards;
+
   .footer-bar {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 2rem;
+
     .site-title {
       font-weight: bold;
       font-size: 22px;
     }
+
     .site-desc {
       margin: 0.6rem 0;
       font-weight: bold;
       font-size: 18px;
       color: var(--main-font-second-color);
     }
+
     .to-home {
       padding: 8px 16px;
       border-radius: 25px;
@@ -112,6 +116,7 @@ const socialLinkData = computed(() => {
         border-color 0.3s,
         background-color 0.3s;
       cursor: pointer;
+
       &:hover {
         color: var(--main-card-background);
         background-color: var(--main-color);
@@ -120,6 +125,7 @@ const socialLinkData = computed(() => {
       }
     }
   }
+
   .footer-social {
     width: 100%;
     display: flex;
@@ -128,6 +134,7 @@ const socialLinkData = computed(() => {
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+
     .social-link {
       display: flex;
       justify-content: center;
@@ -140,41 +147,50 @@ const socialLinkData = computed(() => {
       transition:
         transform 0.3s,
         background-color 0.3s;
+
       .font-awesome {
         font-size: 20px;
         color: var(--main-card-background);
       }
+
       &:hover {
         transform: scale(1.15);
         background-color: var(--main-color);
       }
+
       &:active {
         transform: scale(1);
       }
     }
+
     .logo {
       width: 60px;
       height: 60px;
       margin: 0 1rem;
       transition: transform 0.3s;
       cursor: pointer;
+
       img {
         width: 100%;
         height: 100%;
       }
+
       &:hover {
         transform: scale(1.2);
       }
+
       &:active {
         transform: scale(1);
       }
     }
+
     @media (max-width: 768px) {
       .logo {
         display: none;
       }
     }
   }
+
   .footer-sitemap {
     width: 100%;
     display: flex;
@@ -182,11 +198,13 @@ const socialLinkData = computed(() => {
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 1rem 0;
+
     .sitemap-item {
       display: flex;
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: center;
       min-width: 120px;
+
       .title {
         display: inline-block;
         margin: 1rem 0;
@@ -194,30 +212,35 @@ const socialLinkData = computed(() => {
         font-weight: bold;
         // margin-left: 8px;
         color: var(--main-font-second-color);
+
         &.friends {
           display: flex;
           flex-direction: row;
           align-items: center;
           cursor: pointer;
+
           .font-awesome {
             font-weight: normal;
             margin-left: 6px;
             color: var(--main-font-second-color);
             transition: color 0.3s;
+
             &:hover {
               color: var(--main-color);
             }
           }
         }
       }
+
       .links {
         display: flex;
         flex-direction: column;
         align-items: center;
+
         .link-text {
           color: var(--main-font-color);
           display: inline-block;
-          max-width: 120px;
+          max-width: 256px;
           width: max-content;
           margin: 4px 0;
           overflow: hidden;
@@ -230,6 +253,7 @@ const socialLinkData = computed(() => {
             color 0.3s,
             background-color 0.3s;
           cursor: pointer;
+
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);

@@ -123,7 +123,7 @@
           <!-- 通用菜单 -->
           <div class="all-menu general">
             <!-- 版权协议 -->
-            <div class="btn" @click="router.go('/pages/cc')">
+            <div class="btn" @click="router.go('/pages/copyright')">
               <i class="font-awesome fa-solid fa-copyright"></i>
               <span class="name">版权协议</span>
             </div>
