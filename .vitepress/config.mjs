@@ -49,7 +49,8 @@ export default withPwa(
     },
     // markdown
     markdown: {
-      math: true,
+      // Another LaTeX renderer is used, so this one is disabled.
+      math: false,
       lineNumbers: true,
       toc: { level: [1, 2, 3] },
       image: {

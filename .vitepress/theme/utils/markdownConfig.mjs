@@ -1,12 +1,33 @@
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import markdownItAttrs from "markdown-it-attrs";
 import container from "markdown-it-container";
+import abbr_plugin from "markdown-it-abbr";
+import deflist_plugin from "markdown-it-deflist";
+import ins_plugin from "markdown-it-ins";
+import footnote_plugin from "markdown-it-footnote";
+import mark_plugin from "markdown-it-mark";
+import sub_plugin from "markdown-it-sub";
+import sup_plugin from "markdown-it-sup";
+import temml from "markdown-it-math/temml";
 
 // markdown-it
 const markdownConfig = (md, themeConfig) => {
-  // 插件
+  // Plugins
+  md.use(temml);
   md.use(markdownItAttrs);
   md.use(tabsMarkdownPlugin);
+  md.use(abbr_plugin);
+  md.use(deflist_plugin);
+  md.use(ins_plugin);
+  md.use(footnote_plugin);
+  md.renderer.rules.footnote_block_open = (tokens, idx, options) =>
+    (options.xhtmlOut ? '<hr class="footnotes-sep" />\n' : '<hr class="footnotes-sep">\n') +
+    '<strong style="color: var(--main-color)">脚注</strong>\n' +
+    '<section class="footnotes">\n' +
+    '<ol class="footnotes-list">\n';
+  md.use(mark_plugin);
+  md.use(sub_plugin);
+  md.use(sup_plugin);
   // timeline
   md.use(container, "timeline", {
     validate: (params) => params.trim().match(/^timeline\s+(.*)$/),
