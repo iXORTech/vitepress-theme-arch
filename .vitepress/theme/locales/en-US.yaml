@@ -1,3 +1,52 @@
+components:
+  aside:
+    widgets:
+      articleGPT:
+        summary: "Article Summary"
+        loading: "Loading..."
+        meta: "This summary is generated based on the article and reviewed by the author. However, the summary might still not be fully accurate."
+        info: "As you see, this is a Fake GPT. It is not a real AI, all the content it outputs is pre-written and outputted like a chatbot."
+      countdown:
+        remaining: " Remaining"
+        hours: " Hours"
+        days: " Days"
+        today: "Today"
+        this-week: "This Week"
+        this-month: "This Month"
+        this-year: "This Year"
+      hello:
+        text:
+          one: "Why did you click me?"
+          two: "Again?"
+          three: "Go on!"
+          hundred: "Still here ?!?!"
+          random_1: "Good to see you here!"
+          random_2: "Long time no see!"
+          random_3: "Welcome back!"
+        greetings:
+          1: "Good morning! How's the sleep last night?"
+          2: "Good morning! Have a nice day!"
+          3: "Good morning! How's the work?"
+          4: "Good evening! Enjoy your dinner!"
+          5: "Good afternoon! Focus on your work!"
+          6: "Good afternoon! Time to relax!"
+          7: "Good night! How's your day?"
+          8: "It's late! Sleep tight!"
+      site-data:
+        site-data: "Site Data"
+        post-count: "Post Count"
+        posts: "Posts"
+        online-since: "Online Since"
+        days: "Days"
+        visit-count: "Visits"
+        times: " Times"
+        visitor-count: "Visitors"
+        visitors: " Visitors"
+      tags:
+        popular_tags: "Popular Tags"
+        show_all_tags: "Show All Tags"
+      toc:
+        toc: "Table of Contents"
 views:
   archives:
     posts: "Posts"

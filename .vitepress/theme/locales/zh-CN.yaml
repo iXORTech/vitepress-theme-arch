@@ -1,3 +1,52 @@
+components:
+  aside:
+    widgets:
+      articleGPT:
+        summary: "文章摘要"
+        loading: "加载中..."
+        meta: "这段摘要是基于文章生成的，并经过作者审核，但可能仍然不完全准确。"
+        info: "如你所见，这只是一个假 GPT。它并不是真正的AI，它输出的所有内容都是预先编写的，并仿照 GPT 的形式输出。"
+      countdown:
+        remaining: "还剩 "
+        hours: " 小时"
+        days: " 天"
+        today: "今天"
+        this-week: "本周"
+        this-month: "本月"
+        this-year: "本年"
+      hello:
+        text:
+          one: "点这里干什么？"
+          two: "怎么还点？"
+          three: "那你点吧！"
+          hundred: "怎么还在点？？？"
+          random_1: "很高兴见到你"
+          random_2: "好久不见"
+          random_3: "欢迎回来"
+        greetings:
+          1: "凌晨好，昨晚睡得怎么样？"
+          2: "早上好，今天也要开心哦！"
+          3: "上午好，今天也要加油哦！"
+          4: "中午好，吃饱了精神好！"
+          5: "下午好，继续加油！"
+          6: "傍晚好，是时候放松一下了！"
+          7: "晚上好，是时候休息了！"
+          8: "夜深了，明天继续加油！"
+      site-data:
+        site-data: "站点数据"
+        post-count: "文章总数"
+        posts: "篇"
+        online-since: "建站天数"
+        days: "天"
+        visit-count: "总访问量"
+        times: " 次"
+        visitor-count: "总访客数"
+        visitors: " 人"
+      tags:
+        popular_tags: "热门标签"
+        show_all_tags: "显示全部标签"
+      toc:
+        toc: "目录"
 views:
   archives:
     posts: "文章"

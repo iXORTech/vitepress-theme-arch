@@ -1,9 +1,9 @@
 <template>
-  <!-- 目录 -->
+  <!-- Table of Contents -->
   <div v-if="tocData && tocData?.length" class="toc s-card">
     <div class="toc-title">
       <i class="font-awesome fa-solid fa-bars" />
-      <span class="name">目录</span>
+      <span class="name">{{ i18n('components.aside.widgets.toc.toc') }}</span>
     </div>
     <div id="toc-all" class="toc-list" :style="{ '--height': activeTocHeight + 'px' }">
       <span
@@ -26,7 +26,9 @@
 <script setup>
 import { mainStore } from "@/store";
 import { throttle } from "lodash-es";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const route = useRoute();
 const store = mainStore();
 
@@ -35,27 +37,22 @@ const postDom = ref(null);
 const activeHeader = ref(null);
 const activeTocHeight = ref(0);
 
-// 获取所有目录数据
 const getAllTitle = () => {
   try {
     postDom.value = document.getElementById("page-content");
     if (!postDom.value) return false;
-    // 所有标题
     const headers = Array.from(postDom.value.querySelectorAll("h2, h3")).filter(
       (header) => header.parentElement.tagName.toLowerCase() === "div",
     );
     return headers;
   } catch (error) {
-    console.error("获取所有目录数据出错：", error);
+    console.error("Failed Getting All Title: ", error);
   }
 };
 
-// 生成目录数据
 const generateDirData = () => {
-  // 所有标题
   const headers = getAllTitle();
   if (!headers) return false;
-  // 构造目录数据
   const nestedData = [];
   headers.forEach((header) => {
     const headerObj = {
@@ -63,27 +60,23 @@ const generateDirData = () => {
       type: header.tagName,
       text: header.textContent?.replace(/\u200B/g, "").trim(),
     };
-    // 放入标题内容
     nestedData.push(headerObj);
   });
   tocData.value = nestedData;
 };
 
-// 高亮对应目录项
+// Highlight the corresponding TOC item
 const activeTocItem = throttle(
   () => {
     if (!tocData.value) return false;
-    // 所有标题
     const headers = getAllTitle();
     if (!headers) return false;
-    // 容错高度
     const bufferheight = 120;
-    // 遍历所有标题
     for (let header of headers) {
       const rect = header.getBoundingClientRect();
-      // 检查标题是否在视口中
+      // Check if the header is in the viewport
       if (rect.top - bufferheight <= 0 && rect.bottom + bufferheight >= 0) {
-        // 高亮对应标题
+        // Highlight the corresponding TOC item
         activeHeader.value = header.id;
       }
     }
@@ -92,7 +85,7 @@ const activeTocItem = throttle(
   { leading: true, trailing: false },
 );
 
-// 滚动标题至指定位置
+// Scroll to title.
 const scrollToHeader = (id) => {
   try {
     const headerDom = document.getElementById(id);
@@ -101,16 +94,16 @@ const scrollToHeader = (id) => {
     const scrollHeight = headerTop + postDom.value.offsetTop - 80;
     window.scroll({ top: scrollHeight, behavior: "smooth" });
   } catch (error) {
-    console.error("目录滚动失败：", error);
+    console.error("TOC Scroll Failed: ", error);
   }
 };
 
-// 是否回到顶部
+// Scroll back to top.
 watch(
   () => store.scrollData.percentage,
   (val) => {
     if (val === 0 && tocData.value) {
-      console.log("回到顶部");
+      console.log("Scrolling back to top");
       // 所有标题
       const headers = getAllTitle();
       if (!headers) return false;
@@ -120,7 +113,7 @@ watch(
   },
 );
 
-// 计算目录滚动位置
+// Compute the active TOC item.
 watch(
   () => activeHeader.value,
   (val) => {
@@ -139,7 +132,6 @@ watch(
 
 onMounted(() => {
   generateDirData();
-  // 滚动监听
   window.addEventListener("scroll", activeTocItem);
 });
 

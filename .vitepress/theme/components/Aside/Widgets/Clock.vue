@@ -9,19 +9,17 @@
 </template>
 
 <script setup>
-// 指针数据
+// The Clock Hands.
 const hourRotate = ref(315);
 const minuteRotate = ref(45);
 const secondRotate = ref(180);
 const pointerInterval = ref(null);
 
-// 计算指针旋转角度
+// Compute the angle for the clock hands.
 const updatePointer = () => {
-  // 计算角度
   const calculateRotation = (time, total) => {
     return (time / total) * 360;
   };
-  // 更改样式
   const changeStyle = () => {
     const now = new Date();
     const hour = now.getHours() % 12;
@@ -31,7 +29,7 @@ const updatePointer = () => {
     minuteRotate.value = calculateRotation(minute, 60);
     secondRotate.value = calculateRotation(second, 60);
   };
-  // 每秒更新
+  // Refresh every second.
   changeStyle();
   pointerInterval.value = setInterval(changeStyle, 1000);
 };

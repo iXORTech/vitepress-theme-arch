@@ -1,38 +1,44 @@
-<!-- 侧边栏 - 站点数据 -->
+<!-- Sidebar - Site Data -->
 <template>
   <div class="site-data s-card">
     <div class="title">
       <i class="font-awesome fa-solid fa-chart-bar"></i>
-      <span class="title-name">站点数据</span>
+      <span class="title-name">{{ i18n('components.aside.widgets.site-data.site-data') }}</span>
     </div>
     <div class="all-data">
       <div class="data-item">
         <span class="name">
           <i class="font-awesome fa-solid fa-newspaper"></i>
-          文章总数
+          {{ i18n('components.aside.widgets.site-data.post-count') }}
         </span>
-        <span class="num">{{ theme.postData?.length || 0 }} 篇</span>
+        <span class="num">{{ theme.postData?.length || 0 }} {{ i18n('components.aside.widgets.site-data.posts') }}</span>
       </div>
       <div class="data-item">
         <span class="name">
           <i class="font-awesome fa-solid fa-calendar-days"></i>
-          建站天数
+          {{ i18n('components.aside.widgets.site-data.online-since') }}
         </span>
-        <span class="num">{{ daysFromNow(theme.since) }} 天</span>
+        <span class="num">{{ daysFromNow(theme.since) }} {{ i18n('components.aside.widgets.site-data.days') }}</span>
       </div>
       <div class="data-item">
         <span class="name">
           <i class="font-awesome fa-solid fa-eye"></i>
-          总访问量
+          {{ i18n('components.aside.widgets.site-data.visit-count') }}
         </span>
-        <span class="num" id="busuanzi_value_site_pv">0</span>
+        <span>
+          <span class="num" id="busuanzi_value_site_pv">0</span>
+          <span class="num">{{ i18n('components.aside.widgets.site-data.times') }}</span>
+        </span>
       </div>
       <div class="data-item">
         <span class="name">
           <i class="font-awesome fa-solid fa-users"></i>
-          总访客数
+          {{ i18n('components.aside.widgets.site-data.visitor-count') }}
         </span>
-        <span class="num" id="busuanzi_value_site_uv">0</span>
+        <span>
+          <span class="num" id="busuanzi_value_site_uv">0</span>
+          <span class="num">{{ i18n('components.aside.widgets.site-data.visitors') }}</span>
+        </span>
       </div>
     </div>
   </div>
@@ -41,7 +47,9 @@
 <script setup>
 import { loadScript } from "@/utils/commonTools";
 import { daysFromNow } from "@/utils/helper";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const { theme } = useData();
 
 onMounted(() => {
@@ -74,16 +82,6 @@ onMounted(() => {
       .num {
         opacity: 0.8;
         font-size: 15px;
-      }
-      #busuanzi_value_site_pv {
-        &::after {
-          content: " 次";
-        }
-      }
-      #busuanzi_value_site_uv {
-        &::after {
-          content: " 人";
-        }
       }
       &:last-child {
         padding-bottom: 0;

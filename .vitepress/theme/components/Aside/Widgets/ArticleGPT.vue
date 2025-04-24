@@ -1,43 +1,43 @@
-<!-- AI 摘要（假） -->
+<!-- AI Article Summary (A Fake One) -->
 <template>
   <div v-if="theme.fakeGPT && frontmatter.articleGPT" class="article-gpt s-card">
     <div class="title">
       <span class="name">
         <i class="font-awesome fa-solid fa-robot"></i>
-        文章摘要
+        {{ i18n('components.aside.widgets.articleGPT.summary') }}
         <i class="fa-solid fa-angle-right"></i>
       </span>
       <span :class="['logo', { loading }]" @click="showOther"> FakeGPT </span>
     </div>
     <div class="content s-card">
-      <span class="text">{{ abstractData === "" ? "加载中..." : abstractData }}</span>
+      <span class="text">{{ abstractData === "" ? i18n('components.aside.widgets.articleGPT.loading') : abstractData }}</span>
       <span v-if="loading" class="point">|</span>
     </div>
     <div class="meta">
-      <span class="tip">此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结</span>
+      <span class="tip">{{ i18n('components.aside.widgets.articleGPT.meta') }}</span>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 const { theme } = useData();
 const { frontmatter } = useData();
 
-// 摘要数据
 const loading = ref(true);
 const waitTimeOut = ref(null);
 const abstractData = ref("");
 const showIndex = ref(0);
 const showType = ref(false);
 
-// 输出摘要
 const typeWriter = (text = null) => {
   try {
     const data = text || frontmatter.value.articleGPT;
     if (!data) return false;
     if (showIndex.value < data.length) {
       abstractData.value += data.charAt(showIndex.value++);
-      // 生成字符延迟
       const delay = Math.random() * (150 - 30) + 30;
       setTimeout(() => {
         typeWriter(text);
@@ -47,13 +47,12 @@ const typeWriter = (text = null) => {
     }
   } catch (error) {
     loading.value = false;
-    abstractData.value = "摘要生成失败";
-    $message.error("摘要生成失败，请重试");
-    console.error("摘要生成失败：", error);
+    abstractData.value = "Summary generation failed.";
+    $message.error("Summary generation failed, please try again.");
+    console.error("Summary generation failed: ", error);
   }
 };
 
-// 初始化摘要
 const initAbstract = () => {
   waitTimeOut.value = setTimeout(
     () => {
@@ -63,11 +62,9 @@ const initAbstract = () => {
   );
 };
 
-// 输出摘要介绍
 const showOther = () => {
   if (loading.value) return false;
-  const text =
-    "我是無名开发的摘要生成助理 FakeGPT，如你所见，这是一个假的 GPT，所有文本皆源于本地书写的内容。我在这里只负责显示，并仿照 GPT 的形式输出，如果你像我一样囊中羞涩，你也可以像我这样做，当然，你也可以使用 Tianli 开发的 TianliGPT 来更简单地实现真正的 AI 摘要。";
+  const text = i18n('components.aside.widgets.articleGPT.info');
   showIndex.value = 0;
   loading.value = true;
   abstractData.value = "";

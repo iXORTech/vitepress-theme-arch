@@ -1,5 +1,5 @@
 <template>
-  <!-- 倒计时 -->
+  <!-- Time Countdown -->
   <div class="count-down s-card">
     <div class="count-left">
       <span class="month">{{ getMonth() }}</span>
@@ -8,7 +8,7 @@
     </div>
     <div v-if="remainData" class="count-right">
       <div v-for="(item, tag, index) in remainData" :key="index" class="count-item">
-        <div class="item-name">{{ item.name }}</div>
+        <div class="item-name">{{ i18n(item.name) }}</div>
         <div class="item-progress">
           <div
             class="progress-bar"
@@ -18,9 +18,10 @@
             {{ item.percentage }}%
           </span>
           <span :class="['remaining', { many: item.percentage >= 60 }]">
-            <span class="tip">还剩</span>
+            <span v-if="currentLang === 'zh-CN'" class="tip">{{ i18n('components.aside.widgets.countdown.remaining') }}</span>
             {{ item.remaining }}
-            <span class="tip">{{ tag === "day" ? "小时" : "天" }}</span>
+            <span class="tip">{{ tag === "day" ? i18n('components.aside.widgets.countdown.hours') : i18n('components.aside.widgets.countdown.days') }}</span>
+            <span v-if="currentLang === 'en-US'" class="tip">{{ i18n('components.aside.widgets.countdown.remaining') }}</span>
           </span>
         </div>
       </div>
@@ -29,14 +30,14 @@
 </template>
 
 <script setup>
-
 import { getTimeRemaining, getDay, getMonth, getYear } from "@/utils/timeTools";
+import { useI18n } from '@/utils/i18n'
 
-// 倒计时数据
+const { currentLang, i18n } = useI18n()
+
 const remainData = ref(null);
 const remainInterval = ref(null);
 
-// 获取倒计时数据
 const getRemainData = () => {
   remainData.value = getTimeRemaining();
   remainInterval.value = setInterval(() => {
@@ -151,6 +152,9 @@ onBeforeUnmount(() => {
     }
   }
   &:hover {
+    .count-left {
+      display: none;
+    }
     .count-right {
       .remaining {
         transform: translateX(0) !important;

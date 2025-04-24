@@ -15,7 +15,7 @@ const translations = {
 export function useI18n() {
   const { theme } = useData()
 
-  const currentLang = computed(() => theme.value.siteMeta?.lang || 'en')
+  const currentLang = computed(() => theme.value.siteMeta?.lang || 'en-US')
 
   const i18n = (key) => {
     const keys = key.split('.')

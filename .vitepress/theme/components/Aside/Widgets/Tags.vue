@@ -1,9 +1,9 @@
-<!-- 侧边栏 - 标签 -->
+<!-- Sidebar - Tags -->
 <template>
   <div class="tags-cloud s-card">
     <div class="title">
       <i class="font-awesome fa-solid fa-hashtag"></i>
-      <span class="title-name">热门标签</span>
+      <span class="title-name">{{ i18n('components.aside.widgets.tags.popular_tags') }}</span>
     </div>
     <div class="all-tags">
       <a
@@ -16,11 +16,14 @@
         <sup class="num">{{ item.count }}</sup>
       </a>
     </div>
-    <a href="/pages/tags" class="more-tags">查看全部</a>
+    <a href="/pages/tags" class="more-tags">{{ i18n('components.aside.widgets.tags.show_all_tags') }}</a>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 const { theme } = useData();
 </script>
 

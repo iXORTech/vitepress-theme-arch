@@ -13,7 +13,7 @@
 <script setup>
 const { theme } = useData();
 const props = defineProps({
-  // 显示目录
+  // Show Table of Contents
   showToc: {
     type: Boolean,
     default: false,

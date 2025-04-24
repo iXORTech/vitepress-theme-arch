@@ -210,28 +210,28 @@ export const downloadImage = (imageUrl) => {
 };
 
 /**
- * 获取根据当前时间的问候语
- * @returns {string} 当前时间对应的问候语
+ * Get greeting message based on the current time.
+ * @returns {string} the i18n key of the greeting message.
  */
 export const getGreetings = () => {
   const hour = new Date().getHours();
   let hello;
   if (hour < 6) {
-    hello = "凌晨好，昨晚睡得怎么样？";
+    hello = 'components.aside.widgets.hello.greetings.1';
   } else if (hour < 9) {
-    hello = "早上好，今天也要开心哦！";
+    hello = 'components.aside.widgets.hello.greetings.2';
   } else if (hour < 12) {
-    hello = "上午好，今天也要加油哦！";
+    hello = 'components.aside.widgets.hello.greetings.3';
   } else if (hour < 14) {
-    hello = "中午好，吃饱了精神好！";
+    hello = 'components.aside.widgets.hello.greetings.4';
   } else if (hour < 17) {
-    hello = "下午好，继续加油！";
+    hello = 'components.aside.widgets.hello.greetings.5';
   } else if (hour < 19) {
-    hello = "傍晚好，是时候放松一下了！";
+    hello = 'components.aside.widgets.hello.greetings.6';
   } else if (hour < 22) {
-    hello = "晚上好，是时候休息了！";
+    hello = 'components.aside.widgets.hello.greetings.7';
   } else {
-    hello = "夜深了，明天继续加油！";
+    hello = 'components.aside.widgets.hello.greetings.8';
   }
   return hello;
 };
@@ -244,31 +244,4 @@ export const shuffleArray = (array) => {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
-};
-
-// 特殊纪念日置灰
-export const specialDayGray = () => {
-  const specialDays = [
-    { date: "4-4", name: "清明节" },
-    { date: "5-12", name: "汶川大地震纪念日" },
-    { date: "7-7", name: "中国人民抗日战争纪念日" },
-    { date: "9-18", name: "九·一八事变纪念日" },
-    { date: "12-13", name: "南京大屠杀死难者国家公祭日" },
-  ];
-  // 获取当天日期
-  const today = new Date();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  const currentDate = `${month}-${day}`;
-  // 查找纪念日
-  const specialDay = specialDays.find((day) => day.date === currentDate);
-  if (specialDay) {
-    document.documentElement.classList.add("gray");
-    if (typeof $message !== "undefined") {
-      $message.info(`今天是${specialDay.name}，特此默哀`, {
-        duration: 8000,
-        close: true,
-      });
-    }
-  }
 };

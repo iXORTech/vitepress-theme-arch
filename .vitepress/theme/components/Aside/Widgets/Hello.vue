@@ -1,4 +1,4 @@
-<!-- 侧边栏 - 欢迎 -->
+<!-- Sidebar - Clock & Welcoming -->
 <template>
   <div class="hello s-card" @mouseleave="resetHello">
     <span class="tip" @click="changeHello">{{ helloText }}</span>
@@ -27,51 +27,53 @@
 
 <script setup>
 import { getGreetings } from "@/utils/helper";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const { site, theme } = useData();
 
-// 问候数据
+// Welcome Message Data (yes, Easter Egg!)
 const helloClick = ref(0);
 const helloTimeOut = ref(null);
-const helloText = ref(getGreetings());
+const helloText = ref(i18n(getGreetings()));
 
-// 恢复问候语
+// Restore Welcome Message
 const resetHello = () => {
   helloClick.value = 0;
   if (isHasUser()) return false;
-  helloText.value = getGreetings();
+  helloText.value = i18n(getGreetings());
 };
 
-// 更改问候语
+// Change Welcome Message
 const changeHello = () => {
   clearTimeout(helloTimeOut.value);
   helloClick.value++;
   if (helloClick.value === 1) {
-    helloText.value = "点这里干什么？";
+    helloText.value = i18n('components.aside.widgets.hello.text.one');
   } else if (helloClick.value === 2) {
-    helloText.value = "怎么还点？";
+    helloText.value = i18n('components.aside.widgets.hello.text.two');
   } else if (helloClick.value === 3) {
-    helloText.value = "那你点吧！";
+    helloText.value = i18n('components.aside.widgets.hello.text.three');
   } else if (helloClick.value === 100) {
-    helloText.value = "怎么还在点？？？";
+    helloText.value = i18n('components.aside.widgets.hello.text.hundred');
   } else {
     helloText.value = `x ${helloClick.value - 3}`;
   }
-  // 恢复默认
+  // Restore after 3 seconds
   helloTimeOut.value = setTimeout(() => {
     resetHello();
   }, 3000);
 };
 
-// 是否具有用户
 const isHasUser = () => {
-  // 检查本地存储
   const userData = localStorage.getItem("ArtalkUser");
   if (!userData) return false;
-  // 获取用户数据
   const { nick } = JSON.parse(userData);
-  const hello = ["很高兴见到你", "好久不见", "欢迎回来"];
-  // 随机问候语
+  const hello = [
+    i18n('components.aside.widgets.hello.text.random_1'),
+    i18n('components.aside.widgets.hello.text.random_2'),
+    i18n('components.aside.widgets.hello.text.random_3'),
+  ];
   helloText.value = hello[Math.floor(Math.random() * hello.length)] + "，" + nick;
   return true;
 };
