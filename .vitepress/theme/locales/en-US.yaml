@@ -8,3 +8,10 @@ views:
     categories_count_after: "categories in total"
     tags_count_before: ""
     tags_count_after: "tags in total"
+  not_found:
+    go_home: "Go Home"
+  post:
+    unnamed_post: "Unnamed Post"
+    info_expiry_reminder_before: "This post was published"
+    info_expiry_reminder_after: "days ago. The information contained might be outdated."
+    report: "Report an Issue"

@@ -1,4 +1,4 @@
-<!-- 文章页面 -->
+<!-- Post Pages -->
 <template>
   <div v-if="postMetaData" class="post">
     <div class="post-meta">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <h1 class="title">
-        {{ postMetaData.title || "未命名文章" }}
+        {{ postMetaData.title || i18n('views.post.unnamed_post') }}
       </h1>
       <div class="other-meta">
         <span class="meta date">
@@ -38,12 +38,12 @@
           <i class="font-awesome fa-solid fa-clock" />
           {{ formatTimestamp(page?.lastUpdated || postMetaData.lastModified) }}
         </span>
-        <!-- 热度 -->
+        <!-- Post Hotness -->
         <span class="hot meta">
           <i class="font-awesome fa-solid fa-fire" />
           <span id="twikoo_visitors" class="artalk-pv-count">0</span>
         </span>
-        <!-- 评论数 -->
+        <!-- Comment Count -->
         <span class="chat meta hover" @click="commentRef?.scrollToComments">
           <i class="font-awesome fa-solid fa-comments" />
           <span id="twikoo_comments" class="artalk-comment-count">0</span>
@@ -52,19 +52,19 @@
     </div>
     <div class="post-content">
       <article class="post-article s-card">
-        <!-- 过期提醒 -->
+        <!-- Info Expiry Reminder -->
         <div class="expired s-card" v-if="postMetaData?.expired >= 180">
-          本文发表于 <strong>{{ postMetaData?.expired }}</strong> 天前，其中的信息可能已经事过境迁
+          {{ i18n('views.post.info_expiry_reminder_before') }} <strong>{{ postMetaData?.expired }}</strong> {{ i18n('views.post.info_expiry_reminder_after') }}
         </div>
-        <!-- AI 摘要 -->
+        <!-- "AI" Summary -->
         <ArticleGPT />
-        <!-- 文章内容 -->
+        <!-- Post Content -->
         <Content id="page-content" class="markdown-main-style" />
-        <!-- 参考资料 -->
+        <!-- Post Reference -->
         <References />
-        <!-- 版权 -->
+        <!-- Copyright Info -->
         <Copyright v-if="frontmatter.copyright !== false" :postData="postMetaData" />
-        <!-- 其他信息 -->
+        <!-- Other Info -->
         <div class="other-meta">
           <div class="all-tags">
             <a
@@ -83,15 +83,15 @@
             target="_blank"
           >
             <i class="font-awesome fa-solid fa-circle-exclamation"></i>
-            反馈与投诉
+            {{ i18n('views.post.report') }}
           </a>
         </div>
         <RewardBtn />
-        <!-- 下一篇 -->
+        <!-- Next Post -->
         <NextPost />
-        <!-- 相关文章 -->
+        <!-- Related Posts -->
         <RelatedPost />
-        <!-- 评论 -->
+        <!-- Comments -->
         <Comments ref="commentRef" />
       </article>
       <Aside showToc />
@@ -103,13 +103,14 @@
 import { formatTimestamp } from "@/utils/helper";
 import { generateId } from "@/utils/commonTools";
 import initFancybox from "@/utils/initFancybox";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const { page, theme, frontmatter } = useData();
 
-// 评论元素
 const commentRef = ref(null);
 
-// 获取对应文章数据
+// Post Related Metadata
 const postMetaData = computed(() => {
   const postId = generateId(page.value.relativePath);
   return theme.value.postData.find((item) => item.id === postId);

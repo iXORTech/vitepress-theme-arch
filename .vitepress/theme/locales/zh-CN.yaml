@@ -8,3 +8,10 @@ views:
     categories_count_after: "个分类"
     tags_count_before: "共有"
     tags_count_after: "个标签"
+  not_found:
+    go_home: "回到首页"
+  post:
+    unnamed_post: "未命名文章"
+    info_expiry_reminder_before: "本文发表于"
+    info_expiry_reminder_after: "天前，其中的信息可能已经事过境迁"
+    report: "反馈与投诉"

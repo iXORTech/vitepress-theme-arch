@@ -3,12 +3,15 @@
     <div class="not-found-content">
       <h1 class="title">404</h1>
       <span class="title-tip">Page not found</span>
-      <button class="to-home" @click="router.go('/')">回到主页</button>
+      <button class="to-home" @click="router.go('/')">{{ i18n('views.not_found.go_home') }}</button>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 const router = useRouter();
 </script>
 

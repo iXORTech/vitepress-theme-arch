@@ -1,14 +1,14 @@
-<!-- 首页 -->
+<!-- Home Page -->
 <template>
   <div class="home">
     <Banner v-if="showHeader" :height="store.bannerType" />
     <div class="home-content">
       <div class="posts-content">
-        <!-- 分类总览 -->
+        <!-- All Categories or Tags  -->
         <TypeBar :type="showTags ? 'tags' : 'categories'" />
-        <!-- 文章列表 -->
+        <!-- List of Posts -->
         <PostList :listData="postData" />
-        <!-- 分页 -->
+        <!-- Page for Post List -->
         <Pagination
           :total="allListTotal"
           :page="Number(page)"
@@ -23,7 +23,7 @@
           "
         />
       </div>
-      <!-- 侧边栏 -->
+      <!-- Sidebar -->
       <Aside />
     </div>
   </div>
@@ -35,43 +35,38 @@ import { mainStore } from "@/store";
 const { theme } = useData();
 const store = mainStore();
 const props = defineProps({
-  // 显示首页头部
   showHeader: {
     type: Boolean,
     default: false,
   },
-  // 当前页数
   page: {
     type: Number,
     default: 1,
   },
-  // 显示分类
   showCategories: {
     type: [null, String],
     default: null,
   },
-  // 显示标签
   showTags: {
     type: [null, String],
     default: null,
   },
 });
 
-// 每页文章数
+// Number of Posts per Page
 const postSize = theme.value.postSize;
 
-// 列表总数量
+// Number of Posts in Total
 const allListTotal = computed(() => {
   const data = props.showCategories
     ? theme.value.categoriesData[props.showCategories]?.articles
     : props.showTags
       ? theme.value.tagsData[props.showTags]?.articles
       : theme.value.postData;
-  // 返回数量
   return data ? data.length : 0;
 });
 
-// 获得当前页数
+// Get Number of Current Page
 const getCurrentPage = () => {
   if (props.showCategories || props.showTags) {
     if (typeof window === "undefined") return 0;
@@ -84,44 +79,44 @@ const getCurrentPage = () => {
   return props.page ? props.page - 1 : 0;
 };
 
-// 根据页数计算列表数据
+// Compute Data Related to Posts
 const postData = computed(() => {
   const page = getCurrentPage();
   console.log("当前页数：", page);
   let data = null;
-  // 分类数据
+  // Category Data
   if (props.showCategories) {
     data = theme.value.categoriesData[props.showCategories]?.articles;
   }
-  // 标签数据
+  // Tag Data
   else if (props.showTags) {
     data = theme.value.tagsData[props.showTags]?.articles;
   }
-  // 文章数据
+  // Post Data
   else {
     data = theme.value.postData;
   }
-  // 返回列表
+  // Return All Data
   return data ? data.slice(page * postSize, page * postSize + postSize) : [];
 });
 
-// 恢复滚动位置
+// Restore Y Scroll Position
 const restoreScrollY = (val) => {
   if (typeof window === "undefined" || val) return false;
   const scrollY = store.lastScrollY;
   nextTick().then(() => {
-    console.log("滚动位置：", scrollY);
-    // 平滑滚动
+    console.log("Y Scroll Position: ", scrollY);
+    // Smooth Scroll to Y Position
     window.scrollTo({
       top: scrollY,
       behavior: "smooth",
     });
-    // 清除滚动位置
+    // Clear Scroll Position
     store.lastScrollY = 0;
   });
 };
 
-// 监听加载结束
+// Listen for End of Loading
 watch(
   () => store.loadingStatus,
   (val) => restoreScrollY(val),
