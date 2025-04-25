@@ -56,6 +56,10 @@ components:
     type-bar:
       home: "Home"
       more: "More"
+  plugins:
+    comments:
+      comments: "Comments"
+      privacy-policy: "Privacy Policy"
 
 views:
   archives:

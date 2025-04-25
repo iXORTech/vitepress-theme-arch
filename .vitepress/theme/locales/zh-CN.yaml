@@ -53,6 +53,11 @@ components:
       no-data: "暂无友链数据"
     post-list:
       pinned: "置顶"
+  plugins:
+    comments:
+      comments: "评论"
+      privacy-policy: "隐私政策"
+
 views:
   archives:
     posts: "文章"

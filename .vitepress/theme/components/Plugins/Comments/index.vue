@@ -1,4 +1,4 @@
-<!-- 评论 -->
+<!-- Comments -->
 <template>
   <div
     v-if="theme.comment.enable"
@@ -10,21 +10,25 @@
     <div v-if="!fill" class="title">
       <span class="name">
         <i class="font-awesome fa-solid fa-comments"></i>
-        评论
+        {{ i18n('components.plugins.comments.comments') }}
       </span>
-      <span class="tool" @click="router.go('/pages/privacy')"> 隐私政策 </span>
+      <span class="tool" @click="router.go('/pages/privacy')">
+        {{ i18n('components.plugins.comments.privacy-policy') }}
+      </span>
     </div>
-    <!-- 区分评论系统 -->
+    <!-- Different Comment Systems -->
     <Artalk v-if="theme.comment.type === 'artalk'" :fill="fill" />
     <Twikoo v-else-if="theme.comment.type === 'twikoo'" :fill="fill" />
   </div>
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 const { theme } = useData();
 const router = useRouter();
 const props = defineProps({
-  // 填充评论区
   fill: {
     type: [Boolean, String],
     default: false,
@@ -32,7 +36,6 @@ const props = defineProps({
 });
 const mainCommentRef = ref(null);
 
-// 滚动至评论
 const scrollToComments = () => {
   if (!mainCommentRef.value) return false;
   const elementRect = mainCommentRef.value.getBoundingClientRect();

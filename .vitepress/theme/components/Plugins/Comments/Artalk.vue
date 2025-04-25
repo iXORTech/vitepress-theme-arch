@@ -7,7 +7,6 @@ import initComments from "@/utils/initComments";
 
 const route = useRoute();
 const props = defineProps({
-  // 填充评论区
   fill: {
     type: [Boolean, String],
     default: false,
@@ -17,11 +16,9 @@ const props = defineProps({
 const { theme } = useData();
 const { comment } = theme.value;
 
-// 评论数据
 const artalk = ref(null);
 const commentRef = ref(null);
 
-// 初始化 Artalk
 const initArtalk = async () => {
   try {
     await nextTick();
@@ -35,38 +32,33 @@ const initArtalk = async () => {
     });
     // Event
     artalk.value?.on("created", () => {
-      // 若有数据填充
       if (props.fill) fillComments(props.fill);
     });
     artalk.value?.on("list-loaded", () => {
-      console.log("评论已加载完毕");
+      console.log("Comments Loaded");
     });
     artalk.value?.on("comment-updated", () => {
-      console.log("评论已更新完毕");
+      console.log("Comments Updated");
     });
     if (typeof $comment === "undefined" && typeof window !== "undefined") {
       window.$comment = artalk.value;
     }
     return artalk.value;
   } catch (error) {
-    console.error("初始化评论出错：", error);
+    console.error("Initializing Comment Failed: ", error);
   }
 };
 
-// 填充评论区
 const fillComments = (data) => {
-  console.log("填充评论：", data);
-  // 获取评论元素
+  console.log("Filling Comment: ", data);
   const commentDom = document.querySelector("#comment-dom.fill");
   if (!commentDom) return false;
-  // 获取输入框
   const commentInput = commentDom.querySelector("textarea");
-  // 写入内容
   commentInput.value = data + "\n\n";
   commentInput.focus();
 };
 
-// 监听页面切换
+// Watch Page Change
 watch(
   () => route.path,
   (val) => {
