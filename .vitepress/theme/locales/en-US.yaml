@@ -60,6 +60,11 @@ components:
     comments:
       comments: "Comments"
       privacy-policy: "Privacy Policy"
+  tags:
+    link-card:
+      tip: "An external link will be opened. Please make sure it is safe."
+      no-title: "No Site Title"
+      no-description: "No Site Description"
 
 views:
   archives:

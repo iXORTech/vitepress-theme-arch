@@ -57,6 +57,11 @@ components:
     comments:
       comments: "评论"
       privacy-policy: "隐私政策"
+  tags:
+    link-card:
+      tip: "引用站外地址，请注意甄别链接安全性"
+      no-title: "暂无站点标题"
+      no-description: "暂无站点描述"
 
 views:
   archives:

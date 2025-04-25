@@ -10,7 +10,6 @@
 <script setup>
 const model = defineModel();
 
-// 点击切换
 const checkboxClick = () => {
   model.value = !model.value;
 };
@@ -37,7 +36,7 @@ const checkboxClick = () => {
       border 0.3s,
       background-color 0.3s;
     &::after {
-      content: "\f14a";
+      content: "\f00c";
       position: absolute;
       font-family: "Font Awesome 6 Free";
       font-size: 12px;

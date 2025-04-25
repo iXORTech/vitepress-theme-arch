@@ -1,7 +1,9 @@
 <!-- 链接卡片 -->
 <template>
   <a :href="url" :target="isOutLink ? '_blank' : null" class="link-card s-card hover">
-    <span v-if="isOutLink" class="link-tip">引用站外地址，请注意甄别链接安全性</span>
+    <span v-if="isOutLink" class="link-tip">
+      {{ i18n('components.tags.link-card.tip') }}
+    </span>
     <div class="link-data">
       <div class="link-icon">
         <img v-if="icon" class="link-img" :src="icon" alt="link-img" />
@@ -15,12 +17,12 @@
         <i v-else class="font-awesome fa-solid fa-link"></i>
       </div>
       <div class="link-desc">
-        <!-- 标题 -->
+        <!-- Title -->
         <span v-if="title" class="link-title">{{ title }}</span>
-        <span v-else class="link-title">{{ siteInfo?.title || "暂无标题" }}</span>
-        <!-- 描述 -->
+        <span v-else class="link-title">{{ siteInfo?.title || i18n('components.tags.link-card.no-title') }}</span>
+        <!-- Description -->
         <span v-if="desc" class="link-description">{{ desc }}</span>
-        <span v-else class="link-description">{{ siteInfo?.description || "暂无站点描述" }}</span>
+        <span v-else class="link-description">{{ siteInfo?.description || i18n('components.tags.link-card.no-description') }}</span>
       </div>
       <i class="link-go font-awesome fa-solid fa-angle-up"></i>
     </div>
@@ -29,47 +31,40 @@
 
 <script setup>
 import { getSiteInfo } from "@/api";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const props = defineProps({
-  // 地址
   url: {
     type: String,
     default: "",
   },
-  // 标题
   title: {
     type: String,
     default: "",
   },
-  // 描述
   desc: {
     type: String,
     default: "",
   },
-  // 图标
   icon: {
     type: String,
     default: "",
   },
 });
 
-// 站点数据
 const siteInfo = ref(null);
 
-// 是否为站内链接
 const isOutLink = computed(() => {
   const link = props.url;
   if (!link) return false;
-  // 是否为站内链接
   return !link.startsWith("/") && (link.startsWith("http://") || link.startsWith("https://"));
 });
 
-// 获取站点数据
 const getSiteInfoData = async () => {
   const url = props.url;
   if (!url) return false;
   if (props.title || props.desc || props.icon) return false;
-  // 获取数据
   const result = await getSiteInfo(url);
   siteInfo.value = result;
 };
