@@ -4,10 +4,10 @@
       <div v-for="(type, index) in listData" :key="index" class="link-type-list">
         <div class="title">
           <h2 class="name">
-            <span class="name-text">{{ type?.typeName || "未知分组" }}</span>
+            <span class="name-text">{{ type?.typeName || i18n('components.list.link-list.unknown-grouping') }}</span>
             <span v-if="showCount" class="name-count">（{{ type?.typeList?.length || 0 }}）</span>
           </h2>
-          <span class="tip">{{ type?.typeDesc || "分组暂无简介" }}</span>
+          <span v-if="type?.typeDesc" class="tip">{{ type?.typeDesc }}</span>
         </div>
         <div class="all-link" v-if="type?.typeList">
           <a
@@ -42,23 +42,24 @@
         </div>
       </div>
     </div>
-    <div v-else class="no-data">暂无友链数据</div>
+    <div v-else class="no-data">{{ i18n('components.list.link-list.no-data') }}</div>
   </Transition>
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
+
 const props = defineProps({
-  // 列表数据
   listData: {
     type: [Array, String],
     default: () => [],
   },
-  // 显示数量
   showCount: {
     type: Boolean,
     default: true,
   },
-  // 友链朋友圈
   useFriendsLink: {
     type: Boolean,
     default: false,

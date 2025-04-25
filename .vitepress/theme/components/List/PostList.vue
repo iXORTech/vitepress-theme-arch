@@ -1,4 +1,3 @@
-<!-- 文章列表 -->
 <template>
   <div class="post-lists" :class="{'layout-grid': layoutType === 'twoColumns'}" :style="gridStyle">
     <div
@@ -18,11 +17,11 @@
             <i class="font-awesome fa-solid fa-folder-open" />
             {{ cat }}
           </span>
-          <!-- 置顶 -->
+          <!-- Pinned -->
           <span v-if="item?.top" class="top">
             <!-- If using FA Pro, use fa-arrow-up-to-line. -->
             <i class="font-awesome fa-solid fa-map-pin" />
-            置顶
+            {{ i18n("components.list.post-list.pinned") }}
           </span>
         </div>
         <span class="post-title">{{ item.title }}</span>
@@ -51,17 +50,19 @@
 <script setup>
 import { mainStore } from "@/store";
 import { formatTimestamp } from "@/utils/helper";
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 
 const store = mainStore();
 const router = useRouter();
 
 const props = defineProps({
-  // 列表数据
   listData: {
     type: [Array, String],
     default: () => [],
   },
-  // 简洁模式
+  // Simple Mode
   simple: {
     type: Boolean,
     default: false,
@@ -70,12 +71,10 @@ const props = defineProps({
 
 const { theme: themeConfig } = useData()
 
-// 计算布局类型
 const layoutType = computed(() => 
   themeConfig.value?.cover?.twoColumns ? 'twoColumns' : themeConfig.value?.cover?.showCover?.coverLayout ?? 'left'
 )
 
-// 计算网格样式
 const gridStyle = computed(() => 
   layoutType.value === 'twoColumns' ? {
     '--grid-columns': 2,
@@ -83,13 +82,11 @@ const gridStyle = computed(() =>
   } : {}
 )
 
-// 判断是否显示封面
 const showCover = ({ cover: itemCover }) => {
   if (!itemCover && !themeConfig.value.cover.showCover.defaultCover) return false
   return themeConfig.value?.cover?.showCover?.enable
 }
 
-// 获取封面图片 按优先级获取：cover > defaultCover > false
 const getCover = ({ cover: itemCover }) => {
   const { cover } = themeConfig.value ?? {}
   
@@ -101,14 +98,11 @@ const getCover = ({ cover: itemCover }) => {
     : false
 }
 
-// 前往文章
 const toPost = (path) => {
-  // 记录滚动位置
   if (typeof window !== "undefined") {
     const scrollY = window.scrollY;
     store.lastScrollY = scrollY;
   }
-  // 跳转文章
   router.go(path);
 };
 </script>
@@ -279,17 +273,14 @@ const toPost = (path) => {
       }
     }
 
-    // 封面靠左
     &.cover-left {
       flex-direction: row;
     }
 
-    // 封面靠右
     &.cover-right {
       flex-direction: row-reverse;
     }
 
-    // 交替布局
     &.cover-both {
       &:nth-child(odd) {
         flex-direction: row;
@@ -299,7 +290,7 @@ const toPost = (path) => {
       }
     }
 
-    // 移动端垂直布局
+    // Mobile Layout
     @media (max-width: 768px) {
       &.cover-left,
       &.cover-right,
@@ -309,7 +300,6 @@ const toPost = (path) => {
     }
   }
 
-  // 网格布局
   &.layout-grid {
     display: grid;
     grid-template-columns: repeat(var(--grid-columns, 2), 1fr);

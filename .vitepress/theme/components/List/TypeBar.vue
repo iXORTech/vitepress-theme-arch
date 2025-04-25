@@ -1,4 +1,3 @@
-<!-- 分类导航条 -->
 <template>
   <div v-if="type === 'categories'" class="type-bar s-card hover">
     <div class="all-type">
@@ -9,7 +8,7 @@
       >
         {{ currentTypeName }}
       </a>
-      <a href="/" :class="['type-item', { choose: !currentTypeName }]">首页</a>
+      <a href="/" :class="['type-item', { choose: !currentTypeName }]">{{ i18n('components.list.type-bar.home') }}</a>
       <a
         v-for="(_, key, index) in theme.categoriesData"
         :key="index"
@@ -21,7 +20,7 @@
     </div>
     <a href="/pages/categories" class="more-type">
       <i class="font-awesome fa-solid fa-angles-right" />
-      更多
+      {{ i18n('components.list.type-bar.more') }}
     </a>
   </div>
   <div v-else-if="type === 'tags'" class="type-bar s-card hover">
@@ -42,22 +41,23 @@
     </div>
     <a href="/pages/tags" class="more-type">
       <i class="font-awesome fa-solid fa-angles-right" />
-      更多
+      {{ i18n('components.list.type-bar.more') }}
     </a>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 const { theme, params } = useData();
 const props = defineProps({
-  // 显示类别
   type: {
     type: String,
     default: "categories",
   },
 });
 
-// 获取当前路由路径
 const currentTypeName = computed(() => {
   return params.value?.name || null;
 });

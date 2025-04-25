@@ -47,6 +47,12 @@ components:
         show_all_tags: "显示全部标签"
       toc:
         toc: "目录"
+  list:
+    link-list:
+      unknown-grouping: "未知分组"
+      no-data: "暂无友链数据"
+    post-list:
+      pinned: "置顶"
 views:
   archives:
     posts: "文章"
@@ -57,6 +63,9 @@ views:
     categories_count_after: "个分类"
     tags_count_before: "共有"
     tags_count_after: "个标签"
+  links:
+    shuffle: "随机访问"
+    apply: "申请友链"
   not_found:
     go_home: "回到首页"
   post:

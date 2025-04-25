@@ -47,6 +47,16 @@ components:
         show_all_tags: "Show All Tags"
       toc:
         toc: "Table of Contents"
+  list:
+    link-list:
+      unknown-grouping: "Unknown Grouping"
+      no-data: "No Friendly Links & Recommended Sites Data Yet"
+    post-list:
+      pinned: "Pinned"
+    type-bar:
+      home: "Home"
+      more: "More"
+
 views:
   archives:
     posts: "Posts"
@@ -57,6 +67,9 @@ views:
     categories_count_after: "categories in total"
     tags_count_before: ""
     tags_count_after: "tags in total"
+  links:
+    shuffle: "Go To a Random Link"
+    apply: "Apply to be Listed Here"
   not_found:
     go_home: "Go Home"
   post:
