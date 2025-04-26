@@ -62,6 +62,106 @@ components:
       tip: "引用站外地址，请注意甄别链接安全性"
       no-title: "暂无站点标题"
       no-description: "暂无站点描述"
+  banner:
+    welcome-message: "你好，欢迎来到"
+  control:
+    appearance-mode-switch: "显示模式切换"
+    right-click-menu-switch: "右键菜单开关"
+    background-blur-switch: "背景模糊开关"
+    right-click-menu-enable: "右键菜单已启用"
+    right-click-menu-disable: "右键菜单已禁用"
+  copyright:
+    unnamed-post: "未命名文章"
+    author: "作者"
+    released: "发布于"
+    last-updated: "最近更新于"
+    license: "许可协议"
+    cc-link: "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
+    by-nc-sa: "署名—非商业性使用—相同方式共享 4.0 协议国际版"
+  footer-link:
+    learn-more: "了解更多"
+    go-back-to-top: "返回顶部"
+  loading:
+    hint: "一直显示？点击任意区域即可关闭"
+  mobile-menu:
+    tags: " 标签"
+  nav:
+    random-post: "随机前往一篇文章"
+    search: "全站搜索"
+    open-control: "打开中控台"
+    go-back-to-top: "返回顶部"
+    open-mobile-menu: "打开菜单"
+  next-post:
+    read-next: "阅读下一篇"
+    read-previous: "阅读上一篇"
+    no-title-yet: "暂无标题"
+  pagination:
+    last-page: "上一页"
+    next-page: "下一页"
+    jump-to: "跳转至"
+  references: "参考资料"
+  related-post:
+    related-posts: "相关文章"
+    go-to-random-post: "随便逛逛"
+  reward-btn: "赞助我们"
+  right-menu:
+    back: "后退"
+    forward: "前进"
+    refresh: "刷新"
+    go-back-to-top: "返回顶部"
+    go-to-random-post: "随便逛逛"
+    all-categories: "全部分类"
+    all-tags: "全部标签"
+    open-link-in-new-tab: "在新标签页打开打开链接"
+    copy-link: "复制链接地址"
+    copy-image: "复制此图片"
+    download-image: "下载此图片"
+    paste-text: "粘贴文本"
+    open-in-new-tab: "在新标签页打开"
+    copy-selected-text: "复制选中文本"
+    comment-selected-content: "评论选中内容"
+    copyright-policy: "版权协议"
+    privacy-policy: "隐私政策"
+    copy-address-of-this-page: "复制本页地址"
+    dark-mode: "深色模式"
+    light-mode: "浅色模式"
+    automatic-mode: "跟随系统"
+    quickly-comment: "快速评论"
+    quickly-comment-tip: "您无需删除现有的输入框内容，直接在下方评论即可"
+  search:
+    title: "全局搜索"
+    tip: "想要搜点什么"
+    no-result: "搜索结果为空"
+    search-used-ms-before: "本次用时 "
+    search-used-ms-after: " 毫秒"
+  settings:
+    personalization-settings: "Personalization Settings"
+    font: "字体"
+    text-font: "文字字体"
+    code-font: "代码字体"
+    font-size: "字体大小"
+    customize-bg: "壁纸个性化"
+    site-bg: "站点背景"
+    bg-off: "关闭"
+    bg-pattern: "纹理"
+    bg-image: "图片"
+    bg-image-url: "背景图片地址"
+    bg-image-url-tip: "请输入有效的网址，例如：https://example.com/image.jpg"
+    home-page-style: "首页样式"
+    banner-height: "Banner 高度"
+    banner-half-height: "半屏"
+    banner-full-height: "全屏"
+    miscellaneous: "杂项调整"
+    extra-info-display-position: "额外信息显示位置"
+    extra-info-default-position: "默认位置"
+    extra-info-bottom-right-position: "右下角"
+
+utils:
+  helper:
+    format-timestamp:
+      yesterday: "昨天"
+      today: "今天"
+      days-ago: " 天前"
 
 views:
   archives:

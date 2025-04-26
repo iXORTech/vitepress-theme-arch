@@ -1,8 +1,7 @@
-<!-- 全局搜索 -->
 <template>
   <Modal
     :show="store.searchShow"
-    title="全局搜索"
+    :title="i18n('components.search.title')"
     titleIcon="magnifying-glass"
     @mask-click="store.changeShowStatus('searchShow')"
     @modal-close="store.changeShowStatus('searchShow')"
@@ -16,7 +15,7 @@
       @state-change="searchChange"
     >
       <ais-configure :hits-per-page.camel="8" />
-      <ais-search-box placeholder="想要搜点什么" autofocus />
+      <ais-search-box :placeholder="i18n('components.search.tip')" autofocus />
       <ais-hits v-if="hasSearchValue">
         <template v-slot="{ items }">
           <Transition name="fade" mode="out-in">
@@ -34,7 +33,7 @@
             </div>
             <div v-else class="no-result">
               <i class="font-awesome fa-solid fa-magnifying-glass" />
-              <span class="text">搜索结果为空</span>
+              <span class="text">{{ i18n('components.search.no-result') }}</span>
             </div>
           </Transition>
         </template>
@@ -43,7 +42,11 @@
       <ais-stats>
         <template v-slot="{ processingTimeMS }">
           <div class="information">
-            <span v-if="hasSearchValue" class="text"> 本次用时 {{ processingTimeMS }} 毫秒 </span>
+            <span v-if="hasSearchValue" class="text">
+              {{ i18n('components.search.search-used-ms-before') }}
+              {{ processingTimeMS }}
+              {{ i18n('components.search.search-used-ms-after') }}
+            </span>
           </div>
           <a class="power" href="https://www.algolia.com/" target="_blank">
             <i class="font-awesome fa-brands fa-algolia" />
@@ -58,7 +61,9 @@
 <script setup>
 import { mainStore } from "@/store";
 import { liteClient } from "algoliasearch/lite";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const store = mainStore();
 const router = useRouter();
 
@@ -67,31 +72,23 @@ const { appId, apiKey } = theme.value.search;
 
 const searchClient = liteClient(appId, apiKey);
 
-// 是否具有搜索词
 const hasSearchValue = ref(false);
 
-// 搜索变化
 const searchChange = ({ uiState, setUiState }) => {
   const searchData = Object.values(uiState);
   hasSearchValue.value = searchData.length > 0 && searchData[0].query?.length > 0;
   setUiState(uiState);
 };
 
-// 处理搜索结果
 const formatSearchData = (data) => {
   const results = [];
-  // 遍历搜索结果
   for (let i = 0; i < data.length; i++) {
     const search = data[i];
-    // 若无 anchor
-    // if (search.anchor === "" || search.anchor === "app") continue;
-    // 获取数据
     const url = search?.url;
     const type = search.type === "lvl1" ? "post" : "content";
     const title = search._highlightResult?.hierarchy?.lvl1?.value;
     const anchor = search._highlightResult?.hierarchy?.[search.type]?.value;
     const content = search._highlightResult?.content?.value;
-    // 生成搜索数据
     const searchData = { url, type, title, anchor, content };
     results.push(searchData);
   }
@@ -99,7 +96,6 @@ const formatSearchData = (data) => {
   return results;
 };
 
-// 跳转搜索结果
 const jumpSearch = (url) => {
   store.changeShowStatus("searchShow");
   router.go(url);

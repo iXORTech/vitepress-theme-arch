@@ -1,26 +1,26 @@
-<!-- 打赏按钮 -->
 <template>
+  <!-- Tips Button -->
   <div v-if="rewardData.enable" class="reward">
     <div class="reward-btn" @click="rewardShow = true">
       <i class="font-awesome fa-solid fa-money-check-dollar" />
-      <span class="text">赞赏博主</span>
+      <span class="text"> {{ i18n('components.reward-btn') }} </span>
     </div>
-    <!-- 打赏面板 -->
+    <!-- Tip Pane -->
     <Modal
       :show="rewardShow"
       :maxWidth="430"
-      title="赞赏博主"
+      :title="i18n('components.reward-btn')"
       titleIcon="money-check-dollar"
       @mask-click="rewardShow = false"
       @modal-close="rewardShow = false"
     >
       <div class="reward-card">
-        <span class="thank">🙏 感谢您赐予我前进的力量</span>
+        <span class="thank">🙏 Thank You!</span>
         <!-- TODO: ACTUAL LINK FOR SPONSORING -->
         <div v-if="showJump" class="all-list s-card hover" @click="toRewardList">
-          <span class="title">全部赞赏者名单</span>
+          <span class="title">Sponsors List</span>
           <span class="tip">
-            赞赏金额将全部用于开源项目维护，以及服务器、域名及各类云服务的开销
+            The sponsored money will be...
           </span>
         </div>
       </div>
@@ -29,6 +29,9 @@
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 const router = useRouter();
 const { theme } = useData();
 const { rewardData } = theme.value;
@@ -40,10 +43,8 @@ const props = defineProps({
   },
 });
 
-// 赞赏显示
 const rewardShow = ref(false);
 
-// 跳转至赞赏名单
 const toRewardList = () => {
   rewardShow.value = false;
   router.go("/pages/thanks");

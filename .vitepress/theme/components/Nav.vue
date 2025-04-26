@@ -2,9 +2,9 @@
   <header class="main-header">
     <nav :class="['main-nav', scrollData.direction, { top: scrollData.height === 0 }]">
       <div class="nav-all">
-        <!-- 导航栏左侧 -->
+        <!-- Left Side Navbar -->
         <div class="left-nav">
-          <div class="more-menu nav-btn" title="更多内容">
+          <div class="more-menu nav-btn">
             <i class="font-awesome fa-solid fa-compass"></i>
             <div class="more-card s-card">
               <div v-for="(item, index) in theme.navMore" :key="index" class="more-item">
@@ -28,7 +28,7 @@
             {{ site.title }}
           </div>
         </div>
-        <!-- 导航栏菜单 -->
+        <!-- Nav Menu -->
         <div class="nav-center">
           <div class="site-menu">
             <div v-for="(item, index) in theme.nav" :key="index" class="menu-item">
@@ -73,55 +73,55 @@
               <i class="font-awesome fa-solid fa-train-subway"></i>
             </a>
           -->
-          <!-- 随机文章 -->
+          <!-- Random Post -->
           <div
             class="menu-btn nav-btn"
-            title="随机前往一篇文章"
+            :title="i18n('components.nav.random-post')"
             @click="router.go(shufflePost(theme.postData))"
           >
             <i class="font-awesome fa-solid fa-shuffle"></i>
           </div>
-          <!-- 搜索 -->
+          <!-- Search -->
           <div
             v-if="theme.search.enable"
             class="menu-btn nav-btn"
-            title="全站搜索"
+            :title="i18n('components.nav.search')"
             @click="store.changeShowStatus('searchShow')"
           >
             <i class="font-awesome fa-solid fa-magnifying-glass"></i>
           </div>
-          <!-- 中控台 -->
+          <!-- Control Panel -->
           <div
             id="open-control"
             class="menu-btn nav-btn pc"
-            title="打开中控台"
+            :title="i18n('components.nav.open-control')"
             @click="store.changeShowStatus('controlShow')"
           >
             <i class="font-awesome fa-solid fa-terminal" />
           </div>
-          <!-- 返回顶部 -->
+          <!-- Go Back to Top -->
           <div
             :class="[
               'to-top',
               'menu-btn',
               { hidden: scrollData.height === 0, long: scrollData.percentage > 90 },
             ]"
-            title="返回顶部"
+            :title="i18n('components.nav.go-back-to-top')"
             @click="smoothScrolling"
           >
             <div class="to-top-btn">
               <Transition name="fade" mode="out-in">
                 <span :key="scrollData.percentage > 90" class="num">
-                  {{ scrollData.percentage <= 90 ? scrollData.percentage : "返回顶部" }}
+                  {{ scrollData.percentage <= 90 ? scrollData.percentage : i18n('components.nav.go-back-to-top') }}
                 </span>
               </Transition>
               <i class="font-awesome fa-solid fa-angles-up"></i>
             </div>
           </div>
-          <!-- 移动端菜单 -->
+          <!-- Mobile Menu -->
           <div
             class="menu-btn nav-btn mobile"
-            title="打开菜单"
+            :title="i18n('components.nav.open-mobile-menu')"
             @click="store.changeShowStatus('mobileMenuShow')"
           >
             <i class="font-awesome fa-solid fa-bars" />
@@ -129,9 +129,9 @@
         </div>
       </div>
     </nav>
-    <!-- 移动端菜单 -->
+    <!-- Mobile Menu -->
     <MobileMenu />
-    <!-- 全局搜索 -->
+    <!-- Search -->
     <ClientOnly>
       <Search v-if="theme.search.enable" />
     </ClientOnly>
@@ -142,7 +142,9 @@
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { shufflePost, smoothScrolling } from "@/utils/helper";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const router = useRouter();
 const store = mainStore();
 const { scrollData } = storeToRefs(store);

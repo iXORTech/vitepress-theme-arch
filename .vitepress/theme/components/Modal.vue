@@ -11,16 +11,16 @@
           class="modal-main s-card"
           @click.stop
         >
-          <!-- 标题 -->
+          <!-- Title -->
           <div v-if="title" class="title">
             <div class="title-left">
               <i v-if="titleIcon" :class="`font-awesome fa-solid fa-${titleIcon}`"></i>
               <span class="title-text">{{ title }}</span>
             </div>
-            <!-- 关闭按钮 -->
+            <!-- Close Button -->
             <i v-if="showClose" class="font-awesome fa-solid fa-xmark close" @click="modalClose" />
           </div>
-          <!-- 弹窗内容 -->
+          <!-- Content -->
           <div class="modal-content" :style="{ '--height': maxHeight + 'vh' }">
             <slot />
           </div>
@@ -32,46 +32,37 @@
 
 <script setup>
 const props = defineProps({
-  // 是否显示
   show: {
     type: Boolean,
     default: false,
   },
-  // 标题
   title: {
     type: String,
     default: "",
   },
-  // 标题图标
   titleIcon: {
     type: String,
     default: "",
   },
-  // 是否显示关闭按钮
   showClose: {
     type: Boolean,
     default: true,
   },
-  // 最大宽度
   maxWidth: {
     type: [Number, String],
     default: 800,
   },
-  // 最大高度
   maxHeight: {
     type: Number,
     default: 80,
   },
 });
 
-// 发射事件
 const emit = defineEmits(["mask-click", "modal-close"]);
 
-// 遮罩层事件
 const maskClick = () => emit("mask-click");
 const modalClose = () => emit("modal-close");
 
-// 监听开启
 watch(
   () => props.show,
   (val) => {

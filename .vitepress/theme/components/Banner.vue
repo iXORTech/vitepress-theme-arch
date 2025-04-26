@@ -1,11 +1,11 @@
 <template>
   <div v-if="type === 'text'" :class="['banner', bannerType]" id="main-banner">
     <h1 v-if="theme.siteMeta.welcomeMessage" class="title">{{ theme.siteMeta.welcomeMessage }}</h1>
-    <h1 v-else class="title">你好，欢迎来到{{ theme.siteMeta.title }}</h1>
+    <h1 v-else class="title">{{ i18n('components.banner.welcome-message') }}{{ theme.siteMeta.title }}</h1>
     <div class="subtitle">
       <Transition name="fade" mode="out-in">
-        <span :key="hitokotoData?.hitokoto" class="text">
-          {{ hitokotoData?.hitokoto ? hitokotoData?.hitokoto : theme.siteMeta.description }}
+        <span class="text">
+          {{ theme.siteMeta.description }}
         </span>
       </Transition>
     </div>
@@ -43,62 +43,40 @@
 
 <script setup>
 import { mainStore } from "@/store";
-import { getHitokoto } from "@/api";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const store = mainStore();
 const { theme } = useData();
 const props = defineProps({
-  // 类型
   type: {
     type: String,
     default: "text",
   },
-  // 高度
   height: {
     type: String,
     default: "half",
   },
-  // 标题
   title: {
     type: String,
-    default: "这里是标题",
+    default: "Title Here",
   },
-  // 简介
   desc: {
     type: String,
-    default: "这里是简介",
+    default: "Description Here",
   },
-  // 注释
   footer: {
     type: String,
     default: "",
   },
-  // 背景
   image: {
     type: String,
     default: "",
   },
 });
 
-const hitokotoData = ref(null);
-const hitokotoTimeOut = ref(null);
-
-// banner
 const bannerType = ref(null);
 
-// 获取一言数据
-const getHitokotoData = async () => {
-  try {
-    const result = await getHitokoto();
-    const { hitokoto, from, from_who } = result;
-    hitokotoData.value = { hitokoto, from, from_who };
-  } catch (error) {
-    $message.error("一言获取失败");
-    console.error("一言获取失败：", error);
-  }
-};
-
-// 滚动至首页
 const scrollToHome = () => {
   const bannerDom = document.getElementById("main-banner");
   if (!bannerDom) return false;
@@ -116,17 +94,7 @@ watch(
 );
 
 onMounted(() => {
-  if (props.type === "text") {
-    hitokotoTimeOut.value = setTimeout(() => {
-      getHitokotoData();
-    }, 2000);
-  }
-  // 更改 banner 类型
   bannerType.value = store.bannerType;
-});
-
-onBeforeUnmount(() => {
-  clearTimeout(hitokotoTimeOut.value);
 });
 </script>
 

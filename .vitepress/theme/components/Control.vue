@@ -1,33 +1,33 @@
-<!-- 中控台 -->
+<!-- Control Panel -->
 <template>
   <Teleport to="body">
     <Transition name="fade" mode="out-in" @before-enter="changeCloseStyle">
       <div v-if="store.controlShow" class="control" @click="store.changeShowStatus('controlShow')">
-        <!-- 关闭按钮 -->
+        <!-- Close Button -->
         <div ref="closeControlRef" class="close-control">
           <i class="font-awesome fa-solid fa-xmark"></i>
         </div>
-        <!-- 背景遮罩 -->
+        <!-- Background Mask -->
         <div class="control-mask" />
-        <!-- 中控台内容 -->
+        <!-- Control Contents -->
         <div class="control-content" @click.stop>
-          <!-- 功能菜单 -->
+          <!-- Functionalities -->
           <div class="menu">
-            <div class="menu-item open" title="显示模式切换" @click.stop="store.changeThemeType">
+            <div class="menu-item open" :title="i18n('components.control.appearance-mode-switch')" @click.stop="store.changeThemeType">
               <i v-if="store.themeType === 'dark'" class="font-awesome fa-solid fa-moon"></i>
               <i v-if="store.themeType === 'light'" class="font-awesome fa-solid fa-sun"></i>
               <i v-if="store.themeType === 'auto'" class="font-awesome fa-solid fa-wand-sparkles"></i>
             </div>
             <div
               :class="['menu-item', { open: store.useRightMenu }]"
-              title="右键菜单开关"
+              :title="i18n('components.control.right-click-menu-switch')"
               @click.stop="rightMenuSwitch"
             >
               <i class="font-awesome fa-solid fa-list"></i>
             </div>
             <div
               :class="['menu-item', { open: store.backgroundBlur }]"
-              title="背景模糊开关"
+              :title="i18n('components.control.background-blur-switch')"
               @click.stop="store.changeShowStatus('backgroundBlur')"
             >
               <i class="font-awesome fa-solid fa-eye-slash"></i>
@@ -41,12 +41,14 @@
 
 <script setup>
 import { mainStore } from "@/store";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const store = mainStore();
 
 const closeControlRef = ref(null);
 
-// 更正关闭按钮位置
+// Fix Position of Close Button
 const changeCloseStyle = () => {
   nextTick().then(() => {
     const controlOpenDom = document.querySelector("#open-control");
@@ -59,10 +61,12 @@ const changeCloseStyle = () => {
   });
 };
 
-// 右键菜单开关
+// Right Click Menu Switch
 const rightMenuSwitch = () => {
   store.useRightMenu = !store.useRightMenu;
-  $message.info(`${store.useRightMenu ? "已开启" : "已关闭"}自定义右键菜单`);
+  $message.info(i18n(
+    'components.control.right-click-menu-' + (store.useRightMenu ? 'enable' : 'disable')
+  ));
 };
 </script>
 

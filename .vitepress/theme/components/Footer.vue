@@ -10,18 +10,20 @@
           <i class="font-awesome fa-solid fa-shield"></i>
           {{ theme.icp }}
         </a>
+        <br/>
+        <span class="by">Powered by</span>
+        <span class="name">
+          <a class="power link" href="https://vitepress.dev/" target="_blank">VitePress</a>
+        </span>
+        <span class="by">&</span>
+        <span class="name">
+          <a class="theme link" href="https://github.com/iXORTech/vitepress-theme-arch" target="_blank">VitePress Theme Arch</a>
+        </span>
       </div>
       <div class="meta">
-        <a class="power link" href="https://vitepress.dev/" target="_blank">
-          <span class="by">Powered by</span>
-          <span class="name">VitePress</span>
-        </a>
-        <a class="theme link" href="https://github.com/imsyy/vitepress-theme-curve" target="_blank">
-          <span class="name">主题</span>
-        </a>
         <a class="rss link" href="https://blog.imsyy.top/rss.xml" target="_blank">
           <i class="font-awesome fa-solid fa-rss"></i>
-          <span class="name">订阅</span>
+          <span class="name">RSS</span>
         </a>
         <a
           class="cc link"

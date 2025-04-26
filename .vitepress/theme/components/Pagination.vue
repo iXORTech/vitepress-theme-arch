@@ -1,4 +1,3 @@
-<!-- 分页 -->
 <template>
   <div v-if="total > 0" class="pagination">
     <div
@@ -12,7 +11,7 @@
       "
     >
       <i class="font-awesome fa-solid fa-angle-left" />
-      <span class="page-text">上页</span>
+      <span class="page-text">{{ i18n('components.pagination.last-page') }}</span>
     </div>
     <div class="page-number">
       <div
@@ -23,8 +22,7 @@
       >
         <span class="page-num">{{ item }}</span>
       </div>
-      <!-- 快速跳转 -->
-      <div :class="['fast-jump', { focus: inputFocus }]" title="快速跳转">
+      <div :class="['fast-jump', { focus: inputFocus }]" :title="i18n('components.pagination.jump-to')">
         <input
           v-model.number="jumpInput"
           :min="1"
@@ -42,86 +40,78 @@
       class="page-item next"
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
-      <span class="page-text">下页</span>
+      <span class="page-text">{{ i18n('components.pagination.next-page') }}</span>
       <i class="font-awesome fa-solid fa-angle-right" />
     </div>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from '@/utils/i18n'
+
+const { i18n } = useI18n()
 const router = useRouter();
 
-// 分页数据
 const props = defineProps({
-  // 总数
   total: {
     type: Number,
     default: 0,
   },
-  // 当前页数
   page: {
     type: Number,
     default: 1,
   },
-  // 每页显示数量
   limit: {
     type: Number,
     default: 8,
   },
-  // 跳转目录
   routePath: {
     type: String,
     default: "",
   },
-  // 使用参数
   useParams: {
     type: Boolean,
     default: false,
   },
 });
 
-// 快速跳转数据
 const jumpInput = ref(null);
 const inputFocus = ref(false);
-
-// 页数数据
 const currentPage = ref(props.page);
 const totalPages = computed(() => Math.ceil(props.total / props.limit));
 
-// 分页指示器数据
 const pageNumber = computed(() => {
   let pages = [];
   const current = currentPage.value;
   const total = totalPages.value;
-  const wingSize = 2; // 当前页前后要显示的页码数
+  const wingSize = 2; // The number of pages to show before and after the current page.
   let startPage = Math.max(current - wingSize, 2);
   let endPage = Math.min(current + wingSize, total - 1);
-  // 总是显示第一页
+  // Always show the first page.
   pages.push(1);
-  // 当 startPage > 2 时，前面需要显示省略号
+  // If startPage > 2, show ellipsis before the first page.
   if (startPage > 2) {
     pages.push("...");
   } else {
-    // 如果 startPage 是 2，不需要省略号，直接显示第二页
+    // If startPage is 2, no ellipsis is needed, show the second page directly.
     startPage = 2;
   }
-  // 显示中间范围的页码
+  // Show the pages between startPage and endPage.
   for (let i = startPage; i <= endPage; i++) {
     pages.push(i);
   }
-  // 当 endPage < totalPages-1 时，后面需要显示省略号
+  // When endPage < totalPages-1, show ellipsis after the last page.
   if (endPage < total - 1) {
     pages.push("...");
   } else {
-    // 如果 endPage 是 totalPages-1，不需要省略号，直接显示倒数第二页
+    // If endPage is totalPages-1, no ellipsis is needed, show the last page directly.
     if (endPage === total - 1) endPage = total - 1;
   }
-  // 总是显示最后一页，除非只有一页
+  // Always show the last page, unless there is only one page.
   if (total > 1) pages.push(total);
   return pages;
 });
 
-// 检查输入
 const validateInput = () => {
   const numericValue = Number(jumpInput.value);
   if (!Number.isInteger(numericValue) || numericValue < 1) {
@@ -133,9 +123,7 @@ const validateInput = () => {
   }
 };
 
-// 跳转页面
 const jumpPage = (url, page) => {
-  // 使用参数跳转
   if (props.useParams) {
     if (page === 1) {
       router.go(`${props.routePath}`);
@@ -143,13 +131,11 @@ const jumpPage = (url, page) => {
       router.go(`${props.routePath}?page=${page}`);
     }
   }
-  // 正常跳转
   else {
     router.go(url);
   }
 };
 
-// 快速跳转
 const fastJump = () => {
   inputFocus.value = false;
   if (!jumpInput.value) return false;
@@ -159,7 +145,6 @@ const fastJump = () => {
   );
 };
 
-// 检查当前路径参数
 const checkCurrentPage = () => {
   const params = new URLSearchParams(window.location.search);
   const page = params.get("page");

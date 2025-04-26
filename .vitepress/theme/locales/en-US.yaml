@@ -65,6 +65,107 @@ components:
       tip: "An external link will be opened. Please make sure it is safe."
       no-title: "No Site Title"
       no-description: "No Site Description"
+  banner:
+    welcome-message: "Hello! Welcome to "
+  control:
+    appearance-mode-switch: "Appearance Mode Switch"
+    right-click-menu-switch: "Right Click Menu Switch"
+    background-blur-switch: "Background Blur Switch"
+    right-click-menu-enable: "Right Click Menu Enabled"
+    right-click-menu-disable: "Right Click Menu Disabled"
+  copyright:
+    unnamed-post: "Unnamed Post"
+    author: "Author"
+    released: "Released"
+    last-updated: "Last Updated"
+    license: "License"
+    cc-link: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    by-nc-sa: "Attribution-NonCommercial-ShareAlike 4.0 International"
+  footer-link:
+    learn-more: "Learn More"
+    go-back-to-top: "Go Back to Top"
+  loading:
+    hint: "Still showing this? Click anywhere to close it."
+  mobile-menu:
+    tags: " Tags"
+  nav:
+    random-post: "Go to a Random Post"
+    search: "Search"
+    open-control: "Open Control Panel"
+    go-back-to-top: "Back to Top"
+    open-mobile-menu: "Open Mobile Menu"
+  next-post:
+    read-next: "Read Next Post"
+    read-previous: "Read Previous Post"
+    no-title-yet: "No Title Yet"
+  pagination:
+    last-page: "Last Page"
+    next-page: "Next Page"
+    jump-to: "Jump to"
+  references: "References"
+  related-post:
+    related-posts: "Related Posts"
+    go-to-random-post: "Go to a Random Post"
+  reward-btn: "Support Us"
+  right-menu:
+    back: "Back"
+    forward: "Forward"
+    refresh: "Refresh"
+    go-back-to-top: "Go Back to Top"
+    go-to-random-post: "Go to a Random Post"
+    all-categories: "All Categories"
+    all-tags: "All Tags"
+    open-link-in-new-tab: "Open Link in New Tab"
+    copy-link: "Copy Link"
+    copy-image: "Copy Image"
+    download-image: "Download Image"
+    paste-text: "Paste Text"
+    open-in-new-tab: "Open in New Tab"
+    copy-selected-text: "Copy Selected Text"
+    comment-selected-content: "Comment Selected Content"
+    copyright-policy: "Copyright Policy"
+    privacy-policy: "Privacy Policy"
+    copy-address-of-this-page: "Copy Address of This Page"
+    dark-mode: "Dark Mode"
+    light-mode: "Light Mode"
+    automatic-mode: "Automatic Mode"
+    quickly-comment: "Quickly Comment"
+    quickly-comment-tip: "You don't have to remove the content in the current input field. Just comment below."
+  search:
+    title: "Search"
+    tip: "What do you want to search for?"
+    no-result: "No Results Found"
+    search-used-ms-before: "Search used "
+    search-used-ms-after: " ms"
+  settings:
+    personalization-settings: "Personalization Settings"
+    font: "Font"
+    text-font: "Text Font"
+    code-font: "Code Font"
+    font-size: "Font Size"
+    customize-bg: "Customize Background"
+    site-bg: "Site Background"
+    bg-off: "Off"
+    bg-pattern: "Pattern"
+    bg-image: "Image"
+    bg-image-url: "Image URL"
+    bg-image-url-tip: "Please enter a valid image URL. e.g. https://example.com/image.jpg"
+    home-page-style: "Home Page Style"
+    banner-height: "Banner Height"
+    banner-half-height: "Half Height"
+    banner-full-height: "Full Height"
+    miscellaneous: "Miscellaneous"
+    extra-info-display-position: "Extra Info Display Position"
+    extra-info-default-position: "Default"
+    extra-info-bottom-right-position: "Bottom Right"
+
+utils:
+  helper:
+    format-timestamp:
+      yesterday: "Yesterday"
+      today: "Today"
+      days-ago: " days ago"
+
 
 views:
   archives:

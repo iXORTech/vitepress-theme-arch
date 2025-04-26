@@ -3,7 +3,7 @@
     <Transition name="fade" mode="out-in">
       <div v-if="loadingStatus" class="loading" @click="loadingStatus = false">
         <img :src="theme.siteMeta.logo" class="logo" alt="loading-logo" />
-        <span :class="['tip', { show: showTip }]"> 一直显示？点击任意区域即可关闭 </span>
+        <span :class="['tip', { show: showTip }]">{{ i18n('components.loading.hint') }}</span>
       </div>
     </Transition>
   </Teleport>
@@ -12,16 +12,16 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const store = mainStore();
 const { theme } = useData();
 const { loadingStatus } = storeToRefs(store);
 
-// 显示提示
 const showTip = ref(false);
 const showTimeOut = ref(null);
 
-// 监听加载状态
 watch(
   () => loadingStatus.value,
   (val) => {

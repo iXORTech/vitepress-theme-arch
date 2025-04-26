@@ -1,9 +1,8 @@
-<!-- 参考资料 -->
 <template>
   <div v-if="references" class="references s-card">
     <div class="title">
       <i class="font-awesome fa-solid fa-quote-left"></i>
-      <span class="title-text">参考资料</span>
+      <span class="title-text">{{ i18n('components.references') }}</span>
     </div>
     <ul class="list">
       <a
@@ -20,9 +19,10 @@
 </template>
 
 <script setup>
-const { frontmatter } = useData();
+import { useI18n } from '@/utils/i18n'
 
-// 参考资料
+const { i18n } = useI18n()
+const { frontmatter } = useData();
 const references = frontmatter.value?.references;
 </script>
 

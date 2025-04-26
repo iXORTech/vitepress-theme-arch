@@ -1,14 +1,4 @@
 /**
- * 获取一言
- * @param {string} [rule="updated"] - 文章的排序规则，可以是 "created" 或 "updated"
- */
-export const getHitokoto = async () => {
-  const result = await fetch("https://v1.hitokoto.cn");
-  const hitokoto = await result.json();
-  return hitokoto;
-};
-
-/**
  * 获取给定网址的站点图标和描述
  * @param {string} url - 站点 URL
  * @returns {Promise<{iconUrl: string, description: string}>}

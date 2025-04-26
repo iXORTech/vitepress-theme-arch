@@ -1,45 +1,46 @@
 <template>
   <div class="copyright s-card">
     <div class="title">
-      <span class="post-name">{{ postData?.title || "未命名文章" }}</span>
+      <span class="post-name">{{ postData?.title || i18n('components.copyright.unnamed-post') }}</span>
       <a :href="theme.siteMeta.site + route.path" class="post-link" target="_blank">
         {{ theme.siteMeta.site + route.path }}
       </a>
     </div>
     <div class="post-meta">
       <div class="meta-item">
-        <span class="tip">作者</span>
+        <span class="tip">{{ i18n('components.copyright.author') }}</span>
         <span class="name">{{ theme.siteMeta.author.name }}</span>
       </div>
       <div class="meta-item">
-        <span class="tip">发布于</span>
+        <span class="tip">{{ i18n('components.copyright.released') }}</span>
         <span class="name">{{ formatTimestamp(postData?.date) }}</span>
       </div>
       <div class="meta-item">
-        <span class="tip">更新于</span>
+        <span class="tip">{{ i18n('components.copyright.last-updated') }}</span>
         <span class="name">{{ formatTimestamp(postData?.lastModified) }}</span>
       </div>
       <div class="meta-item cc">
-        <span class="tip">许可协议</span>
+        <span class="tip">{{ i18n('components.copyright.license') }}</span>
         <a
           class="name"
-          href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
+          :href="i18n('components.copyright.cc-link')"
           target="_blank"
         >
           CC BY-NC-SA 4.0
         </a>
       </div>
     </div>
-    <span class="meta-tip">署名-非商业性使用-相同方式共享 4.0 国际</span>
+    <span class="meta-tip">{{ i18n('components.copyright.by-nc-sa') }}</span>
   </div>
 </template>
 
 <script setup>
 import { formatTimestamp } from "@/utils/helper";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const { theme } = useData();
 const props = defineProps({
-  // 文章数据
   postData: {
     type: Object,
     default: {},

@@ -1,14 +1,14 @@
-<!-- 相关文章 -->
 <template>
   <div v-if="relatedData" class="related-post">
     <div class="title">
       <span class="name">
         <i class="font-awesome fa-solid fa-star"></i>
-        相关推荐
+        {{ i18n('components.related-post.related-posts') }}
       </span>
-      <span class="shuffle" @click="router.go(shufflePost(theme.postData))"> 随便逛逛 </span>
+      <span class="shuffle" @click="router.go(shufflePost(theme.postData))">
+        {{ i18n('components.related-post.go-to-random-post') }}
+      </span>
     </div>
-    <!-- 文章列表 -->
     <PostList :listData="relatedData" simple />
   </div>
 </template>
@@ -16,24 +16,21 @@
 <script setup>
 import { generateId } from "@/utils/commonTools";
 import { shufflePost } from "@/utils/helper";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const router = useRouter();
 const { theme, page, frontmatter } = useData();
 
-// 文章信息
+// Post Data
 const relatedData = ref(null);
 
-// 获取同一分类的文章
+// Get Posts in the Same Category
 const getRelatedData = () => {
-  // 分类名
   const catName = frontmatter.value.categories?.[0];
-  // 指定分类数据
   const postData = theme.value.categoriesData?.[catName]?.articles;
-  // 本篇索引
   const postId = generateId(page.value?.filePath);
-  // 过滤掉当前文章
   const filteredPosts = postData.filter((post) => post.id !== postId);
-  // 取出两篇文章
   relatedData.value = filteredPosts.slice(0, 2);
   if (relatedData.value.length === 0) {
     relatedData.value = null;

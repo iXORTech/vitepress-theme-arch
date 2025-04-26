@@ -1,17 +1,17 @@
 <template>
   <Teleport to="body">
-    <!-- 移动端菜单 -->
+    <!-- Mobile Menu -->
     <Transition name="fade" mode="out-in">
       <div v-show="store.mobileMenuShow" class="mobile-menu">
-        <!-- 背景遮罩 -->
+        <!-- Background Mask -->
         <div class="menu-mask" @click="store.changeShowStatus('mobileMenuShow')" />
         <Transition name="toLeft" mode="out-in">
           <div v-show="store.mobileMenuShow" class="menu-content s-card">
-            <!-- 关闭按钮 -->
+            <!-- Close Button -->
             <div class="close-control" @click="store.changeShowStatus('mobileMenuShow')">
               <i class="font-awesome fa-solid fa-xmark"></i>
             </div>
-            <!-- 菜单 -->
+            <!-- Menu -->
             <div class="menu-list">
               <div v-for="(item, index) in nav" :key="index" class="menu-item">
                 <div v-if="item.items">
@@ -37,9 +37,9 @@
               </div>
             </div>
             <hr />
-            <!-- 标签 -->
+            <!-- Tags -->
             <div class="tags-list menu-item">
-              <span class="link-title"> 标签</span>
+              <span class="link-title">{{ i18n('components.mobile-menu.tags') }}</span>
               <div class="link-child">
                 <div
                   v-for="(item, tag, index) in tagsData"
@@ -61,15 +61,14 @@
 
 <script setup>
 import { mainStore } from "@/store";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const store = mainStore();
 const router = useRouter();
 const { theme } = useData();
-
-// 菜单数据
 const { nav, tagsData } = theme.value;
 
-// 页面跳转
 const pageJump = (url) => {
   if (!url) return false;
   store.changeShowStatus("mobileMenuShow");

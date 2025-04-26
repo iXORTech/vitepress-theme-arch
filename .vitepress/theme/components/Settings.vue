@@ -1,22 +1,22 @@
-<!-- 全局设置 -->
+<!-- Global Settings -->
 <template>
   <div class="settings">
     <div class="set-btn s-card" @click="store.changeShowStatus('showSeetings')">
       <i class="font-awesome fa-solid fa-sliders"></i>
-      <span class="set-text">个性化配置</span>
+      <span class="set-text">{{ i18n('components.settings.personalization-settings') }}</span>
     </div>
     <!-- 设置面板 -->
     <Modal
       :show="store.showSeetings"
-      title="个性化配置"
+      :title="i18n('components.settings.personalization-settings')"
       titleIcon="sliders"
       @mask-click="store.changeShowStatus('showSeetings')"
       @modal-close="store.changeShowStatus('showSeetings')"
     >
       <div class="set-list">
-        <span class="title">字体</span>
+        <span class="title">{{ i18n('components.settings.font') }}</span>
         <div class="set-item">
-          <span class="set-label">全站字体</span>
+          <span class="set-label">{{ i18n('components.settings.text-font') }}</span>
           <div class="set-options">
             <span
               :class="['options', { choose: fontFamily === 'plex-serif' }]"
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="set-item">
-          <span class="set-label">全站代码字体</span>
+          <span class="set-label">{{ i18n('components.settings.code-font') }}</span>
           <div class="set-options">
             <span
               :class="['options', { choose: codeFontFamily === 'plex-mono' }]"
@@ -74,82 +74,82 @@
           </div>
         </div>
         <div class="set-item">
-          <span class="set-label">全站字体大小</span>
+          <span class="set-label">{{ i18n('components.settings.font-size') }}</span>
           <div class="set-options">
             <span class="options" @click="store.changeFontSize(false)"> - </span>
             <span class="num">{{ fontSize }}</span>
             <span class="options" @click="store.changeFontSize(true)"> + </span>
           </div>
         </div>
-        <span class="title">壁纸个性化</span>
+        <span class="title">{{ i18n('components.settings.customize-bg') }}</span>
         <div class="set-item">
-          <span class="set-label">全站背景</span>
+          <span class="set-label">{{ i18n('components.settings.site-bg') }}</span>
           <div class="set-options">
             <span
               :class="['options', { choose: backgroundType === 'close' }]"
               @click="backgroundType = 'close'"
             >
-              关闭
+              {{ i18n('components.settings.bg-off') }}
             </span>
             <span
               :class="['options', { choose: backgroundType === 'patterns' }]"
               @click="backgroundType = 'patterns'"
             >
-              纹理
+              {{ i18n('components.settings.bg-pattern') }}
             </span>
             <span
               :class="['options', { choose: backgroundType === 'image' }]"
               @click="(backgroundType = 'image'), (themeType = 'dark')"
             >
-              图片
+              {{ i18n('components.settings.bg-image') }}
             </span>
           </div>
         </div>
         <div v-if="backgroundType === 'image'" class="set-item">
-          <span class="set-label">背景图片地址</span>
+          <span class="set-label">{{ i18n('components.settings.bg-image-url') }}</span>
           <div class="set-options">
             <input
               v-model="backgroundUrl"
               type="url"
               pattern="https?://.+"
-              title="请输入有效的网址，例如：http://www.example.com"
+              :title="i18n('components.settings.bg-image-url-tip')"
               required
             />
           </div>
         </div>
-        <span class="title">首页样式</span>
+        <span class="title">{{ i18n('components.settings.home-page-style') }}</span>
         <div class="set-item">
-          <span class="set-label">Banner 高度</span>
+          <span class="set-label">{{ i18n('components.settings.banner-height') }}</span>
           <div class="set-options">
             <span
               :class="['options', { choose: bannerType === 'half' }]"
               @click="bannerType = 'half'"
             >
-              半屏
+              {{ i18n('components.settings.banner-half-height') }}
             </span>
             <span
               :class="['options', { choose: bannerType === 'full' }]"
               @click="bannerType = 'full'"
             >
-              全屏
+              {{ i18n('components.settings.banner-full-height') }}
             </span>
           </div>
         </div>
-        <span class="title">杂项调整</span>
+        <span class="title">{{ i18n('components.settings.miscellaneous') }}</span>
         <div class="set-item">
-          <span class="set-label">额外信息显示位置</span>
+          <span class="set-label">{{ i18n('components.settings.extra-info-display-position') }}</span>
           <div class="set-options">
             <span
               :class="['options', { choose: infoPosition === 'normal' }]"
               @click="infoPosition = 'normal'"
             >
-              默认位置
+              {{ i18n('components.settings.extra-info-default-position') }}
             </span>
             <span
               :class="['options', { choose: infoPosition === 'fixed' }]"
               @click="infoPosition = 'fixed'"
             >
-              右下角
+              {{ i18n('components.settings.extra-info-bottom-right-position') }}
             </span>
           </div>
         </div>
@@ -161,7 +161,9 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const store = mainStore();
 const { themeType, fontFamily, codeFontFamily, fontSize, infoPosition, backgroundType, backgroundUrl, bannerType } = storeToRefs(store);
 </script>

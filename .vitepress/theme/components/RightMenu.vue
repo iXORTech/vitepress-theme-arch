@@ -1,6 +1,5 @@
 <template>
   <Teleport to="body">
-    <!-- 右键菜单 -->
     <Transition name="fade" mode="out-in">
       <div
         v-if="rightMenuShow"
@@ -18,16 +17,16 @@
           @contextmenu.stop="closeRightMenu"
         >
           <div class="tools">
-            <div class="btn" title="后退" @click="rightMenuFunc('back')">
+            <div class="btn" :title="i18n('components.right-menu.back')" @click="rightMenuFunc('back')">
               <i class="font-awesome fa-solid fa-angle-left"></i>
             </div>
-            <div class="btn" title="前进" @click="rightMenuFunc('forward')">
+            <div class="btn" :title="i18n('components.right-menu.forward')" @click="rightMenuFunc('forward')">
               <i class="font-awesome fa-solid fa-angle-right"></i>
             </div>
-            <div class="btn" title="刷新" @click="rightMenuFunc('reload')">
+            <div class="btn" :title="i18n('components.right-menu.refresh')" @click="rightMenuFunc('reload')">
               <i class="font-awesome fa-solid fa-rotate-right"></i>
             </div>
-            <div class="btn" title="返回顶部" @click="smoothScrolling">
+            <div class="btn" :title="i18n('components.right-menu.go-back-to-top')" @click="smoothScrolling">
               <i class="font-awesome fa-solid fa-arrow-up"></i>
             </div>
           </div>
@@ -38,7 +37,7 @@
               @click="router.go(shufflePost(theme.postData))"
             >
               <i class="font-awesome fa-solid fa-shuffle"></i>
-              <span class="name">随便逛逛</span>
+              <span class="name">{{ i18n('components.right-menu.go-to-random-post') }}</span>
             </div>
             <div
               v-if="clickedType === 'normal'"
@@ -46,16 +45,16 @@
               @click="router.go('/pages/categories')"
             >
               <i class="font-awesome fa-solid fa-folder-open"></i>
-              <span class="name">全部分类</span>
+              <span class="name">{{ i18n('components.right-menu.all-categories') }}</span>
             </div>
             <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/pages/tags')">
               <i class="font-awesome fa-solid fa-hashtag"></i>
-              <span class="name">全部标签</span>
+              <span class="name">{{ i18n('components.right-menu.all-tags') }}</span>
             </div>
-            <!-- 链接类型 -->
+            <!-- Clinking on Links -->
             <div v-if="clickedType === 'link'" class="btn" @click="rightMenuFunc('open-link')">
               <i class="font-awesome fa-solid fa-window-maximize"></i>
-              <span class="name">新标签页打开</span>
+              <span class="name">{{ i18n('components.right-menu.open-link-in-new-tab') }}</span>
             </div>
             <div
               v-if="clickedType === 'link'"
@@ -65,16 +64,16 @@
               "
             >
               <i class="font-awesome fa-solid fa-link"></i>
-              <span class="name">复制链接地址</span>
+              <span class="name">{{ i18n('components.right-menu.copy-link') }}</span>
             </div>
-            <!-- 图片类型 -->
+            <!-- Clinking on Images -->
             <div
               v-if="clickedType === 'image'"
               class="btn"
               @click="copyImage(clickedTypeData?.src)"
             >
               <i class="font-awesome fa-solid fa-images"></i>
-              <span class="name">复制此图片</span>
+              <span class="name">{{ i18n('components.right-menu.copy-image') }}</span>
             </div>
             <div
               v-if="clickedType === 'image'"
@@ -82,18 +81,18 @@
               @click="downloadImage(clickedTypeData?.src)"
             >
               <i class="font-awesome fa-solid fa-cloud-arrow-down"></i>
-              <span class="name">下载此图片</span>
+              <span class="name">{{ i18n('components.right-menu.download-image') }}</span>
             </div>
-            <!-- 输入框 -->
+            <!-- Clinking on Input Fields -->
             <div
               v-if="clickedType === 'input' && typeof clickedTypeData.value === 'string'"
               class="btn"
               @click="rightMenuFunc('input-paste')"
             >
               <i class="font-awesome fa-solid fa-paste"></i>
-              <span class="name">粘贴文本</span>
+              <span class="name">{{ i18n('components.right-menu.paste-text') }}</span>
             </div>
-            <!-- 选中文本 -->
+            <!-- Clinking on Selected Text -->
             <a
               v-if="(clickedType === 'text' || clickedType === 'input') && isLink(clickedTypeData)"
               :href="`${isLink(clickedTypeData)}`"
@@ -101,7 +100,7 @@
               target="_blank"
             >
               <i class="font-awesome fa-solid fa-link"></i>
-              <span class="name">在新标签页打开</span>
+              <span class="name">{{ i18n('components.right-menu.open-in-new-tab') }}</span>
             </a>
             <div
               v-if="clickedType === 'text' || clickedType === 'input'"
@@ -109,7 +108,7 @@
               @click="copyText(clickedTypeData)"
             >
               <i class="font-awesome fa-solid fa-copy"></i>
-              <span class="name">复制选中文本</span>
+              <span class="name">{{ i18n('components.right-menu.copy-selected-text') }}</span>
             </div>
             <div
               v-if="clickedType === 'text' && !commentCopyShow && theme.comment.type === 'artalk'"
@@ -117,36 +116,40 @@
               @click="commentCopy(clickedTypeData)"
             >
               <i class="font-awesome fa-solid fa-comment"></i>
-              <span class="name">评论选中内容</span>
+              <span class="name">{{ i18n('components.right-menu.comment-selected-content') }}</span>
             </div>
           </div>
-          <!-- 通用菜单 -->
+          <!-- General -->
           <div class="all-menu general">
-            <!-- 版权协议 -->
+            <!-- Copyright Policy -->
             <div class="btn" @click="router.go('/pages/copyright')">
               <i class="font-awesome fa-solid fa-copyright"></i>
-              <span class="name">版权协议</span>
+              <span class="name">{{ i18n('components.right-menu.copyright-policy') }}</span>
             </div>
-            <!-- 隐私政策 -->
+            <!-- Privacy Policy -->
             <div class="btn" @click="router.go('/pages/privacy')">
               <i class="font-awesome fa-solid fa-shield-halved"></i>
-              <span class="name">隐私政策</span>
+              <span class="name">{{ i18n('components.right-menu.privacy-policy') }}</span>
             </div>
           </div>
           <div class="all-menu general">
-            <!-- 复制地址 -->
+            <!-- Copy Address of This Page -->
             <div class="btn" @click="rightMenuFunc('copy-link')">
               <i class="font-awesome fa-solid fa-copy"></i>
-              <span class="name">复制本页地址</span>
+              <span class="name">{{ i18n('components.right-menu.copy-address-of-this-page') }}</span>
             </div>
-            <!-- 明暗模式 -->
+            <!-- Dark/Light Mode -->
             <div class="btn" @click.stop="store.changeThemeType">
               <i
                 :class="`font-awesome fa-solid fa-${themeType === 'auto' ? 'moon' : themeType === 'dark' ? 'sun' : 'wand-sparkles'}`"
               />
               <span class="name">
                 {{
-                  themeType === "auto" ? "深色模式" : themeType === "dark" ? "浅色模式" : "跟随系统"
+                  themeType === "auto"
+                    ? i18n('components.right-menu.dark-mode')
+                    : themeType === "dark"
+                      ? i18n('components.right-menu.light-mode')
+                      : i18n('components.right-menu.automatic-mode')
                 }}
               </span>
             </div>
@@ -154,15 +157,15 @@
         </div>
       </div>
     </Transition>
-    <!-- 快速评论 -->
+    <!-- Quickly Comment -->
     <Modal
       :show="commentCopyShow"
-      title="快速评论"
+      :title="i18n('components.right-menu.quickly-comment')"
       titleIcon="comment"
       @mask-click="commentCopyClose"
       @modal-close="commentCopyClose"
     >
-      <span class="modal-tip"> 您无需删除现有的输入框内容，直接在下方评论即可 </span>
+      <span class="modal-tip">{{ i18n('components.right-menu.quickly-comment-tip') }}</span>
       <Artalk :fill="commentCopyData" />
     </Modal>
   </Teleport>
@@ -172,13 +175,15 @@
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { smoothScrolling, shufflePost, copyText, copyImage, downloadImage } from "@/utils/helper";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const router = useRouter();
 const store = mainStore();
 const { theme } = useData();
 const { useRightMenu, themeType } = storeToRefs(store);
 
-// 右键菜单数据
+// Right Click Menu Data
 const rightMenuX = ref(0);
 const rightMenuY = ref(0);
 const clickedType = ref("normal");
@@ -186,32 +191,24 @@ const clickedTypeData = ref(null);
 const rightMenuRef = ref(null);
 const rightMenuShow = ref(false);
 
-// 快速评论
+// Quickly Comment
 const commentCopyShow = ref(false);
 const commentCopyData = ref(null);
-
-// 开启右键菜单
 const openRightMenu = (e) => {
-  // 检测是否可开启
+  // Check if openable.
   if (e.ctrlKey || !useRightMenu.value) return true;
   if (window.innerWidth < 768) return true;
   e.preventDefault();
   rightMenuShow.value = false;
-  // 获取点击类型
   checkClickType(e?.target);
   nextTick().then(() => {
-    // 处理菜单位置
     const calculateMenuPosition = () => {
-      // 获取菜单的宽度和高度
       const menuWidth = rightMenuRef.value?.offsetWidth;
       const menuHeight = rightMenuRef.value?.offsetHeight;
-      // 获取屏幕的宽度和高度
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
-      // 计算正确的坐标值
       let correctX = e.clientX;
       let correctY = e.clientY;
-      // 保留边距
       const marginWidth = 20;
       if (correctX + menuWidth > screenWidth - marginWidth) {
         correctX = screenWidth - menuWidth - marginWidth;
@@ -228,14 +225,11 @@ const openRightMenu = (e) => {
       rightMenuX.value = correctX;
       rightMenuY.value = correctY;
     };
-    // 显示菜单
     rightMenuShow.value = true;
-    // DOM 更新
     nextTick().then(() => calculateMenuPosition());
   });
 };
 
-// 关闭右键菜单
 const closeRightMenu = (e) => {
   e?.preventDefault();
   rightMenuShow.value = false;
@@ -246,39 +240,31 @@ const closeRightMenu = (e) => {
   commentCopyData.value = false;
 };
 
-// 判断点击元素类型
 const checkClickType = (target) => {
   if (!target?.tagName) return false;
-  // 写入内容
   clickedTypeData.value =
     window.getSelection().toString().length > 0 ? window.getSelection().toString() : target;
   switch (target.tagName) {
     case "A":
-      // 链接类型
       clickedType.value = "link";
       break;
     case "IMG":
-      // 图片类型
       clickedType.value = "image";
       break;
     case "INPUT":
     case "TEXTAREA":
-      // 输入框类型
       clickedType.value = "input";
       break;
     default:
       if (window.getSelection().toString().length > 0) {
-        // 已选中的文本
         clickedType.value = "text";
       } else {
-        // 普通模式
         clickedType.value = "normal";
       }
       break;
   }
 };
 
-// 右键菜单点击事件
 const rightMenuFunc = async (type) => {
   try {
     if (!type) return false;
@@ -306,10 +292,8 @@ const rightMenuFunc = async (type) => {
           const start = inputElement.selectionStart;
           const end = inputElement.selectionEnd;
           const value = inputElement.value;
-          // 在光标位置插入文本
           const newValue = value.substring(0, start) + text + value.substring(end);
           inputElement.value = newValue;
-          // 更新光标位置
           const newCursorPosition = start + text.length;
           inputElement.setSelectionRange(newCursorPosition, newCursorPosition);
         }
@@ -318,12 +302,11 @@ const rightMenuFunc = async (type) => {
         return false;
     }
   } catch (error) {
-    $message.error("右键菜单发生错误，请重试");
-    console.error("右键菜单出错：", error);
+    $message.error("Right Click Menu Error, please try again.");
+    console.error("Right Click Menu Error: ", error);
   }
 };
 
-// 选中内容是否为链接
 const isLink = (data) => {
   if (!data) return false;
   const hasProtocol = /^(http|https):\/\//i.test(data);
@@ -336,7 +319,6 @@ const isLink = (data) => {
   }
 };
 
-// 评论选中内容
 const commentCopy = (data) => {
   if (!data) return false;
   let commentData = "> " + data.trim().replace(/\s+/g, " ");
@@ -347,7 +329,6 @@ const commentCopy = (data) => {
   commentCopyShow.value = true;
 };
 
-// 关闭快速评论
 const commentCopyClose = () => {
   commentCopyShow.value = false;
   if (typeof $comment !== "undefined") $comment.reload();

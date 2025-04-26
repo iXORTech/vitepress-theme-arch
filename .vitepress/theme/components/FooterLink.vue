@@ -4,7 +4,7 @@
     <div v-if="showBar" class="footer-bar">
       <span class="site-title">{{ site.title }}</span>
       <span class="site-desc">{{ site.description }}</span>
-      <a class="to-home" href="/">了解更多</a>
+      <a class="to-home" href="/">{{ i18n('components.footer-link.learn-more') }}</a>
     </div>
     <div class="footer-social">
       <a
@@ -16,7 +16,7 @@
       >
         <i :class="`font-awesome ${item.icon}`"></i>
       </a>
-      <div class="logo" title="返回顶部" @click="smoothScrolling">
+      <div class="logo" :title="i18n('components.footer-link.go-back-to-top')" @click="smoothScrolling">
         <img :src="siteMeta.author.cover" alt="author" class="author" />
       </div>
       <a
@@ -50,18 +50,18 @@
 
 <script setup>
 import { smoothScrolling } from "@/utils/helper";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const { theme, site } = useData();
 const { footer, siteMeta } = theme.value;
 const props = defineProps({
-  // 显示底栏
   showBar: {
     type: Boolean,
     default: true,
   },
 });
 
-// 社交链接数据
 const socialLinkData = computed(() => {
   const halfLength = Math.ceil(footer.social.length / 2);
   const firstHalf = footer.social.slice(0, halfLength);

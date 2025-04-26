@@ -1,8 +1,10 @@
+import { useData } from "vitepress";
 import { mainStore } from "@/store";
 import { throttle } from "lodash-es";
+import { useI18n } from '@/utils/i18n'
 
 /**
- * 计算滚动高度和滚动百分比
+ * Calculate Scroll Position and Percentage
  */
 export const calculateScroll = throttle(
   () => {
@@ -12,16 +14,14 @@ export const calculateScroll = throttle(
       const scrollY = window.scrollY || window.pageYOffset;
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercentage = ((scrollY / totalHeight) * 100).toFixed(0);
-      // 判断滚动方向
       const scrollDirection = scrollY > store.scrollData.height ? "down" : "up";
-      // 储存计算结果
       store.scrollData = {
         height: Number(scrollY.toFixed(0)),
         percentage: Number(scrollPercentage),
         direction: scrollDirection,
       };
     } catch (error) {
-      console.error("计算滚动时出现错误：", error);
+      console.error("Error Calculating Scroll Position: ", error);
     }
   },
   300,
@@ -29,59 +29,60 @@ export const calculateScroll = throttle(
 );
 
 /**
- * 平滑滚动至目标高度或元素
- * @param {number|HTMLElement} target - 目标高度或元素
+ * Smooth Scrolling to a Target Element or Height
+ * @param {number|HTMLElement} target - target element or height to scroll to
  */
 export const smoothScrolling = (target = 0) => {
   try {
     if (typeof window === "undefined") return false;
     if (typeof target === "number") {
-      // 滚动至指定高度
+      // Sxroll to a specific height
       window.scrollTo({ top: target, behavior: "smooth" });
     } else if (target instanceof HTMLElement) {
-      // 滚动至元素
+      // Scroll to a specific element
       const top = target.getBoundingClientRect().top - 80;
       window.scrollTo({ top, behavior: "smooth" });
     } else if (typeof target === "string" && target.startsWith("#")) {
-      // 滚动至 ID
+      // Scroll to a specific element by ID
       const element = document.querySelector(target);
       if (element) {
         const top = element.getBoundingClientRect().top - 80;
         window.scrollTo({ top, behavior: "smooth" });
       }
     } else {
-      // 滚动至顶部
+      // Scroll to the top of the page
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   } catch (error) {
-    console.error("平滑滚动出错：", error);
+    console.error("Error Smooth Scrolling", error);
   }
 };
 
 /**
- * 格式化时间戳为相应的日期格式
- * 如果时间戳表示的时间为7天内，则返回 'n天内'
- * 如果时间戳表示的时间为7天之后但在当年，则返回 '月/日'
- * 如果时间戳表示的时间在当年之前，则返回 '年/月/日'
- * @param {number} timestamp - 时间戳（以毫秒为单位）
- * @return {string} 返回日期格式的字符串
+ * Format Timestamp to Date String
+ * If the timestamp represents time within 7 days, return 'x days ago'
+ * If the timestamp represents time within this year, return 'month/day'
+ * If the timestamp represents date within another year, return 'year/month/day'
+ * If the timestamp represents time within today, return 'today'
+ * If the timestamp represents time within yesterday, return 'yesterday'
+ * @param {number} timestamp - timestamp in milliseconds
+ * @return {string} i18n key of the formatted date string
  */
 export const formatTimestamp = (timestamp) => {
+  const { i18n } = useI18n()
+
   let now = new Date();
-  // 获取今天0点
   let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  // 获取昨天0点
   let yesterday = new Date(today.getTime() - 1000 * 60 * 60 * 24);
   let targetDate = new Date(timestamp);
-  // 是否为昨天
   if (targetDate >= yesterday && targetDate < today) {
-    return "1天前";
+    return i18n('utils.helper.format-timestamp.yesterday');
   } else {
     let difference = Math.floor((today - targetDate) / (1000 * 60 * 60 * 24));
     if (difference <= 0) {
-      return "今日内";
+      return i18n('utils.helper.format-timestamp.today');
     } else if (difference < 7) {
-      return `${difference}天前`;
+      return `${difference}${i18n('utils.helper.format-timestamp.days-ago')}`;
     } else {
       let year = targetDate.getFullYear();
       let month = targetDate.getMonth() + 1;
@@ -236,11 +237,9 @@ export const getGreetings = () => {
   return hello;
 };
 
-// 打乱数组 - Fisher-Yates 洗牌算法
 export const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    // 解构赋值进行元素互换
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;

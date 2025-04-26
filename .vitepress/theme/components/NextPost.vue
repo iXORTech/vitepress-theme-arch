@@ -1,4 +1,3 @@
-<!-- 下一篇文章 -->
 <template>
   <div
     v-if="nextPostData"
@@ -13,10 +12,10 @@
     @click="router.go(nextPostData?.regularPath)"
   >
     <span class="post-tip">
-      {{ isNextPost ? "下一篇阅读" : "阅读上一篇" }}
+      {{ isNextPost ? i18n('components.next-post.read-next') : i18n('components.next-post.read-previous') }}
     </span>
     <span class="post-title">
-      {{ nextPostData?.title || "暂无标题" }}
+      {{ nextPostData?.title || i18n('components.next-post.no-title-yet') }}
     </span>
   </div>
 </template>
@@ -25,44 +24,49 @@
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { generateId } from "@/utils/commonTools";
+import { useI18n } from '@/utils/i18n'
 
+const { i18n } = useI18n()
 const router = useRouter();
 const store = mainStore();
 const { theme, page } = useData();
 const { footerIsShow, infoPosition } = storeToRefs(store);
 
-// 文章信息
+// Post Data
 const observer = ref(null);
 const isNextPost = ref(true);
 const nextPostShow = ref(false);
 const nextPostData = ref(null);
 
-// 获取文章
 const getNextPostData = () => {
   const { postData } = theme.value;
   const { filePath } = page.value;
   if (!postData || !filePath) return false;
-  // 本篇索引
+  // Current post.
   const postId = generateId(filePath);
   const postIndex = postData.findIndex((post) => post.id === postId);
-  // 是否有下一篇
+  // If there is a next post.
   if (postIndex >= 0 && postIndex < postData.length - 1) {
     nextPostData.value = postData[postIndex + 1];
     isNextPost.value = true;
     return true;
   }
-  // 是否有上一篇
+  // If there is a previous post.
+  else if (postIndex === postData.length - 1) {
+    nextPostData.value = postData[postIndex - 1];
+    isNextPost.value = false;
+    return true;
+  }
   else if (postIndex > 0) {
     nextPostData.value = postData[postIndex - 1];
     isNextPost.value = false;
     return true;
   }
-  // 如果没有任何文章
+  // If there is no post.
   nextPostData.value = null;
   return false;
 };
 
-// 监听文章视窗
 const isShowNext = () => {
   const postDom = document.getElementById("page-content");
   if (!postDom) return false;
@@ -72,7 +76,6 @@ const isShowNext = () => {
       nextPostShow.value = entry.isIntersecting ? false : true;
     });
   });
-  // 添加监视器
   observer.value?.observe(postDom);
 };
 
