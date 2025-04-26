@@ -1,6 +1,7 @@
 @use "./font.scss";
 @use "./animation.scss";
 
+// Global Color Variables
 // 全局颜色变量
 :root {
   --main-color: #425aef;
@@ -51,6 +52,7 @@ html.dark {
   --main-color-opacity: rgba(0, 0, 0, 0.15);
 }
 
+// Fonts
 // 字体
 html {
   &.plex-serif {
@@ -70,6 +72,7 @@ html {
   }
 }
 
+// Background
 // 壁纸背景
 html {
   &.image {
@@ -108,6 +111,7 @@ html {
   }
 }
 
+// Global Base Styles
 // 全局基础样式
 * {
   -webkit-user-drag: none;
@@ -118,8 +122,10 @@ html {
   user-select: none;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  // 特殊情况
+  // Dark Mode
+  // 深色模式
   &.dark {
+    // Code Highlighting
     // 代码高亮
     pre {
       code {
@@ -157,11 +163,6 @@ html {
       }
     }
   }
-
-  // 全站置灰
-  &.gray {
-    filter: grayscale(100%);
-  }
 }
 
 body {
@@ -194,7 +195,6 @@ a {
   width: 100dvw;
   // height: 100vh;
   transition: filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  // 滚动条
   .simplebar-scrollbar {
     &::before {
       right: 0;
@@ -213,13 +213,11 @@ a {
     }
   }
 
-  // 全局模糊
   &.blur {
     filter: blur(20px);
   }
 }
 
-// 通用卡片
 .s-card {
   padding: 0.8rem;
   border-radius: 16px;
@@ -237,7 +235,6 @@ a {
   }
 }
 
-// 滚动条
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -253,7 +250,6 @@ a {
   }
 }
 
-// 选中文本
 ::selection {
   background-color: var(--main-color);
   color: #efefef;
@@ -273,7 +269,6 @@ a {
   }
 }
 
-//自定义块样式
 .custom-block {
   .custom-block-content {
     p, ul, ol, li {
@@ -289,7 +284,6 @@ a {
     }
   }
 
-  // 标题颜色保持原样
   .custom-block-title {
     color: inherit;
   }

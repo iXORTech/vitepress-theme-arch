@@ -1,5 +1,5 @@
-// 文章内容样式
 :deep(.markdown-main-style) {
+  // Title
   // 标题
   div > {
     h1 {
@@ -61,6 +61,7 @@
       font-weight: bold;
     }
   }
+  // Text
   // 文本
   p {
     font-size: 1.1rem;
@@ -73,6 +74,7 @@
     text-align: left;
     letter-spacing: 0.6px;
     line-height: 2;
+    // Inline Code
     // 行内代码
     code {
       display: inline-flex;
@@ -95,6 +97,7 @@
         background-color: var(--main-color-bg);
       }
     }
+    // Hyperlink
     // 超链接
     a {
       position: relative;
@@ -123,12 +126,10 @@
         }
       }
     }
-    // 重点
     strong {
       color: var(--main-color);
     }
   }
-  // 图片
   img {
     width: 100%;
     border-radius: 12px;
@@ -169,6 +170,7 @@
       color: var(--main-font-color);
     }
   }
+  // Code Block
   // 代码块
   div {
     &[class*="language-"] {
@@ -220,7 +222,7 @@
           transition: color 0.3s;
         }
         &::before {
-          content: "复制成功";
+          content: "Copied";
           position: absolute;
           left: -60px;
           font-size: 14px;
@@ -311,7 +313,6 @@
       margin: 0.5rem 0;
     }
   }
-  // 标点
   ul {
     list-style-type: none;
     padding-left: 1rem;
@@ -349,7 +350,6 @@
       }
     }
   }
-  // 表格
   .table-container {
     width: 100%;
     margin: 1rem 0;
@@ -387,14 +387,12 @@
       }
     }
   }
-  // 分割线
   hr {
     margin: 1rem 0;
     height: 2px;
     border: none;
     background-color: var(--main-card-border);
   }
-  // 其他
   label {
     cursor: pointer;
   }

@@ -1,4 +1,4 @@
-// 渐入
+// Fade In/Out
 @keyframes show {
   from {
     opacity: 0;
@@ -8,7 +8,6 @@
   }
 }
 
-// 上浮
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -31,7 +30,6 @@
   }
 }
 
-// 下沉
 @keyframes fade-down {
   from {
     opacity: 0;
@@ -43,7 +41,6 @@
   }
 }
 
-// 左移
 @keyframes fade-left {
   from {
     opacity: 0;
@@ -55,7 +52,6 @@
   }
 }
 
-// 加载
 @keyframes loading {
   0% {
     opacity: 1;
@@ -68,7 +64,6 @@
   }
 }
 
-// 进度
 @keyframes loading-width {
   0% {
     width: 0%;
@@ -78,7 +73,6 @@
   }
 }
 
-// 渐变
 @keyframes gradientFlow {
   0%,
   100% {
@@ -89,7 +83,6 @@
   }
 }
 
-// 骨架屏加载
 @keyframes skeleton-loading {
   0% {
     background-position: 100% 50%;
@@ -99,7 +92,6 @@
   }
 }
 
-// 旋转
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -109,7 +101,6 @@
   }
 }
 
-// 循环下沉
 @keyframes moveDown {
   0%,
   100% {
