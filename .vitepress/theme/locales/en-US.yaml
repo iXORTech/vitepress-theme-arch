@@ -1,3 +1,8 @@
+api:
+  get-site-info:
+    no-title: "No Title"
+    no-description: "No Description"
+
 components:
   aside:
     widgets:

@@ -1,3 +1,8 @@
+api:
+  get-site-info:
+    no-title: "暂无标题"
+    no-description: "暂无站点描述"
+
 components:
   aside:
     widgets:
