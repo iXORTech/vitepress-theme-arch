@@ -1,41 +1,41 @@
 import { load } from "cheerio";
 
 /**
- * 从文件名生成数字 ID
- * @param {string} fileName - 文件名
- * @returns {number} - 生成的数字ID
+ * Generate numeric ID based on file name.
+ * @param {string} fileName - file name
+ * @returns {number} - generated ID
  */
 export const generateId = (fileName) => {
-  // 将文件名转换为哈希值
+  // Convert file name to a hash value.
   let hash = 0;
   for (let i = 0; i < fileName.length; i++) {
     hash = (hash << 5) - hash + fileName.charCodeAt(i);
   }
-  // 将哈希值转换为正整数
+  // Convert hash to a positive number.
   const numericId = Math.abs(hash % 10000000000);
   return numericId;
 };
 
 /**
- * 动态加载脚本
- * @param {string} src - 脚本 URL
- * * @param {object} option - 配置
+ * Dynamically load script.
+ * @param {string} src - URL of the script
+ * @param {object} option - configuration options
  */
 export const loadScript = (src, option = {}) => {
   if (typeof document === "undefined" || !src) return false;
-  // 获取配置
+  // Get configuration options.
   const { async = false, reload = false, callback } = option;
-  // 检查是否已经加载过此脚本
+  // Check if the script is already loaded.
   const existingScript = document.querySelector(`script[src="${src}"]`);
   if (existingScript) {
-    console.log("已有重复脚本");
+    console.log("Script Already Loaded");
     if (!reload) {
       callback && callback(null, existingScript);
       return false;
     }
     existingScript.remove();
   }
-  // 创建一个新的script标签并加载
+  // Create a new script tag and load.
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
     script.src = src;
@@ -53,25 +53,25 @@ export const loadScript = (src, option = {}) => {
 };
 
 /**
- * 动态加载样式表
- * @param {string} href - 样式表 URL
- * @param {object} option - 配置
+ * Dynamically load CSS Stylesheet.
+ * @param {string} href - URL of the CSS file
+ * @param {object} option - configuration options
  */
 export const loadCSS = (href, option = {}) => {
   if (typeof document === "undefined" || !href) return false;
-  // 获取配置
+  // Get configuration options.
   const { reload = false, callback } = option;
-  // 检查是否已经加载过此样式表
+  // Check if the CSS file is already loaded.
   const existingLink = document.querySelector(`link[href="${href}"]`);
   if (existingLink) {
-    console.log("已有重复样式");
+    console.log("CSS Already Loaded");
     if (!reload) {
       callback && callback(null, existingLink);
       return false;
     }
     existingLink.remove();
   }
-  // 创建新的link标签并设置属性
+  // Create a new link tag and load.
   return new Promise((resolve, reject) => {
     const link = document.createElement("link");
     link.href = href;
