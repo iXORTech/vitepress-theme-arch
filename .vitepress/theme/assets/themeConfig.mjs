@@ -3,7 +3,7 @@
 export const themeConfig = {
   // Site Metadata | 站点数据
   siteMeta: {
-    title: "VitePress Theme Curve",
+    title: "VitePress Theme Arch",
     description: "Hello World",
     // The Welcome Message to be Shown on the Home Page
     // Optional, if not provided, a welcome + title message will be used.
