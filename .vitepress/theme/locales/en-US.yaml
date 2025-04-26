@@ -152,9 +152,6 @@ components:
     site-bg: "Site Background"
     bg-off: "Off"
     bg-pattern: "Pattern"
-    bg-image: "Image"
-    bg-image-url: "Image URL"
-    bg-image-url-tip: "Please enter a valid image URL. e.g. https://example.com/image.jpg"
     home-page-style: "Home Page Style"
     banner-height: "Banner Height"
     banner-half-height: "Half Height"
@@ -163,6 +160,14 @@ components:
     extra-info-display-position: "Extra Info Display Position"
     extra-info-default-position: "Default"
     extra-info-bottom-right-position: "Bottom Right"
+
+store:
+  change-theme-type:
+    cant-switch: "You can't switch Dark/Light mode when using image as background."
+    dark-mode: "Dark Mode"
+    light-mode: "Light Mode"
+    automatic-mode: "Automatic Mode"
+    currently: "Currently "
 
 utils:
   helper:

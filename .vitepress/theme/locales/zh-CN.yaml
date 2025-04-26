@@ -149,9 +149,6 @@ components:
     site-bg: "站点背景"
     bg-off: "关闭"
     bg-pattern: "纹理"
-    bg-image: "图片"
-    bg-image-url: "背景图片地址"
-    bg-image-url-tip: "请输入有效的网址，例如：https://example.com/image.jpg"
     home-page-style: "首页样式"
     banner-height: "Banner 高度"
     banner-half-height: "半屏"
@@ -160,6 +157,13 @@ components:
     extra-info-display-position: "额外信息显示位置"
     extra-info-default-position: "默认位置"
     extra-info-bottom-right-position: "右下角"
+store:
+  change-theme-type:
+    cant-switch: "无法在壁纸模式下切换明暗模式"
+    light-mode: "浅色模式"
+    dark-mode: "深色模式"
+    automatic-mode: "跟随系统"
+    currently: "当前主题为"
 
 utils:
   helper:

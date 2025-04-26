@@ -97,24 +97,6 @@
             >
               {{ i18n('components.settings.bg-pattern') }}
             </span>
-            <span
-              :class="['options', { choose: backgroundType === 'image' }]"
-              @click="(backgroundType = 'image'), (themeType = 'dark')"
-            >
-              {{ i18n('components.settings.bg-image') }}
-            </span>
-          </div>
-        </div>
-        <div v-if="backgroundType === 'image'" class="set-item">
-          <span class="set-label">{{ i18n('components.settings.bg-image-url') }}</span>
-          <div class="set-options">
-            <input
-              v-model="backgroundUrl"
-              type="url"
-              pattern="https?://.+"
-              :title="i18n('components.settings.bg-image-url-tip')"
-              required
-            />
           </div>
         </div>
         <span class="title">{{ i18n('components.settings.home-page-style') }}</span>
@@ -165,7 +147,7 @@ import { useI18n } from '@/utils/i18n'
 
 const { i18n } = useI18n()
 const store = mainStore();
-const { themeType, fontFamily, codeFontFamily, fontSize, infoPosition, backgroundType, backgroundUrl, bannerType } = storeToRefs(store);
+const { themeType, fontFamily, codeFontFamily, fontSize, infoPosition, backgroundType, bannerType } = storeToRefs(store);
 </script>
 
 <style lang="scss" scoped>

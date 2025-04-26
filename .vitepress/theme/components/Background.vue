@@ -2,15 +2,6 @@
   <Teleport to="body">
     <!-- Site Background -->
     <div v-if="backgroundType !== 'close'" :class="['background', backgroundType, themeValue]">
-      <img
-        v-if="backgroundType === 'image'"
-        :src="backgroundUrl"
-        id="background-cover"
-        class="cover"
-        alt="background"
-        @error="coverError"
-        @load="coverLoaded"
-      />
     </div>
   </Teleport>
 </template>
@@ -20,15 +11,7 @@ import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 
 const store = mainStore();
-const { backgroundType, backgroundUrl, themeValue } = storeToRefs(store);
-
-// Failed to Load Image.
-const coverError = (e) => {
-  // Replace it with full transparent SVG.
-  e.target.src =
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='100%25' height='100%25'%3E%3C/svg%3E";
-  $message.error("背景图片加载失败，请重新设置");
-};
+const { backgroundType, themeValue } = storeToRefs(store);
 
 const coverLoaded = (e) => {
   const imgElement = e.target;
