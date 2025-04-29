@@ -54,7 +54,8 @@ const changeHello = () => {
     helloText.value = i18n('components.aside.widgets.hello.text.two');
   } else if (helloClick.value === 3) {
     helloText.value = i18n('components.aside.widgets.hello.text.three');
-  } else if (helloClick.value === 100) {
+  } else if (helloClick.value === 100 + 3) {
+    // +3 for the first three clicks
     helloText.value = i18n('components.aside.widgets.hello.text.hundred');
   } else {
     helloText.value = `x ${helloClick.value - 3}`;
