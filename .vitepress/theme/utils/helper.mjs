@@ -1,4 +1,3 @@
-import { useData } from "vitepress";
 import { mainStore } from "@/store";
 import { throttle } from "lodash-es";
 import { useI18n } from '@/utils/i18n'
@@ -97,9 +96,9 @@ export const formatTimestamp = (timestamp) => {
 };
 
 /**
- * 计算给定日期与当前日期相差的天数
- * @param {string} dateStr - 要计算差值的日期，为字符串形式
- * @returns {number} 天数差值
+ * Get the difference in days between today and a given date.
+ * @param {string} dateStr - Target date from today.
+ * @returns {number} Difference in days.
  */
 export const daysFromNow = (dateStr) => {
   const currentDate = new Date();
@@ -110,51 +109,50 @@ export const daysFromNow = (dateStr) => {
 };
 
 /**
- * 随机前往一篇文章
- * @param {Object} postData - 文章数据
- * @returns {number} 天数差值
+ * Go to a random article.
+ * @param {Object} postData - Data about posts.
+ * @returns {string} - The path of the random post.
  */
 let lastIndex = -1;
 export const shufflePost = (postData) => {
   let randomIndex;
   do {
-    // 随机生成一个索引值
+    // Randomly generate an index.
     randomIndex = Math.floor(Math.random() * postData.length);
   } while (randomIndex === lastIndex && postData.length > 1);
-  // 更新上一次的索引值
   lastIndex = randomIndex;
-  // 随机文章
+  // Get the random post.
   const randomPost = postData[randomIndex];
   console.log(randomPost);
-  // 跳转到随机文章
+  // Go to the random post.
   return randomPost.regularPath;
 };
 
 /**
- * 复制文本到剪贴板
- * @param {string} data 要复制到剪贴板的文本
+ * Copy text to clipboard.
+ * @param {string} data Text to be copied.
  */
 export const copyText = async (data) => {
   if (navigator.clipboard) {
     try {
       await navigator.clipboard.writeText(data);
-      $message.success("复制成功，在转载时请标注本文地址");
+      $message.success(i18n('utils.helper.copy-text.success'));
     } catch (error) {
-      console.error("复制出错：", error);
-      $message.error("复制出现错误，请重试");
+      console.error("Error when copying to clipboard: ", error);
+      $message.error(i18n('utils.helper.copy-text.failed'));
     }
   } else {
-    // 如果浏览器不支持 navigator.clipboard
+    // If navigator.clipboard is not supported.
     const textArea = document.createElement("textarea");
     textArea.value = data;
     document.body.appendChild(textArea);
     textArea.select();
     try {
       document.execCommand("copy");
-      $message.success("复制成功，在转载时请标注本文地址");
+      $message.success(i18n('utils.helper.copy-text.success'));
     } catch (err) {
-      console.error("复制出错：", err);
-      $message.error("复制出现错误，请重试");
+      console.error("Error when copying to clipboard: ", err);
+      $message.error(i18n('utils.helper.copy-text.failed'));
     } finally {
       document.body.removeChild(textArea);
     }
@@ -162,12 +160,12 @@ export const copyText = async (data) => {
 };
 
 /**
- * 图片 URL 复制到剪贴板
- * @param {string} imageURL 要复制到剪贴板的图片的URL
+ * Copy image to clipboard.
+ * @param {string} imageURL The URL of the image to be copied.
  */
 export const copyImage = async (imageURL) => {
   if (!navigator.clipboard) {
-    console.error("浏览器不支持 Clipboard API");
+    console.error("Clipboard API not supported");
     return;
   }
   try {
@@ -178,21 +176,21 @@ export const copyImage = async (imageURL) => {
         [blob.type]: blob,
       }),
     ]);
-    console.log("图片已复制到剪贴板");
-    $message.success("图片已复制到剪贴板");
+    console.log("Image copied to clipboard");
+    $message.success(i18n('utils.helper.copy-image.success'));
   } catch (error) {
-    console.error("复制图片出错：", error);
-    $message.error("复制图片错误，请重试");
+    console.error("Error copying image: ", error);
+    $message.error(i18n('utils.helper.copy-image.success'));
   }
 };
 
 /**
- * 下载图片
- * @param {string} imageUrl 要下载的图片的URL地址
+ * Download image from a given URL.
+ * @param {string} imageUrl The URL of the image to be downloaded.
  */
 export const downloadImage = (imageUrl) => {
   try {
-    // 获取当前日期并转换为字符串形式，作为文件名
+    // Get the date and use it as the filename.
     const date = new Date();
     const timestamp = date.toISOString().replace(/[:.]/g, "-");
     const imageName = `image-${timestamp}.jpg`;
@@ -205,8 +203,8 @@ export const downloadImage = (imageUrl) => {
     anchor.click();
     document.body.removeChild(anchor);
   } catch (error) {
-    console.error("下载图片出错：", error);
-    $message.error("下载图片错误，请重试");
+    console.error("Error downloading image: ", error);
+    $message.error(i18n('utils.helper.download-image.failed'));
   }
 };
 

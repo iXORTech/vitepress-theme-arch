@@ -1,5 +1,3 @@
-import { load } from "cheerio";
-
 /**
  * Generate numeric ID based on file name.
  * @param {string} fileName - file name

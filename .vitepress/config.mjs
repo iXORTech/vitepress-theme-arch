@@ -14,10 +14,7 @@ import Components from "unplugin-vue-components/vite";
 import path from "path";
 import yaml from '@rollup/plugin-yaml'
 
-// 获取全局数据
 const postData = await getAllPosts();
-
-// 获取主题配置
 const themeConfig = await getThemeConfig();
 
 // https://vitepress.dev/reference/site-config
@@ -26,28 +23,20 @@ export default withPwa(
     title: themeConfig.siteMeta.title,
     description: themeConfig.siteMeta.description,
     lang: themeConfig.siteMeta.lang,
-    // 简洁的 URL
     cleanUrls: true,
-    // 最后更新时间戳
     lastUpdated: true,
-    // 主题
     appearance: "dark",
-    // Head
     head: themeConfig.inject.header,
-    // sitemap
     sitemap: {
       hostname: themeConfig.siteMeta.site,
     },
-    // 主题配置
     themeConfig: {
       ...themeConfig,
-      // 必要数据
       postData: postData,
       tagsData: getAllType(postData),
       categoriesData: getAllCategories(postData),
       archivesData: getAllArchives(postData),
     },
-    // markdown
     markdown: {
       // Another LaTeX renderer is used, so this one is disabled.
       math: false,
@@ -58,7 +47,6 @@ export default withPwa(
       },
       config: (md) => markdownConfig(md, themeConfig),
     },
-    // 构建排除
     srcExclude: ["**/README.md", "**/TODO.md"],
     // transformHead
     transformPageData: async (pageData) => {
@@ -89,7 +77,6 @@ export default withPwa(
         yaml(),
       ],
       resolve: {
-        // 配置路径别名
         alias: {
           // eslint-disable-next-line no-undef
           "@": path.resolve(__dirname, "./theme"),
@@ -102,11 +89,9 @@ export default withPwa(
           },
         },
       },
-      // 服务器
       server: {
         port: 5173,
       },
-      // 构建
       build: {
         minify: "terser",
         terserOptions: {
@@ -124,7 +109,7 @@ export default withPwa(
         clientsClaim: true,
         skipWaiting: true,
         cleanupOutdatedCaches: true,
-        // 资源缓存
+        // Resource Caching
         runtimeCaching: [
           {
             urlPattern: /(.*?)\.(woff2|woff|ttf|css)/,
@@ -141,9 +126,9 @@ export default withPwa(
             },
           },
         ],
-        // 缓存文件
+        // Files to Cache
         globPatterns: ["**/*.{js,css,html,ico,png,jpg,jpeg,gif,svg,woff2,ttf}"],
-        // 排除路径
+        // Path to Exclude
         navigateFallbackDenylist: [/^\/sitemap.xml$/, /^\/rss.xml$/, /^\/robots.txt$/],
       },
       manifest: {

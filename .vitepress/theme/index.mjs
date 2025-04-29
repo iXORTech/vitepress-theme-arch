@@ -5,9 +5,9 @@ import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
 import LazyLoader from "@/components/LazyLoader.vue";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
-// 根组件
+// Root Component
 import App from "@/App.vue";
-// 全局样式
+// Global Styling
 import "@/style/main.scss";
 
 // pinia
@@ -24,13 +24,10 @@ const Theme = {
     return h(App);
   },
   enhanceApp({ app, router, siteData }) {
-    // 挂载
     app.use(pinia);
     app.use(InstantSearch);
     app.component("LazyLoader", LazyLoader);
-    // 插件
     enhanceAppWithTabs(app);
-    // 路由守卫
     router.onBeforeRouteChange = (to) => {
       routeChange("before", to);
     };

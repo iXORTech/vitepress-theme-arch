@@ -81,14 +81,14 @@ const markdownConfig = (md, themeConfig) => {
       }
     },
   });
-  // 表格
+  // Table
   md.renderer.rules.table_open = () => {
     return '<div class="table-container"><table>';
   };
   md.renderer.rules.table_close = () => {
     return "</table></div>";
   };
-  // 图片
+  // Image
   md.renderer.rules.image = (tokens, idx) => {
     const token = tokens[idx];
     const src = token.attrs[token.attrIndex("src")][1];
@@ -102,16 +102,17 @@ const markdownConfig = (md, themeConfig) => {
               </a>`;
   };
   
-  // obsidian admonition
+  // Obsidian Admonition
   const fence = md.renderer.rules.fence;
   md.renderer.rules.fence = (...args) => {
     const [tokens, idx] = args;
     const token = tokens[idx];
     const lang = token.info.trim();
 
-    // 处理 Obsidian admonition
+    // Obsidian Admonition Handling
     if (lang.startsWith('ad-')) {
-      const type = lang.substring(3); // 取ad-之后的内容，获取类型
+      // Get the content after `ad-` as type.
+      const type = lang.substring(3);
       const content = token.content;
 
       const admonitionTypes = {

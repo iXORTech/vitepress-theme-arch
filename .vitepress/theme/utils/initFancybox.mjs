@@ -1,15 +1,17 @@
 import { loadScript, loadCSS } from "./commonTools.mjs";
+import { useI18n } from "./i18n.js";
 
 const initFancybox = (themeConfig) => {
+  const { i18n } = useI18n();
   try {
     const option = themeConfig.fancybox;
     if (!option.enable) return false;
-    // 引入css及js
+    // Load CSS and Script
     loadCSS(option.css);
     loadScript(option.js, {
       callback: (error) => {
         if (error) {
-          console.error("图片灯箱初始化失败", error);
+          console.error("Image Fancy Box Initialization Failed: ", error);
           return false;
         }
         Fancybox.bind("[data-fancybox]", {
@@ -34,44 +36,44 @@ const initFancybox = (themeConfig) => {
             },
           },
           l10n: {
-            PANUP: "上移",
-            PANDOWN: "下移",
-            PANLEFT: "左移",
-            PANRIGHT: "右移",
-            ZOOMIN: "放大",
-            ZOOMOUT: "缩小",
-            TOGGLEZOOM: "切换缩放级别",
-            TOGGLE1TO1: "切换缩放级别",
-            ITERATEZOOM: "切换缩放级别",
-            ROTATECCW: "逆时针旋转",
-            ROTATECW: "顺时针旋转",
-            FLIPX: "水平翻转",
-            FLIPY: "垂直翻转",
-            FITX: "水平适应",
-            FITY: "垂直适应",
-            RESET: "重置",
-            TOGGLEFS: "切换全屏",
-            CLOSE: "关闭",
-            NEXT: "上一个",
-            PREV: "下一个",
-            MODAL: "使用 ESC 键关闭",
-            ERROR: "发生了错误，请稍后再试",
-            IMAGE_ERROR: "找不到图像",
-            ELEMENT_NOT_FOUND: "找不到 HTML 元素",
-            AJAX_NOT_FOUND: "载入 AJAX 时出错: 未找到",
-            AJAX_FORBIDDEN: "载入 AJAX 时出错: 被阻止",
-            IFRAME_ERROR: "加载页面出错",
-            TOGGLE_ZOOM: "切换缩放级别",
-            TOGGLE_THUMBS: "切换缩略图",
-            TOGGLE_SLIDESHOW: "切换幻灯片",
-            TOGGLE_FULLSCREEN: "切换全屏",
-            DOWNLOAD: "下载",
+            PANUP: i18n('utils.fancybox.panup'),
+            PANDOWN: i18n('utils.fancybox.pandown'),
+            PANLEFT: i18n('utils.fancybox.panleft'),
+            PANRIGHT: i18n('utils.fancybox.panright'),
+            ZOOMIN: i18n('utils.fancybox.zoomin'),
+            ZOOMOUT: i18n('utils.fancybox.zoomout'),
+            TOGGLEZOOM: i18n('utils.fancybox.togglezoom'),
+            TOGGLE1TO1: i18n('utils.fancybox.toggle1to1'),
+            ITERATEZOOM: i18n('utils.fancybox.iteratezoom'),
+            ROTATECCW: i18n('utils.fancybox.rotateccw'),
+            ROTATECW: i18n('utils.fancybox.rotatecw'),
+            FLIPX: i18n('utils.fancybox.flipx'),
+            FLIPY: i18n('utils.fancybox.flipy'),
+            FITX: i18n('utils.fancybox.fitx'),
+            FITY: i18n('utils.fancybox.fity'),
+            RESET: i18n('utils.fancybox.reset'),
+            TOGGLEFS: i18n('utils.fancybox.togglefs'),
+            CLOSE: i18n('utils.fancybox.close'),
+            NEXT: i18n('utils.fancybox.next'),
+            PREV: i18n('utils.fancybox.prev'),
+            MODAL: i18n('utils.fancybox.modal'),
+            ERROR: i18n('utils.fancybox.error'),
+            IMAGE_ERROR: i18n('utils.fancybox.image-error'),
+            ELEMENT_NOT_FOUND: i18n('utils.fancybox.element-not-found'),
+            AJAX_NOT_FOUND: i18n('utils.fancybox.ajax-not-found'),
+            AJAX_FORBIDDEN: i18n('utils.fancybox.ajax-forbidden'),
+            IFRAME_ERROR: i18n('utils.fancybox.iframe-error'),
+            TOGGLE_ZOOM: i18n('utils.fancybox.toggle-zoom'),
+            TOGGLE_THUMBS: i18n('utils.fancybox.toggle-thumbs'),
+            TOGGLE_SLIDESHOW: i18n('utils.fancybox.toggle-slideshow'),
+            TOGGLE_FULLSCREEN: i18n('utils.fancybox.toggle-fullscreen'),
+            DOWNLOAD: i18n('utils.fancybox.download'),
           },
         });
       },
     });
   } catch (error) {
-    console.error("图片灯箱初始化失败", error);
+    console.error("Image Fancy Box Initialization Failed: ", error);
   }
 };
 

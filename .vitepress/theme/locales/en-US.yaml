@@ -175,7 +175,47 @@ utils:
       yesterday: "Yesterday"
       today: "Today"
       days-ago: " days ago"
-
+    copy-text:
+        success: "Copied Successfully. Please quote the source when using it."
+        failed: "Copy Failed, Please Try Again"
+    copy-image:
+      success: "Image Copied to Clipboard"
+      failed: "Error Copying Image, Please Try Again"
+    download-image:
+      failed: "Error Downloading Image, Please Try Again"
+  fancybox:
+    panup: "Pan Up"
+    pandown: "Pan Down"
+    panleft: "Pan Left"
+    panright: "Pan Right"
+    zoomin: "Zoom In"
+    zoomout: "Zoom Out"
+    togglezoom: "Toggle Zoom"
+    toggle1to1: "Toggle 1:1"
+    iteratezoom: "Iterate Zoom Modes"
+    rotateccw: "Rotate Counterclockwise"
+    rotatecw: "Rotate Clockwise"
+    flipx: "Flip Horizontally"
+    flipy: "Flip Vertically"
+    fitx: "Fit to Width"
+    fity: "Fit to Height"
+    reset: "Reset"
+    togglefs: "Toggle Fullscreen"
+    close: "Close"
+    next: "Next"
+    previous: "Previous"
+    modal: "Use ESC key to close"
+    error: "Error, Please Try Again"
+    image-error: "Image Not Found"
+    element-not-found: "HTML Element Not Found"
+    ajax-not-found: "Error loading AJAX: Not Found"
+    ajax-forbidden: "Error loading AJAX: Forbidden"
+    iframe-error: "Error Loading Page"
+    toggle-zoom: "Toggle Zoom"
+    toggle-thumbs: "Toggle Thumbnails"
+    toggle-slideshow: "Toggle Slideshow"
+    toggle-fullscreen: "Toggle Fullscreen"
+    download: "Download"
 
 views:
   archives:
@@ -197,3 +237,7 @@ views:
     info_expiry_reminder_before: "This post was published"
     info_expiry_reminder_after: "days ago. The information contained might be outdated."
     report: "Report an Issue"
+
+copy-text:
+  success: "Copied Successfully. Please quote the source when using it."
+  failed: "Copy Failed, Please Try Again"
