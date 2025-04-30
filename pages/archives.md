@@ -1,5 +1,5 @@
 ---
-title: 全部文章
+title: All Posts
 aside: true
 ---
 

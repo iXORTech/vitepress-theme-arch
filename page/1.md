@@ -1,5 +1,5 @@
 ---
-title: 正在重定向
+title: Redirecting...
 ---
 
 <script setup>

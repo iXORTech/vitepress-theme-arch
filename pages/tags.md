@@ -1,5 +1,5 @@
 ---
-title: 全部标签
+title: All Tags
 aside: false
 ---
 

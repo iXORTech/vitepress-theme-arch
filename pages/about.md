@@ -1,5 +1,5 @@
 ---
-title: 关于本站
+title: About Us
 aside: false
 ---
 
