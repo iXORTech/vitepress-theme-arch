@@ -58,6 +58,9 @@ components:
       no-data: "暂无友链数据"
     post-list:
       pinned: "置顶"
+    type-bar:
+      home: "主页"
+      more: "更多"
   plugins:
     comments:
       comments: "评论"
