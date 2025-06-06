@@ -1,18 +1,38 @@
-// Friendly Links & Recommended Sites
-const linkData = [
+// Friend Links & Recommended Sites
+
+const linksData = [
   {
-    type: "type",
-    typeName: "Type Name",
-    typeDesc: "Type Description",
-    typeList: [
+    entries: [
       {
-        name: "無名小栈",
-        avatar: "https://avatars.githubusercontent.com/u/42232682?s=48&v=4",
-        desc: "分享技术与科技生活",
-        url: "https://blog.imsyy.top/",
-      },
+        avatar: "https://github.com/Cubik65536.png",
+        description: "This is a sample of friend links.",
+        screenshot: "",
+        title: "Sample Link",
+        url: "https://github.com/Cubik65536"
+      }
     ],
+    group: "friends",
+    groupDesc: "My Friends",
+    groupName: "Friends"
   },
+  {
+    entries: [],
+    group: "frequently-visited",
+    groupDesc: "Sites that I visit frequently.",
+    groupName: "Frequently Visited"
+  },
+  {
+    entries: [],
+    group: "developers",
+    groupDesc: "Fellow Developers",
+    groupName: "Developers"
+  },
+  {
+    entries: [],
+    group: "github-friends",
+    groupDesc: "Friends from Github",
+    groupName: "GitHub Friends"
+  }
 ];
 
-export default linkData;
+export default linksData;

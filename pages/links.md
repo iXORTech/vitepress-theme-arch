@@ -1,5 +1,5 @@
 ---
-title: Friendly Links & Recommended Sites
+title: Friend Links & Recommended Sites
 aside: false
 comment: true
 ---

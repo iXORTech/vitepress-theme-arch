@@ -1,7 +1,7 @@
-<!-- Friendly Links & Recommended Sites -->
+<!-- Friend Links & Recommended Sites -->
 <template>
   <div class="link">
-    <Banner type="page" title="Friendly Links & Recommended Sites" desc="They are all great! Check them out!">
+    <Banner type="page" title="Friend Links & Recommended Sites" desc="They are all great! Check them out!">
       <template v-slot:header-slot>
         <div class="menu">
           <div class="menu-item random" @click="randomJump">
@@ -42,7 +42,7 @@ import { useI18n } from '@/utils/i18n'
 const { i18n } = useI18n()
 
 const allLinkData = computed(() => {
-  return linkData.flatMap((item) => item.typeList);
+  return linkData.flatMap((item) => item.entries);
 });
 
 const randomJump = () => {
@@ -51,8 +51,8 @@ const randomJump = () => {
     const randomList = friendList[Math.floor(Math.random() * friendList.length)];
     if (randomList?.url) window.open(randomList.url, "_blank");
   } catch (error) {
-    console.error("Error Accessing Friendly Link: ", error);
-    $message.error("Error Accessing Friendly Link. Please try again.");
+    console.error("Error Accessing Friend Link: ", error);
+    $message.error("Error Accessing Friend Link. Please try again.");
   }
 };
 </script>

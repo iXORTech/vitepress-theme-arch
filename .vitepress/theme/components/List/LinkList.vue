@@ -1,27 +1,27 @@
 <template>
   <Transition name="fade" mode="out-in">
     <div v-if="listData?.length" class="link-list">
-      <div v-for="(type, index) in listData" :key="index" class="link-type-list">
+      <div v-for="(group, index) in listData" :key="index" class="link-type-list">
         <div class="title">
           <h2 class="name">
-            <span class="name-text">{{ type?.typeName || i18n('components.list.link-list.unknown-grouping') }}</span>
-            <span v-if="showCount" class="name-count">（{{ type?.typeList?.length || 0 }}）</span>
+            <span class="name-text">{{ group?.groupName || i18n('components.list.link-list.unknown-grouping') }}</span>
+            <span v-if="showCount" class="name-count">（{{ group?.entries?.length || 0 }}）</span>
           </h2>
-          <span v-if="type?.typeDesc" class="tip">{{ type?.typeDesc }}</span>
+          <span v-if="group?.groupDesc" class="tip">{{ group?.groupDesc }}</span>
         </div>
-        <div class="all-link" v-if="type?.typeList">
+        <div class="all-link" v-if="group?.entries">
           <a
-            v-for="(link, index) in type.typeList"
+            v-for="(link, index) in group.entries"
             :class="[
               'link-card',
               's-card',
               {
-                loss: type?.type === 'loss',
-                'cf-friends-link': type?.type !== 'loss' && useFriendsLink,
+                loss: group?.group === 'loss',
+                'cf-friends-link': group?.group !== 'loss' && useFriendsLink,
               },
             ]"
             :key="index"
-            :href="type?.type !== 'loss' ? link.url : null"
+            :href="group?.type !== 'loss' ? link.url : null"
             target="_blank"
           >
             <div class="cover">
@@ -29,14 +29,14 @@
                 <img
                   :src="link.avatar || link.ico"
                   :class="['cover-img', { 'cf-friends-avatar': useFriendsLink }]"
-                  :alt="link?.name || 'cover'"
+                  :alt="link?.title || 'cover'"
                   @load="(e) => e.target.classList.add('loaded')"
                 />
               </LazyLoader>
             </div>
             <div class="data">
-              <span :class="['name', { 'cf-friends-name': useFriendsLink }]">{{ link.name }}</span>
-              <span class="desc">{{ link.desc }}</span>
+              <span :class="['name', { 'cf-friends-name': useFriendsLink }]">{{ link.title }}</span>
+              <span class="desc">{{ link.description }}</span>
             </div>
           </a>
         </div>

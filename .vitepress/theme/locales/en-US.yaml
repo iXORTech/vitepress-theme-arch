@@ -55,7 +55,7 @@ components:
   list:
     link-list:
       unknown-grouping: "Unknown Grouping"
-      no-data: "No Friendly Links & Recommended Sites Data Yet"
+      no-data: "No Friend Links & Recommended Sites Data Yet"
     post-list:
       pinned: "Pinned"
     type-bar:
