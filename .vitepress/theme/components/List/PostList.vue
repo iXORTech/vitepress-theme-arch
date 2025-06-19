@@ -34,7 +34,7 @@
               v-for="tags in item?.tags"
               :key="tags"
               class="tags-name"
-              @click.stop="router.go(`/pages/tags/${tags}`)"
+              @click.stop="router.go(`/tags/${tags}`)"
             >
               <i class="font-awesome fa-solid fa-hashtag" />
               {{ tags }}

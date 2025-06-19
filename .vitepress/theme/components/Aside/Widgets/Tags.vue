@@ -9,14 +9,14 @@
       <a
         v-for="(item, tag, index) in theme.tagsData"
         :key="index"
-        :href="`/pages/tags/${tag}`"
+        :href="`/tags/${tag}`"
         class="tags"
       >
         <span class="name">{{ tag }}</span>
         <sup class="num">{{ item.count }}</sup>
       </a>
     </div>
-    <a href="/pages/tags" class="more-tags">{{ i18n('components.aside.widgets.tags.show_all_tags') }}</a>
+    <a href="/tags" class="more-tags">{{ i18n('components.aside.widgets.tags.show_all_tags') }}</a>
   </div>
 </template>
 

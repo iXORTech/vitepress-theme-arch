@@ -42,12 +42,12 @@
             <div
               v-if="clickedType === 'normal'"
               class="btn"
-              @click="router.go('/pages/categories')"
+              @click="router.go('/categories')"
             >
               <i class="font-awesome fa-solid fa-folder-open"></i>
               <span class="name">{{ i18n('components.right-menu.all-categories') }}</span>
             </div>
-            <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/pages/tags')">
+            <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/tags')">
               <i class="font-awesome fa-solid fa-hashtag"></i>
               <span class="name">{{ i18n('components.right-menu.all-tags') }}</span>
             </div>
@@ -122,12 +122,12 @@
           <!-- General -->
           <div class="all-menu general">
             <!-- Copyright Policy -->
-            <div class="btn" @click="router.go('/pages/copyright')">
+            <div class="btn" @click="router.go('/copyright')">
               <i class="font-awesome fa-solid fa-copyright"></i>
               <span class="name">{{ i18n('components.right-menu.copyright-policy') }}</span>
             </div>
             <!-- Privacy Policy -->
-            <div class="btn" @click="router.go('/pages/privacy')">
+            <div class="btn" @click="router.go('/privacy')">
               <i class="font-awesome fa-solid fa-shield-halved"></i>
               <span class="name">{{ i18n('components.right-menu.privacy-policy') }}</span>
             </div>

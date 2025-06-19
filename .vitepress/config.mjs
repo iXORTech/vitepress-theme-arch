@@ -47,6 +47,7 @@ export default withPwa(
       },
       config: (md) => markdownConfig(md, themeConfig),
     },
+    srcDir: "./src",
     srcExclude: ["**/README.md", "**/TODO.md"],
     // transformHead
     transformPageData: async (pageData) => {
@@ -66,13 +67,13 @@ export default withPwa(
       plugins: [
         AutoImport({
           imports: ["vue", "vitepress"],
-          dts: ".vitepress/auto-imports.d.ts",
+          dts: "../.vitepress/auto-imports.d.ts",
         }),
         Components({
-          dirs: [".vitepress/theme/components", ".vitepress/theme/views"],
+          dirs: ["../.vitepress/theme/components", "../.vitepress/theme/views"],
           extensions: ["vue", "md"],
           include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-          dts: ".vitepress/components.d.ts",
+          dts: "../.vitepress/components.d.ts",
         }),
         yaml(),
       ],

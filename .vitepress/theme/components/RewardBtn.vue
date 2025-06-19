@@ -47,7 +47,7 @@ const rewardShow = ref(false);
 
 const toRewardList = () => {
   rewardShow.value = false;
-  router.go("/pages/thanks");
+  router.go("/thanks");
 };
 </script>
 

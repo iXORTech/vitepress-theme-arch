@@ -12,7 +12,7 @@
         <i class="font-awesome fa-solid fa-comments"></i>
         {{ i18n('components.plugins.comments.comments') }}
       </span>
-      <span class="tool" @click="router.go('/pages/privacy')">
+      <span class="tool" @click="router.go('/privacy')">
         {{ i18n('components.plugins.comments.privacy-policy') }}
       </span>
     </div>

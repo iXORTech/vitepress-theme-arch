@@ -19,7 +19,7 @@
               <a
                 v-for="(tags, tagsIndex) in post.tags"
                 :key="tagsIndex"
-                :href="`/pages/tags/${tags}`"
+                :href="`/tags/${tags}`"
                 class="type-item"
               >
                 <i class="font-awesome fa-solid fa-hashtag" />

@@ -14,7 +14,7 @@
       <a
         v-for="(item, key, index) in theme.categoriesData"
         :key="index"
-        :href="`/pages/categories/${key}`"
+        :href="`/categories/${key}`"
         class="type-item s-card"
       >
         <i class="font-awesome fa-solid fa-folder-open" />
@@ -26,7 +26,7 @@
       <a
         v-for="(item, key, index) in theme.tagsData"
         :key="index"
-        :href="`/pages/tags/${key}`"
+        :href="`/tags/${key}`"
         class="type-item s-card"
       >
         <i class="font-awesome fa-solid fa-hashtag" />

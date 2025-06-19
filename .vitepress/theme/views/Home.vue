@@ -16,9 +16,9 @@
           :useParams="showCategories || showTags ? true : false"
           :routePath="
             showCategories
-              ? `/pages/categories/${showCategories}`
+              ? `/categories/${showCategories}`
               : showTags
-                ? `/pages/tags/${showTags}`
+                ? `/tags/${showTags}`
                 : ''
           "
         />

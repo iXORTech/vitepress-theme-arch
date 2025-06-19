@@ -74,19 +74,19 @@ export const themeConfig = {
     {
       text: "Posts",
       items: [
-        { text: "Archives", link: "/pages/archives", icon: "fa-solid fa-newspaper" },
-        { text: "All Categories", link: "/pages/categories", icon: "fa-solid fa-folder-open" },
-        { text: "All Tags", link: "/pages/tags", icon: "fa-solid fa-hashtag" },
+        { text: "Archives", link: "/archives", icon: "fa-solid fa-newspaper" },
+        { text: "All Categories", link: "/categories", icon: "fa-solid fa-folder-open" },
+        { text: "All Tags", link: "/tags", icon: "fa-solid fa-hashtag" },
       ],
     },
     {
       text: "Page Group",
       items: [
-        { text: "Page 1", link: "/pages/demo-page-1", icon: "fa-solid fa-lightbulb" },
-        { text: "Page 2", link: "/pages/demo-page-1", icon: "fa-solid fa-code-branch" },
+        { text: "Page 1", link: "/demo-page-1", icon: "fa-solid fa-lightbulb" },
+        { text: "Page 2", link: "/demo-page-1", icon: "fa-solid fa-code-branch" },
       ],
     },
-    { text: "About", link: "/pages/about", icon: "fa-solid fa-address-card" },
+    { text: "About", link: "/about", icon: "fa-solid fa-address-card" },
   ],
   // Left Side Nav Menu (External Links)
   // 左侧导航栏菜单（外部链接）
@@ -157,17 +157,17 @@ export const themeConfig = {
         text: "Blog",
         items: [
           { text: "Recent Posts", link: "/" },
-          { text: "All Categories", link: "/pages/categories" },
-          { text: "All Tags", link: "/pages/tags" },
-          { text: "Archives", link: "/pages/archives", newTab: true },
+          { text: "All Categories", link: "/categories" },
+          { text: "All Tags", link: "/tags" },
+          { text: "Archives", link: "/archives", newTab: true },
         ],
       },
       {
         text: "Others",
         items: [
-          { text: "About Us", link: "/pages/about" },
-          { text: "Privacy Policy", link: "/pages/privacy" },
-          { text: "Copyright Info", link: "/pages/copyright" },
+          { text: "About Us", link: "/about" },
+          { text: "Privacy Policy", link: "/privacy" },
+          { text: "Copyright Info", link: "/copyright" },
         ],
       },
     ],

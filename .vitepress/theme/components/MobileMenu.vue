@@ -45,7 +45,7 @@
                   v-for="(item, tag, index) in tagsData"
                   :key="index"
                   class="link-child-btn"
-                  @click="pageJump(`/pages/tags/${tag}`)"
+                  @click="pageJump(`/tags/${tag}`)"
                 >
                   <span class="name">{{ tag }}</span>
                   <sup class="num">{{ item.count }}</sup>
