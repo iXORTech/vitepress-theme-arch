@@ -13,8 +13,8 @@ const getPostMDFilePaths = async () => {
     let paths = await globby(["**.md"], {
       ignore: ["node_modules", "pages", ".vitepress", "README.md"],
     });
-    // Filter the paths to only include those in the `posts/` directory.
-    return paths.filter((item) => item.includes("posts/"));
+    // Filter the paths to only include those in the `src/posts/` directory.
+    return paths.filter((item) => item.includes("src/posts/"));
   } catch (error) {
     console.error("Error getting post paths: ", error);
     throw error;
@@ -54,6 +54,8 @@ export const getAllPosts = async () => {
           const content = await fs.readFile(item, "utf-8");
           // Metadata of the file
           const stat = await fs.stat(item);
+          // Remove the `src/` prefix from the path.
+          item = item.replace("src/", "");
           // Get the creation and last-time-modified time.
           const { birthtimeMs, mtimeMs } = stat;
           // Parse teh front matter of the file.
