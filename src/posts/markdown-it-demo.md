@@ -244,6 +244,10 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 *here be dragons*
 :::
 
+::: quote
+GL & HF!
+:::
+
 ### [Math Formula](https://github.com/tani/markdown-it-mathjax3)
 
 This is an inline formula example. This is the most beautiful equation - the Euler's identity: $e^{i\pi} + 1 = 0$.

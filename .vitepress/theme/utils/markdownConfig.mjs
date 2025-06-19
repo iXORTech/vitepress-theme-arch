@@ -95,6 +95,17 @@ const markdownConfig = (md, themeConfig) => {
       }
     },
   });
+  // quote
+  md.use(container, "quote", {
+    render(tokens, idx) {
+      const token = tokens[idx];
+      if (token.nesting === 1) {
+        return `<div class="quote-container"><span class="empty"></span><span class="content" type="text">`;
+      } else {
+        return `</span><span class="empty"></span></div>`;
+      }
+    },
+  });
   // Table
   md.renderer.rules.table_open = () => {
     return '<div class="table-container"><table>';
