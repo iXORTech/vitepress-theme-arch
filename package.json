@@ -65,6 +65,7 @@
     "lodash-es": "^4.17.21",
     "pinia": "^2.3.0",
     "pinia-plugin-persistedstate": "^3.2.3",
+    "swiper": "^11.2.8",
     "vue": "^3.5.13",
     "vue-instantsearch": "^4.20.1",
     "vue-slider-component": "4.1.0-beta.7"

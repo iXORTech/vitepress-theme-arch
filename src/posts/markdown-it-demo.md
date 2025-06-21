@@ -164,6 +164,14 @@ With a reference later in the document defining the URL location:
 
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
+### Image Swiper
+
+<script setup>
+import ImageSwiper from '@/components/ImageSwiper.vue'
+</script>
+
+<ImageSwiper />
+
 ## Plugins
 
 The killer feature of `markdown-it` is very effective support of
