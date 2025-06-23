@@ -149,6 +149,9 @@ const router = useRouter();
 const store = mainStore();
 const { scrollData } = storeToRefs(store);
 const { site, theme, frontmatter, page } = useData();
+
+// Set CSS custom property for back to top text
+document.documentElement.style.setProperty('--back-to-top-text', `"${i18n('components.nav.go-back-to-top')}"`);
 </script>
 
 <style lang="scss" scoped>
@@ -561,7 +564,7 @@ const { site, theme, frontmatter, page } = useData();
         cursor: pointer;
 
         &::after {
-          content: "返回顶部";
+          content: var(--back-to-top-text, "Back to Top");
           position: absolute;
           top: 0;
           left: 0;
