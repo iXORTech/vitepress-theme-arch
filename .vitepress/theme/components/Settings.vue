@@ -204,7 +204,7 @@ const changeLanguage = (lang) => {
       transition: opacity 0.3s;
     }
     &:hover {
-      width: 140px;
+      width: auto;
       color: var(--main-card-background);
       border-color: var(--main-color);
       background-color: var(--main-color);
@@ -212,6 +212,7 @@ const changeLanguage = (lang) => {
         color: var(--main-card-background);
       }
       .set-text {
+        margin-right: 10px;
         opacity: 1;
       }
     }
