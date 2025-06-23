@@ -241,7 +241,11 @@ onMounted(() => {
       &.character {
         min-height: 220px;
         cursor: pointer;
+        .tip, .title, .title1, .title2 {
+          z-index: 100;
+        }
         .more {
+          z-index: 100;
           margin-top: auto;
           font-size: 14px;
           color: var(--main-color-gray);
@@ -254,11 +258,23 @@ onMounted(() => {
         }
         .mbti-character {
           position: absolute;
-          top: 20px;
-          right: 50px;
+          top: 15px;
+          left: 256px;
           height: 140%;
           transition: transform 0.5s;
           transform-origin: top center;
+          // When the screen width is less than 1024px, hide it.
+          @media (max-width: 1024px) {
+            display: none;
+          }
+          // When the screen width is less than 768px, show it.
+          @media (max-width: 768px) {
+            display: block;
+          }
+          // When the screen width is less than 480px, hide it.
+          @media (max-width: 560px) {
+            display: none;
+          }
         }
         &:hover {
           .mbti-character {
