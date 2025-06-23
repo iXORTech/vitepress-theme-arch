@@ -70,6 +70,46 @@ export const themeConfig = {
     ],
   },
   // Navigation Bar Configuration | 导航栏配置
+  // Language-specific navigation configurations
+  navLocales: {
+    "en-US": [
+      {
+        text: "Posts",
+        items: [
+          { text: "Archives", link: "/archives", icon: "fa-solid fa-newspaper" },
+          { text: "All Categories", link: "/categories", icon: "fa-solid fa-folder-open" },
+          { text: "All Tags", link: "/tags", icon: "fa-solid fa-hashtag" },
+        ],
+      },
+      {
+        text: "Page Group",
+        items: [
+          { text: "Page 1", link: "/demo-page-1", icon: "fa-solid fa-lightbulb" },
+          { text: "Page 2", link: "/demo-page-1", icon: "fa-solid fa-code-branch" },
+        ],
+      },
+      { text: "About", link: "/about", icon: "fa-solid fa-address-card" },
+    ],
+    "zh-CN": [
+      {
+        text: "文章",
+        items: [
+          { text: "归档", link: "/archives", icon: "fa-solid fa-newspaper" },
+          { text: "所有分类", link: "/categories", icon: "fa-solid fa-folder-open" },
+          { text: "所有标签", link: "/tags", icon: "fa-solid fa-hashtag" },
+        ],
+      },
+      {
+        text: "页面组",
+        items: [
+          { text: "页面 1", link: "/demo-page-1", icon: "fa-solid fa-lightbulb" },
+          { text: "页面 2", link: "/demo-page-1", icon: "fa-solid fa-code-branch" },
+        ],
+      },
+      { text: "关于", link: "/about", icon: "fa-solid fa-address-card" },
+    ]
+  },
+  // Fallback for backward compatibility
   nav: [
     {
       text: "Posts",
@@ -151,7 +191,48 @@ export const themeConfig = {
         link: "https://discord.gg/",
       },
     ],
-    // Sitemap | 网站地图
+    // Language-specific sitemap configurations
+    sitemapLocales: {
+      "en-US": [
+        {
+          text: "Blog",
+          items: [
+            { text: "Recent Posts", link: "/" },
+            { text: "All Categories", link: "/categories" },
+            { text: "All Tags", link: "/tags" },
+            { text: "Archives", link: "/archives", newTab: true },
+          ],
+        },
+        {
+          text: "Others",
+          items: [
+            { text: "About Us", link: "/about" },
+            { text: "Privacy Policy", link: "/privacy" },
+            { text: "Copyright Info", link: "/copyright" },
+          ],
+        },
+      ],
+      "zh-CN": [
+        {
+          text: "博客",
+          items: [
+            { text: "最新文章", link: "/" },
+            { text: "所有分类", link: "/categories" },
+            { text: "所有标签", link: "/tags" },
+            { text: "归档", link: "/archives", newTab: true },
+          ],
+        },
+        {
+          text: "其他",
+          items: [
+            { text: "关于我们", link: "/about" },
+            { text: "隐私政策", link: "/privacy" },
+            { text: "版权信息", link: "/copyright" },
+          ],
+        },
+      ],
+    },
+    // Fallback for backward compatibility
     sitemap: [
       {
         text: "Blog",

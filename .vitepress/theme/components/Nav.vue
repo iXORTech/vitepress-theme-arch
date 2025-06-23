@@ -31,7 +31,7 @@
         <!-- Nav Menu -->
         <div class="nav-center">
           <div class="site-menu">
-            <div v-for="(item, index) in theme.nav" :key="index" class="menu-item">
+            <div v-for="(item, index) in navMenu" :key="index" class="menu-item">
               <div v-if="item.items">
                 <span class="link-btn" v-if="item.items">{{ item.text }}</span>
                 <div class="link-child">
@@ -144,7 +144,7 @@ import { mainStore } from "@/store";
 import { shufflePost, smoothScrolling } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, navMenu } = useI18n()
 const router = useRouter();
 const store = mainStore();
 const { scrollData } = storeToRefs(store);

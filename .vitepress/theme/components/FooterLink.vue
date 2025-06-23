@@ -30,7 +30,7 @@
       </a>
     </div>
     <div class="footer-sitemap">
-      <div v-for="(item, index) in footer.sitemap" :key="index" class="sitemap-item">
+      <div v-for="(item, index) in sitemap" :key="index" class="sitemap-item">
         <span class="title">{{ item.text }}</span>
         <div class="links">
           <a
@@ -52,7 +52,7 @@
 import { smoothScrolling } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, sitemap } = useI18n()
 const { theme, site } = useData();
 const { footer, siteMeta } = theme.value;
 const props = defineProps({

@@ -14,6 +14,22 @@
       @modal-close="store.changeShowStatus('showSeetings')"
     >
       <div class="set-list">
+        <!-- Language Settings Section -->
+        <span class="title">{{ i18n('components.settings.language') }}</span>
+        <div class="set-item">
+          <span class="set-label">{{ i18n('components.settings.select-language') }}</span>
+          <div class="set-options">
+            <span
+              v-for="lang in availableLanguages"
+              :key="lang.code"
+              :class="['options', { choose: currentLang === lang.code }]"
+              @click="changeLanguage(lang.code)"
+            >
+              {{ lang.name }}
+            </span>
+          </div>
+        </div>
+        
         <span class="title">{{ i18n('components.settings.font') }}</span>
         <div class="set-item">
           <span class="set-label">{{ i18n('components.settings.text-font') }}</span>
@@ -145,9 +161,20 @@ import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, currentLang, setLanguage, availableLanguages } = useI18n()
 const store = mainStore();
 const { themeType, fontFamily, codeFontFamily, fontSize, infoPosition, backgroundType, bannerType } = storeToRefs(store);
+
+// Function to change language
+const changeLanguage = (lang) => {
+  setLanguage(lang);
+  // Force refresh components to apply new language
+  // This is needed because some components might not be reactive to language changes
+  setTimeout(() => {
+    // Optional: refresh page to apply language changes fully
+    // window.location.reload();
+  }, 100);
+}
 </script>
 
 <style lang="scss" scoped>
