@@ -86,6 +86,10 @@ components:
     license: "许可协议"
     cc-link: "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
     by-nc-sa: "署名—非商业性使用—相同方式共享 4.0 协议国际版"
+  footer:
+    powered-by:
+      prefix: "本站由"
+      suffix: "驱动"
   footer-link:
     learn-more: "了解更多"
     go-back-to-top: "返回顶部"

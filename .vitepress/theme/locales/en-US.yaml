@@ -86,6 +86,10 @@ components:
     license: "License"
     cc-link: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
     by-nc-sa: "Attribution-NonCommercial-ShareAlike 4.0 International"
+  footer:
+    powered-by:
+      prefix: "Powered by"
+      suffix: ""
   footer-link:
     learn-more: "Learn More"
     go-back-to-top: "Go Back to Top"

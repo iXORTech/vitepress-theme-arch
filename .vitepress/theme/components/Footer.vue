@@ -2,7 +2,9 @@
   <footer id="main-footer" class="main-footer">
     <div class="footer-content">
       <div class="copyright">
-        <span class="time" v-if="startYear !== thisYear">Copyright © {{ startYear }} - {{ thisYear }} </span>
+        <span class="time" v-if="startYear !== thisYear"
+          >Copyright © {{ startYear }} - {{ thisYear }}
+        </span>
         <span class="time" v-else>Copyright © {{ startYear }} </span>
         <a :href="theme.siteMeta.author.link" class="author link" target="_blank">
           {{ theme.siteMeta.author.name }}
@@ -11,15 +13,21 @@
           <i class="font-awesome fa-solid fa-shield"></i>
           {{ theme.icp }}
         </a>
-        <br/>
-        <span class="by">Powered by</span>
+        <br />
+        <span class="by">{{ i18n('components.footer.powered-by.prefix') }}</span>
         <span class="name">
           <a class="power link" href="https://vitepress.dev/" target="_blank">VitePress</a>
         </span>
         <span class="by">&</span>
         <span class="name">
-          <a class="theme link" href="https://github.com/iXORTech/vitepress-theme-arch" target="_blank">VitePress Theme Arch</a>
+          <a
+            class="theme link"
+            href="https://github.com/iXORTech/vitepress-theme-arch"
+            target="_blank"
+            >VitePress Theme Arch</a
+          >
         </span>
+        <span class="by">{{ i18n('components.footer.powered-by.suffix') }}</span>
       </div>
       <div class="meta">
         <a class="rss link" href="https://blog.imsyy.top/rss.xml" target="_blank">
@@ -44,10 +52,12 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
+import { useI18n } from "@/utils/i18n";
 
 const store = mainStore();
 const { theme } = useData();
 const { footerIsShow } = storeToRefs(store);
+const { i18n } = useI18n();
 
 // Window Observer
 const observer = ref(null);
