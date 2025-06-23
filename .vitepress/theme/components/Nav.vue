@@ -7,7 +7,7 @@
           <div class="more-menu nav-btn">
             <i class="font-awesome fa-solid fa-compass"></i>
             <div class="more-card s-card">
-              <div v-for="(item, index) in theme.navMore" :key="index" class="more-item">
+              <div v-for="(item, index) in navMore" :key="index" class="more-item">
                 <span class="more-name">{{ item.name }}</span>
                 <div class="more-list">
                   <a
@@ -144,7 +144,7 @@ import { mainStore } from "@/store";
 import { shufflePost, smoothScrolling } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n, navMenu } = useI18n()
+const { i18n, navMenu, navMore } = useI18n()
 const router = useRouter();
 const store = mainStore();
 const { scrollData } = storeToRefs(store);

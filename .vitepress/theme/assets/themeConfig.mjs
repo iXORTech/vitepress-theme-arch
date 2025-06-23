@@ -130,6 +130,32 @@ export const themeConfig = {
   ],
   // Left Side Nav Menu (External Links)
   // 左侧导航栏菜单（外部链接）
+  navMoreLocales: {
+    "en-US": [
+      {
+        name: "Others",
+        list: [
+          {
+            icon: "/images/logo/logo.webp",
+            name: "GitHub",
+            url: "https://github.com/Octocat",
+          },
+        ],
+      },
+    ],
+    "zh-CN": [
+      {
+        name: "其他",
+        list: [
+          {
+            icon: "/images/logo/logo.webp",
+            name: "GitHub",
+            url: "https://github.com/Octocat",
+          },
+        ],
+      },
+    ]
+  },
   navMore: [
     {
       name: "Others",

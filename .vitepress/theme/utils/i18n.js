@@ -81,6 +81,17 @@ export function useI18n() {
     return theme.value.nav || []
   })
 
+  // Get the navMore menu for the current language
+  const navMore = computed(() => {
+    const lang = currentLang.value
+    // Check if we have a localized navMore for the current language
+    if (theme.value.navMoreLocales && theme.value.navMoreLocales[lang]) {
+      return theme.value.navMoreLocales[lang]
+    }
+    // Fallback to the default navMore if no localized version exists
+    return theme.value.navMore || []
+  })
+
   // Get the sitemap for the current language
   const sitemap = computed(() => {
     const lang = currentLang.value
@@ -98,6 +109,7 @@ export function useI18n() {
     setLanguage,
     availableLanguages,
     navMenu,
+    navMore,
     sitemap
   }
 }
