@@ -320,6 +320,10 @@ export const themeConfig = {
     hello: {
       enable: true,
       text: "This is a simple <strong>VitePress</strong> theme.",
+      localizedText: {
+        "zh-CN": "这是个 <strong>VitePress</strong> 主题。",
+        "en-US": "This is a simple <strong>VitePress</strong> theme."
+      }
     },
     // Table of Contents | 文章目录
     toc: {

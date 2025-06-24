@@ -6,12 +6,12 @@
       <div class="site-logo">
         <Clock />
       </div>
-      <span class="site-desc" v-html="theme.aside.hello.text" />
+      <span class="site-desc" v-html="siteDesc" />
     </div>
     <div class="info">
       <div class="name">
         <span class="author">{{ theme.siteMeta.author.name }}</span>
-        <span class="desc">{{ theme.siteMeta.description }}</span>
+        <span class="desc">{{ description }}</span>
       </div>
       <div class="link">
         <a href="https://github.com/" target="_blank" class="social-link">
@@ -29,8 +29,27 @@
 import { getGreetings } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, currentLang } = useI18n()
 const { site, theme } = useData();
+
+// 多语言 site-desc
+const siteDesc = computed(() => {
+  // 优先 theme.aside.hello.localizedText
+  if (theme.value.aside?.hello?.localizedText && theme.value.aside.hello.localizedText[currentLang.value]) {
+    return theme.value.aside.hello.localizedText[currentLang.value]
+  }
+  // 兼容旧配置
+  return theme.value.aside.hello.text
+})
+
+const description = computed(() => {
+  // 优先 theme.siteMeta.locolizedDescription
+  if (theme.value.siteMeta?.localizedDescription && theme.value.siteMeta.localizedDescription[currentLang.value]) {
+    return theme.value.siteMeta.localizedDescription[currentLang.value]
+  }
+  // 兼容旧配置
+  return theme.value.siteMeta.description
+});
 
 // Welcome Message Data (yes, Easter Egg!)
 const helloClick = ref(0);
