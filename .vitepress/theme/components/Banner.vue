@@ -1,11 +1,11 @@
 <template>
   <div v-if="type === 'text'" :class="['banner', bannerType]" id="main-banner">
-    <h1 v-if="theme.siteMeta.welcomeMessage" class="title">{{ theme.siteMeta.welcomeMessage }}</h1>
-    <h1 v-else class="title">{{ i18n('components.banner.welcome-message') }}{{ theme.siteMeta.title }}</h1>
+    <h1 v-if="welcomeMessage" class="title">{{ welcomeMessage }}</h1>
+    <h1 v-else class="title">{{ i18n('components.banner.welcome-message') }}{{ siteTitle }}</h1>
     <div class="subtitle">
       <Transition name="fade" mode="out-in">
         <span class="text">
-          {{ theme.siteMeta.description }}
+          {{ siteDescription }}
         </span>
       </Transition>
     </div>
@@ -45,7 +45,7 @@
 import { mainStore } from "@/store";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, getLocalizedSiteTitle, getLocalizedSiteDescription, getLocalizedWelcomeMessage } = useI18n()
 const store = mainStore();
 const { theme } = useData();
 const props = defineProps({
@@ -76,6 +76,9 @@ const props = defineProps({
 });
 
 const bannerType = ref(null);
+const siteTitle = computed(() => getLocalizedSiteTitle());
+const siteDescription = computed(() => getLocalizedSiteDescription());
+const welcomeMessage = computed(() => getLocalizedWelcomeMessage());
 
 const scrollToHome = () => {
   const bannerDom = document.getElementById("main-banner");

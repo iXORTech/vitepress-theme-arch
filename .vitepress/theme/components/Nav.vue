@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="site-name" @click="router.go('/')">
-            {{ site.title }}
+            {{ getLocalizedSiteTitle() }}
           </div>
         </div>
         <!-- Nav Menu -->
@@ -58,7 +58,7 @@
             </div>
           </div>
           <span class="site-title" @click="smoothScrolling">
-            {{ (frontmatter.value && frontmatter.value.home ? site.description : pageTitle) || site.description }}
+            {{ (frontmatter.value && frontmatter.value.home ? getLocalizedSiteDescription() : pageTitle) || getLocalizedSiteDescription() }}
           </span>
         </div>
         <div class="right-nav">
@@ -144,7 +144,7 @@ import { mainStore } from "@/store";
 import { shufflePost, smoothScrolling } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n, navMenu, navMore, currentLang } = useI18n()
+const { i18n, navMenu, navMore, currentLang, getLocalizedSiteTitle, getLocalizedSiteDescription } = useI18n()
 const router = useRouter();
 const store = mainStore();
 const { scrollData } = storeToRefs(store);

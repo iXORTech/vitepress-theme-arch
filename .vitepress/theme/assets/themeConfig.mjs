@@ -8,6 +8,21 @@ export const themeConfig = {
     // The Welcome Message to be Shown on the Home Page
     // Optional, if not provided, a welcome + title message will be used.
     // welcomeMessage: "Welcome to my site.",
+
+    // Localized versions of title, description, and welcomeMessage
+    // localizedTitle: {
+    //   "en-US": "VitePress Theme Arch",
+    //   "zh-CN": "VitePress 主题 Arch"
+    // },
+    localizedDescription: {
+      "en-US": "Hello World",
+      "zh-CN": "你好，世界"
+    },
+    // localizedWelcomeMessage: {
+    //   "en-US": "Welcome to my site!",
+    //   "zh-CN": "欢迎访问我的网站！"
+    // },
+
     logo: "/images/logo/logo.webp",
     // URL | 站点地址
     site: "https://example.tld",

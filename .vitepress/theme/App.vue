@@ -41,7 +41,7 @@ import { generateId } from "@/utils/commonTools";
 const route = useRoute();
 const store = mainStore();
 const { frontmatter, page, theme, site } = useData();
-const { currentLang } = useI18n();
+const { currentLang, getLocalizedSiteTitle, getLocalizedSiteDescription } = useI18n();
 const {
   loadingStatus,
   footerIsShow,
@@ -68,6 +68,8 @@ watchEffect(() => {
   if (typeof document === 'undefined') return;
 
   let pageTitle = page.value.title;
+  const siteTitle = getLocalizedSiteTitle();
+  const siteDescription = getLocalizedSiteDescription();
 
   // For post pages, get localized title from post data
   if (isPostPage.value && page.value.relativePath) {
@@ -84,9 +86,24 @@ watchEffect(() => {
     pageTitle = frontmatter.value.localizedTitle[currentLang.value];
   }
 
-  // Set document title with site title
+  // Set document title with localized site title
   if (pageTitle) {
-    document.title = `${pageTitle} | ${site.value.title}`;
+    document.title = `${pageTitle} | ${siteTitle}`;
+  } else {
+    // If there's no page title, just use the localized site title
+    document.title = siteTitle;
+  }
+
+  // Update meta description
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription && siteDescription) {
+    metaDescription.setAttribute('content', siteDescription);
+  } else if (siteDescription) {
+    // Create meta description if it doesn't exist
+    const meta = document.createElement('meta');
+    meta.name = 'description';
+    meta.content = siteDescription;
+    document.head.appendChild(meta);
   }
 });
 

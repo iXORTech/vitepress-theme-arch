@@ -123,6 +123,39 @@ export function useI18n() {
     return frontmatter.description
   }
 
+  // Get localized site title for the current language
+  const getLocalizedSiteTitle = () => {
+    if (theme.value.siteMeta?.localizedTitle &&
+        theme.value.siteMeta.localizedTitle[currentLang.value]) {
+      return theme.value.siteMeta.localizedTitle[currentLang.value]
+    }
+    return theme.value.siteMeta?.title
+  }
+
+  // Get localized site description for the current language
+  const getLocalizedSiteDescription = () => {
+    if (theme.value.siteMeta?.localizedDescription &&
+        theme.value.siteMeta.localizedDescription[currentLang.value]) {
+      return theme.value.siteMeta.localizedDescription[currentLang.value]
+    }
+    return theme.value.siteMeta?.description
+  }
+
+  // Get localized welcome message for the current language
+  const getLocalizedWelcomeMessage = () => {
+    if (theme.value.siteMeta?.localizedWelcomeMessage &&
+        theme.value.siteMeta.localizedWelcomeMessage[currentLang.value]) {
+      return theme.value.siteMeta.localizedWelcomeMessage[currentLang.value]
+    }
+
+    if (theme.value.siteMeta?.welcomeMessage) {
+      return theme.value.siteMeta.welcomeMessage
+    }
+
+    // If no welcome message is set, return null and let component handle default
+    return null
+  }
+
   return {
     i18n,
     currentLang,
@@ -132,6 +165,9 @@ export function useI18n() {
     navMore,
     sitemap,
     getLocalizedTitle,
-    getLocalizedDescription
+    getLocalizedDescription,
+    getLocalizedSiteTitle,
+    getLocalizedSiteDescription,
+    getLocalizedWelcomeMessage
   }
 }
