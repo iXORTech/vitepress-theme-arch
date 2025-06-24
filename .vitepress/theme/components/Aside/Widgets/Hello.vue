@@ -33,21 +33,26 @@ const { i18n, currentLang } = useI18n()
 const { site, theme } = useData();
 
 // 多语言 site-desc
+// Multi-language site desc
 const siteDesc = computed(() => {
   // 优先 theme.aside.hello.localizedText
+  // Prioritize theme.aside.hello.localizedText
   if (theme.value.aside?.hello?.localizedText && theme.value.aside.hello.localizedText[currentLang.value]) {
     return theme.value.aside.hello.localizedText[currentLang.value]
   }
   // 兼容旧配置
+  // Compatibility with old configuration
   return theme.value.aside.hello.text
 })
 
 const description = computed(() => {
   // 优先 theme.siteMeta.locolizedDescription
+  // Prioritize theme.siteMeta.localizedDescription
   if (theme.value.siteMeta?.localizedDescription && theme.value.siteMeta.localizedDescription[currentLang.value]) {
     return theme.value.siteMeta.localizedDescription[currentLang.value]
   }
   // 兼容旧配置
+  // Compatibility with old configuration
   return theme.value.siteMeta.description
 });
 
