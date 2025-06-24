@@ -15,7 +15,11 @@
       {{ isNextPost ? i18n('components.next-post.read-next') : i18n('components.next-post.read-previous') }}
     </span>
     <span class="post-title">
-      {{ nextPostData?.title || i18n('components.next-post.no-title-yet') }}
+      {{
+        (nextPostData?.localizedTitle && nextPostData?.localizedTitle[currentLang.value])
+          || nextPostData?.title
+          || i18n('components.next-post.no-title-yet')
+      }}
     </span>
   </div>
 </template>
@@ -26,7 +30,7 @@ import { mainStore } from "@/store";
 import { generateId } from "@/utils/commonTools";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, currentLang } = useI18n()
 const router = useRouter();
 const store = mainStore();
 const { theme, page } = useData();

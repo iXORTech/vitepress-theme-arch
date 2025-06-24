@@ -1,5 +1,7 @@
 ---
-title: All Posts
+title: Archives
+localizedTitle:
+  zh-CN: 归档
 aside: true
 ---
 

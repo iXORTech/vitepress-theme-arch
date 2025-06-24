@@ -14,7 +14,7 @@
             class="posts-item s-card hover"
             @click="router.go(post.regularPath)"
           >
-            <span class="title">{{ post.title }}</span>
+            <span class="title">{{ getLocalizedTitle(post) }}</span>
             <div class="tags">
               <a
                 v-for="(tags, tagsIndex) in post.tags"
@@ -36,9 +36,17 @@
 <script setup>
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, currentLang } = useI18n()
 const { theme } = useData();
 const router = useRouter();
+
+// Helper to get localized title for a post
+const getLocalizedTitle = (post) => {
+  if (post.localizedTitle && post.localizedTitle[currentLang.value]) {
+    return post.localizedTitle[currentLang.value];
+  }
+  return post.title;
+};
 </script>
 
 <style lang="scss" scoped>

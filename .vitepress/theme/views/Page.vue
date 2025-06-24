@@ -11,6 +11,12 @@
 
 <script setup>
 const { frontmatter } = useData();
+import { useI18n } from '@/utils/i18n'
+const { currentLang, getLocalizedTitle, getLocalizedDescription } = useI18n()
+
+// Get localized title and description for use in the page when needed
+const localizedTitle = computed(() => getLocalizedTitle(frontmatter.value));
+const localizedDescription = computed(() => getLocalizedDescription(frontmatter.value));
 </script>
 
 <style lang="scss" scoped>

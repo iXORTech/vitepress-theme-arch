@@ -24,9 +24,9 @@
             {{ i18n("components.list.post-list.pinned") }}
           </span>
         </div>
-        <span class="post-title">{{ item.title }}</span>
-        <span v-if="item?.description" class="post-desc">
-          {{ item.description }}
+        <span class="post-title">{{ getLocalizedTitle(item) }}</span>
+        <span v-if="getLocalizedDescription(item)" class="post-desc">
+          {{ getLocalizedDescription(item) }}
         </span>
         <div v-if="!simple" class="post-meta">
           <div v-if="item?.tags" class="post-tags">
@@ -52,7 +52,7 @@ import { mainStore } from "@/store";
 import { formatTimestamp } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, currentLang } = useI18n()
 
 const store = mainStore();
 const router = useRouter();
@@ -97,6 +97,22 @@ const getCover = ({ cover: itemCover }) => {
     ? cover.showCover.defaultCover[Math.floor(Math.random() * cover.showCover.defaultCover.length)]
     : false
 }
+
+// Helper to get localized title for a post
+const getLocalizedTitle = (post) => {
+  if (post.localizedTitle && post.localizedTitle[currentLang.value]) {
+    return post.localizedTitle[currentLang.value];
+  }
+  return post.title;
+};
+
+// Helper to get localized description for a post
+const getLocalizedDescription = (post) => {
+  if (post.localizedDescription && post.localizedDescription[currentLang.value]) {
+    return post.localizedDescription[currentLang.value];
+  }
+  return post.description;
+};
 
 const toPost = (path) => {
   if (typeof window !== "undefined") {

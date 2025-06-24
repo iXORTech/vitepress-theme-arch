@@ -58,7 +58,7 @@
             </div>
           </div>
           <span class="site-title" @click="smoothScrolling">
-            {{ (frontmatter.home ? site.description : page.title) || site.description }}
+            {{ (frontmatter.value && frontmatter.value.home ? site.description : pageTitle) || site.description }}
           </span>
         </div>
         <div class="right-nav">
@@ -144,11 +144,20 @@ import { mainStore } from "@/store";
 import { shufflePost, smoothScrolling } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n, navMenu, navMore } = useI18n()
+const { i18n, navMenu, navMore, currentLang } = useI18n()
 const router = useRouter();
 const store = mainStore();
 const { scrollData } = storeToRefs(store);
 const { site, theme, frontmatter, page } = useData();
+
+// Get localized title for display in the nav
+const pageTitle = computed(() => {
+  if (frontmatter.value && frontmatter.value.localizedTitle &&
+      frontmatter.value.localizedTitle[currentLang.value]) {
+    return frontmatter.value.localizedTitle[currentLang.value];
+  }
+  return page.value.title;
+});
 
 // Set CSS custom property for back to top text
 document.documentElement.style.setProperty('--back-to-top-text', `"${i18n('components.nav.go-back-to-top')}"`);

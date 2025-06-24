@@ -27,7 +27,7 @@
         </div>
       </div>
       <h1 class="title">
-        {{ postMetaData.title || i18n('views.post.unnamed_post') }}
+        {{ localizedTitle || postMetaData.title || i18n('views.post.unnamed_post') }}
       </h1>
       <div class="other-meta">
         <span class="meta date">
@@ -105,7 +105,7 @@ import { generateId } from "@/utils/commonTools";
 import initFancybox from "@/utils/initFancybox";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, currentLang } = useI18n()
 const { page, theme, frontmatter } = useData();
 
 const commentRef = ref(null);
@@ -114,6 +114,26 @@ const commentRef = ref(null);
 const postMetaData = computed(() => {
   const postId = generateId(page.value.relativePath);
   return theme.value.postData.find((item) => item.id === postId);
+});
+
+// Get localized title for the post
+const localizedTitle = computed(() => {
+  if (!postMetaData.value) return null;
+
+  if (postMetaData.value.localizedTitle && postMetaData.value.localizedTitle[currentLang.value]) {
+    return postMetaData.value.localizedTitle[currentLang.value];
+  }
+  return postMetaData.value.title;
+});
+
+// Get localized description for the post
+const localizedDescription = computed(() => {
+  if (!postMetaData.value) return null;
+
+  if (postMetaData.value.localizedDescription && postMetaData.value.localizedDescription[currentLang.value]) {
+    return postMetaData.value.localizedDescription[currentLang.value];
+  }
+  return postMetaData.value.description;
 });
 
 onMounted(() => {

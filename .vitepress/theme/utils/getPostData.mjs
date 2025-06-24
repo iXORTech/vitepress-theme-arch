@@ -60,7 +60,7 @@ export const getAllPosts = async () => {
           const { birthtimeMs, mtimeMs } = stat;
           // Parse teh front matter of the file.
           const { data } = matter(content);
-          const { title, date, categories, description, tags, top, cover } = data;
+          const { title, date, categories, description, tags, top, cover, localizedTitle, localizedDescription } = data;
           const expired = Math.floor(
             (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24),
           );
@@ -80,6 +80,8 @@ export const getAllPosts = async () => {
             regularPath: `/${item.replace(".md", ".html")}`,
             top,
             cover,
+            localizedTitle,
+            localizedDescription,
           };
         } catch (error) {
           console.error(`Error processing file '${item}': `, error);

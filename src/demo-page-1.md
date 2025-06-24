@@ -1,4 +1,7 @@
 ---
+title: Demo Page 1
+localizedTitle:
+  zh-CN: 演示页面 1
 aside: false
 comment: false
 ---
@@ -11,8 +14,7 @@ const { currentLang } = useI18n()
 const showZh = ref(false)
 
 watchEffect(() => {
-  showZh.value = currentLang.value.startsWith('zh')
-  document.title = showZh.value ? '演示页面 1' : 'Demo Page 1'
+  showZh.value = currentLang.value === 'zh-CN'
 })
 </script>
 

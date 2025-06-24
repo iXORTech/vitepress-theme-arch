@@ -36,10 +36,12 @@ import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { calculateScroll } from "@/utils/helper";
 import { useI18n } from "@/utils/i18n";
+import { generateId } from "@/utils/commonTools";
 
 const route = useRoute();
 const store = mainStore();
-const { frontmatter, page, theme } = useData();
+const { frontmatter, page, theme, site } = useData();
+const { currentLang } = useI18n();
 const {
   loadingStatus,
   footerIsShow,
@@ -58,6 +60,34 @@ const rightMenuRef = ref(null);
 const isPostPage = computed(() => {
   const routePath = decodeURIComponent(route.path);
   return routePath.includes("/posts/");
+});
+
+// Update document title when language changes
+watchEffect(() => {
+  // Only run in client side
+  if (typeof document === 'undefined') return;
+
+  let pageTitle = page.value.title;
+
+  // For post pages, get localized title from post data
+  if (isPostPage.value && page.value.relativePath) {
+    const postId = generateId(page.value.relativePath);
+    const post = theme.value.postData?.find(item => item.id === postId);
+
+    if (post?.localizedTitle && post.localizedTitle[currentLang.value]) {
+      pageTitle = post.localizedTitle[currentLang.value];
+    }
+  }
+  // For regular pages, get localized title from frontmatter
+  else if (frontmatter.value?.localizedTitle &&
+           frontmatter.value.localizedTitle[currentLang.value]) {
+    pageTitle = frontmatter.value.localizedTitle[currentLang.value];
+  }
+
+  // Set document title with site title
+  if (pageTitle) {
+    document.title = `${pageTitle} | ${site.value.title}`;
+  }
 });
 
 // Open Right Click Menu

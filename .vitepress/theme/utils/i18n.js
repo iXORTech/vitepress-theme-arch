@@ -103,6 +103,26 @@ export function useI18n() {
     return theme.value.footer?.sitemap || []
   })
 
+  // Get localized title for the current language if available
+  const getLocalizedTitle = (frontmatter) => {
+    if (!frontmatter) return null
+
+    if (frontmatter.localizedTitle && frontmatter.localizedTitle[currentLang.value]) {
+      return frontmatter.localizedTitle[currentLang.value]
+    }
+    return frontmatter.title
+  }
+
+  // Get localized description for the current language if available
+  const getLocalizedDescription = (frontmatter) => {
+    if (!frontmatter) return null
+
+    if (frontmatter.localizedDescription && frontmatter.localizedDescription[currentLang.value]) {
+      return frontmatter.localizedDescription[currentLang.value]
+    }
+    return frontmatter.description
+  }
+
   return {
     i18n,
     currentLang,
@@ -110,6 +130,8 @@ export function useI18n() {
     availableLanguages,
     navMenu,
     navMore,
-    sitemap
+    sitemap,
+    getLocalizedTitle,
+    getLocalizedDescription
   }
 }

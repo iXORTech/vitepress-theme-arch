@@ -85,7 +85,7 @@ export const themeConfig = {
         text: "Page Group",
         items: [
           { text: "Page 1", link: "/demo-page-1", icon: "fa-solid fa-lightbulb" },
-          { text: "Page 2", link: "/demo-page-1", icon: "fa-solid fa-code-branch" },
+          { text: "Page 2", link: "/demo-page-2", icon: "fa-solid fa-code-branch" },
         ],
       },
       { text: "About", link: "/about", icon: "fa-solid fa-address-card" },
@@ -95,15 +95,15 @@ export const themeConfig = {
         text: "文章",
         items: [
           { text: "归档", link: "/archives", icon: "fa-solid fa-newspaper" },
-          { text: "所有分类", link: "/categories", icon: "fa-solid fa-folder-open" },
-          { text: "所有标签", link: "/tags", icon: "fa-solid fa-hashtag" },
+          { text: "全部分类", link: "/categories", icon: "fa-solid fa-folder-open" },
+          { text: "全部标签", link: "/tags", icon: "fa-solid fa-hashtag" },
         ],
       },
       {
         text: "页面组",
         items: [
           { text: "页面 1", link: "/demo-page-1", icon: "fa-solid fa-lightbulb" },
-          { text: "页面 2", link: "/demo-page-1", icon: "fa-solid fa-code-branch" },
+          { text: "页面 2", link: "/demo-page-2", icon: "fa-solid fa-code-branch" },
         ],
       },
       { text: "关于", link: "/about", icon: "fa-solid fa-address-card" },
@@ -243,8 +243,8 @@ export const themeConfig = {
           text: "博客",
           items: [
             { text: "最新文章", link: "/" },
-            { text: "所有分类", link: "/categories" },
-            { text: "所有标签", link: "/tags" },
+            { text: "全部分类", link: "/categories" },
+            { text: "全部标签", link: "/tags" },
             { text: "归档", link: "/archives", newTab: true },
           ],
         },
