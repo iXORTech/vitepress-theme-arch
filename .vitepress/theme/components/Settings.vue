@@ -243,7 +243,7 @@ const changeLanguage = (lang) => {
       display: flex;
       flex-direction: row;
       align-items: center;
-      height: 40px;
+      height: auto;
       border-radius: 8px;
       .options {
         display: flex;
