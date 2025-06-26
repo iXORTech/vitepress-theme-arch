@@ -245,6 +245,8 @@ const changeLanguage = (lang) => {
       align-items: center;
       height: auto;
       border-radius: 8px;
+      max-width: 100%;
+      overflow-x: auto;
       .options {
         display: flex;
         align-items: center;
@@ -253,7 +255,7 @@ const changeLanguage = (lang) => {
         border-radius: 8px;
         margin: 4px 8px;
         padding: 6px 8px;
-        min-width: 30px;
+        min-width: auto;
         background-color: var(--main-card-border);
         transition:
           color 0.3s,
@@ -292,6 +294,7 @@ const changeLanguage = (lang) => {
       .set-options {
         margin-top: 8px;
         .options {
+          flex: 0 0 auto;
           &:first-child {
             margin-left: 0;
           }
