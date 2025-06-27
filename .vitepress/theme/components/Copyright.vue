@@ -1,7 +1,7 @@
 <template>
   <div class="copyright s-card">
     <div class="title">
-      <span class="post-name">{{ postData?.title || i18n('components.copyright.unnamed-post') }}</span>
+      <span class="post-name">{{ getLocalizedTitle(postData) || i18n('components.copyright.unnamed-post') }}</span>
       <a :href="theme.siteMeta.site + route.path" class="post-link" target="_blank">
         {{ theme.siteMeta.site + route.path }}
       </a>
@@ -37,8 +37,9 @@
 <script setup>
 import { formatTimestamp } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
+import { useData, useRoute } from 'vitepress';
 
-const { i18n } = useI18n()
+const { i18n, getLocalizedTitle } = useI18n()
 const { theme } = useData();
 const props = defineProps({
   postData: {
