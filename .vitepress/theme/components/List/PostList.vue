@@ -164,6 +164,7 @@ const toPost = (path) => {
         color: var(--main-font-second-color);
         font-size: 14px;
         .cat-name {
+          margin-right: 9px;
           display: flex;
           flex-direction: row;
           align-items: center;
