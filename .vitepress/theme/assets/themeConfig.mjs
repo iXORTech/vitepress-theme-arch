@@ -338,17 +338,6 @@ export const themeConfig = {
       enable: true,
     },
   },
-  // 友链
-  friends: {
-    // 友链朋友圈
-    circleOfFriends: "",
-    // 动态友链
-    dynamicLink: {
-      server: "",
-      app_token: "",
-      table_id: "",
-    },
-  },
   // AI Search | AI 搜索
   // https://www.algolia.com/
   search: {
