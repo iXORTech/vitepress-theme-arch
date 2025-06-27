@@ -13,7 +13,7 @@
             </div>
             <!-- Menu -->
             <div class="menu-list">
-              <div v-for="(item, index) in nav" :key="index" class="menu-item">
+              <div v-for="(item, index) in localizedNav" :key="index" class="menu-item">
                 <div v-if="item.items">
                   <span class="link-title">{{ item.text }}</span>
                   <div v-if="item.items" class="link-child">
@@ -63,11 +63,19 @@
 import { mainStore } from "@/store";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n, currentLang } = useI18n()
 const store = mainStore();
 const router = useRouter();
 const { theme } = useData();
-const { nav, tagsData } = theme.value;
+const { tagsData } = theme.value;
+
+// Use localized nav if available, fallback to default nav
+const localizedNav = computed(() => {
+  const navLocales = theme.value.navLocales;
+  const nav = theme.value.nav;
+  const lang = currentLang?.value || theme.value.siteMeta?.lang || 'zh-CN';
+  return (navLocales && navLocales[lang]) ? navLocales[lang] : nav;
+});
 
 const pageJump = (url) => {
   if (!url) return false;
