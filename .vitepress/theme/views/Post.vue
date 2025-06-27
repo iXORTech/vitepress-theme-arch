@@ -78,7 +78,7 @@
             </a>
           </div>
           <a
-            href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre"
+            href="https://github.com/iXORTech/vitepress-theme-arch/issues"
             class="report"
             target="_blank"
           >
