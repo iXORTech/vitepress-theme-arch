@@ -27,14 +27,22 @@ import { useI18n } from '@/utils/i18n'
 
 const { i18n } = useI18n()
 
-// Compute i18n for link groups
+// Compute i18n for link groups and entries
 const linkData = computed(() => {
   return linksData.map(group => ({
     ...group,
     // To change the group names and descriptions with i18n, you can modify the yaml files in locales
     // If you don't need i18n for group names and descriptions, comment out the following 2 lines (Do not comment out the whole function)
     groupDesc: i18n(`assets.links.groupDesc.${group.group}`) || group.groupDesc,
-    groupName: i18n(`assets.links.groupName.${group.group}`) || group.groupName
+    groupName: i18n(`assets.links.groupName.${group.group}`) || group.groupName,
+    // i18n for entries
+    // To change the title and description of each entry with i18n, you can modify the yaml files in locales
+    // If you don't need i18n for entry titles and descriptions, comment out the following 5 lines and modify the linkData.mjs file directly
+    entries: group.entries.map(entry => ({
+      ...entry,
+      description: i18n(entry.description) || entry.description,
+      title: i18n(entry.title) || entry.title
+    }))
   }))
 })
 

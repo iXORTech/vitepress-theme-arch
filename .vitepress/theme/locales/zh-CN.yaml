@@ -256,6 +256,9 @@ assets:
       frequently-visited: "站点"
       developers: "开发者"
       github-friends: "Github朋友"
+    sample:
+      title: "示例链接"
+      description: "这是一个友链示例"
 
 copy-text:
   success: "复制成功，在转载时请标注本文地址"

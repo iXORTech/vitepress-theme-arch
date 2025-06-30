@@ -257,6 +257,9 @@ assets:
       frequently-visited: "Frequently Visited"
       developers: "Developers"
       github-friends: "Github Friends"
+    sample:
+      title: "Sample Link"
+      description: "This is a sample of friend links."
 
 
 copy-text:

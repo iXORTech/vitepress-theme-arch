@@ -5,16 +5,9 @@ export const linksData = [
     entries: [
       {
         avatar: "https://github.com/Cubik65536.png",
-        description: "This is a sample of friend links.",
+        description: "assets.links.sample.description",
         screenshot: "",
-        title: "Sample Link",
-        url: "https://github.com/Cubik65536"
-      },
-      {
-        avatar: "https://github.com/Cubik65536.png",
-        description: "这是个友链的示例。",
-        screenshot: "",
-        title: "示例",
+        title: "assets.links.sample.title",
         url: "https://github.com/Cubik65536"
       },
     ],
