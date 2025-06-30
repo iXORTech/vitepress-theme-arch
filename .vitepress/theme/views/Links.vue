@@ -31,6 +31,8 @@ const { i18n } = useI18n()
 const linkData = computed(() => {
   return linksData.map(group => ({
     ...group,
+    // To change the group names and descriptions with i18n, you can modify the yaml files in locales
+    // If you don't need i18n for group names and descriptions, comment out the following 2 lines (Do not comment out the whole function)
     groupDesc: i18n(`assets.links.groupDesc.${group.group}`) || group.groupDesc,
     groupName: i18n(`assets.links.groupName.${group.group}`) || group.groupName
   }))
