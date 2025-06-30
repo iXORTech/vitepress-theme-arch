@@ -1,7 +1,7 @@
 <!-- Friend Links & Recommended Sites -->
 <template>
   <div class="link">
-    <Banner type="page" title="Friend Links & Recommended Sites" desc="They are all great! Check them out!">
+    <Banner type="page" :title="i18n('views.links.title')" :desc="i18n('views.links.description')">
       <template v-slot:header-slot>
         <div class="menu">
           <div class="menu-item random" @click="randomJump">
@@ -14,20 +14,6 @@
           </div>
         </div>
       </template>
-      <!-- <div class="link-group">
-        <div v-for="(link, index) in pairedLinks(allLinkData)" :key="index" class="link-group-item">
-          <a v-for="(item, i) in link" :key="i" :href="item.url" class="link-logo">
-            <LazyLoader>
-              <img
-                :src="item.avatar"
-                :alt="item.name"
-                class="link-logo-img"
-                @load="(e) => e.target.classList.add('loaded')"
-              />
-            </LazyLoader>
-          </a>
-        </div>
-      </div> -->
     </Banner>
     <!-- Link Data -->
     <LinkList :listData="linkData" :useFriendsLink="true" />
