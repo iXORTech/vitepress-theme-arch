@@ -235,6 +235,8 @@ views:
   links:
     shuffle: "随机访问"
     apply: "申请友链"
+    title: "友链 & 推荐站点"
+    description: "友链 & 推荐站点"
   not_found:
     go_home: "回到首页"
   post:

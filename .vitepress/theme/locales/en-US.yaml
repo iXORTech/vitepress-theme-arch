@@ -236,6 +236,8 @@ views:
   links:
     shuffle: "Go To a Random Link"
     apply: "Apply to be Listed Here"
+    title: "Friend Links & Recommended Sites"
+    description: "They are all great! Check them out!"
   not_found:
     go_home: "Go Home"
   post:
