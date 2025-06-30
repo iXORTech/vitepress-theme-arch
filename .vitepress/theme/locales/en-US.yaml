@@ -245,6 +245,20 @@ views:
     info_expiry_reminder_after: "days ago. The information contained might be outdated."
     report: "Report an Issue"
 
+assets:
+  links:
+    groupDesc:
+      friends: "My Friends"
+      frequently-visited: "Sites that I visit frequently."
+      developers: "Fellow Developers"
+      github-friends: "Friends from Github"
+    groupName:
+      friends: "Friends"
+      frequently-visited: "Frequently Visited"
+      developers: "Developers"
+      github-friends: "Github Friends"
+
+
 copy-text:
   success: "Copied Successfully. Please quote the source when using it."
   failed: "Copy Failed, Please Try Again"

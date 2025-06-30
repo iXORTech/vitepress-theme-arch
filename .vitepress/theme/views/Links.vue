@@ -22,13 +22,23 @@
 
 <script setup>
 import { smoothScrolling } from "@/utils/helper";
-import linkData from "@/assets/linkData.mjs";
+import { linksData } from "@/assets/linkData.mjs";
 import { useI18n } from '@/utils/i18n'
 
 const { i18n } = useI18n()
 
+// Compute i18n for link groups
+const linkData = computed(() => {
+  return linksData.map(group => ({
+    ...group,
+    groupDesc: i18n(`assets.links.groupDesc.${group.group}`) || group.groupDesc,
+    groupName: i18n(`assets.links.groupName.${group.group}`) || group.groupName
+  }))
+})
+
+// Compute all link data
 const allLinkData = computed(() => {
-  return linkData.flatMap((item) => item.entries);
+  return linkData.value.flatMap((item) => item.entries);
 });
 
 const randomJump = () => {

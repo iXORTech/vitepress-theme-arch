@@ -244,6 +244,19 @@ views:
     info_expiry_reminder_after: "天前，其中的信息可能已经事过境迁"
     report: "反馈与投诉"
 
+assets:
+  links:
+    groupDesc:
+      friends: "我的朋友"
+      frequently-visited: "常去站点"
+      developers: "一些厉害的开发者们"
+      github-friends: "来自Github的朋友们"
+    groupName:
+      friends: "朋友"
+      frequently-visited: "站点"
+      developers: "开发者"
+      github-friends: "Github朋友"
+
 copy-text:
   success: "复制成功，在转载时请标注本文地址"
   failed: "复制出现错误，请重试"

@@ -1,6 +1,6 @@
 // Friend Links & Recommended Sites
 
-const linksData = [
+export const linksData = [
   {
     entries: [
       {
@@ -12,27 +12,20 @@ const linksData = [
       }
     ],
     group: "friends",
+    // Check in locales.yaml for groupName and groupDesc
     groupDesc: "My Friends",
     groupName: "Friends"
   },
   {
     entries: [],
     group: "frequently-visited",
-    groupDesc: "Sites that I visit frequently.",
-    groupName: "Frequently Visited"
   },
   {
     entries: [],
     group: "developers",
-    groupDesc: "Fellow Developers",
-    groupName: "Developers"
   },
   {
     entries: [],
     group: "github-friends",
-    groupDesc: "Friends from Github",
-    groupName: "GitHub Friends"
   }
 ];
-
-export default linksData;
