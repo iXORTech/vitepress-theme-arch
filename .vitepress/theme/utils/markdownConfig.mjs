@@ -106,6 +106,37 @@ const markdownConfig = (md, themeConfig) => {
       }
     },
   });
+  // SwiperJS
+  md.use(container, "swiper-slide", {
+    render(tokens, idx) {
+      const token = tokens[idx];
+      if (token.nesting === 1) {
+        return `<div class="swiper-slide"><div>`;
+      } else {
+        return `</div></div>`;
+      }
+    },
+  });
+  md.use(container, "swiper-slide-no-shadow", {
+    render(tokens, idx) {
+      const token = tokens[idx];
+      if (token.nesting === 1) {
+        return `<div class="swiper-slide no-shadow"><div>`;
+      } else {
+        return `</div></div>`;
+      }
+    },
+  });
+  md.use(container, "swiper", {
+    render(tokens, idx) {
+      const token = tokens[idx];
+      if (token.nesting === 1) {
+        return `<div class="swiper"><div class="swiper-wrapper">`;
+      } else {
+        return `</div><div class="swiper-pagination"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div>`;
+      }
+    },
+  });
   // Table
   md.renderer.rules.table_open = () => {
     return '<div class="table-container"><table>';

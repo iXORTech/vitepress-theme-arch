@@ -65,7 +65,7 @@ const isPostPage = computed(() => {
 // Update document title when language changes
 watchEffect(() => {
   // Only run in client side
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
 
   let pageTitle = page.value.title;
   const siteTitle = getLocalizedSiteTitle();
@@ -74,15 +74,17 @@ watchEffect(() => {
   // For post pages, get localized title from post data
   if (isPostPage.value && page.value.relativePath) {
     const postId = generateId(page.value.relativePath);
-    const post = theme.value.postData?.find(item => item.id === postId);
+    const post = theme.value.postData?.find((item) => item.id === postId);
 
     if (post?.localizedTitle && post.localizedTitle[currentLang.value]) {
       pageTitle = post.localizedTitle[currentLang.value];
     }
   }
   // For regular pages, get localized title from frontmatter
-  else if (frontmatter.value?.localizedTitle &&
-           frontmatter.value.localizedTitle[currentLang.value]) {
+  else if (
+    frontmatter.value?.localizedTitle &&
+    frontmatter.value.localizedTitle[currentLang.value]
+  ) {
     pageTitle = frontmatter.value.localizedTitle[currentLang.value];
   }
 
@@ -97,11 +99,11 @@ watchEffect(() => {
   // Update meta description
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription && siteDescription) {
-    metaDescription.setAttribute('content', siteDescription);
+    metaDescription.setAttribute("content", siteDescription);
   } else if (siteDescription) {
     // Create meta description if it doesn't exist
-    const meta = document.createElement('meta');
-    meta.name = 'description';
+    const meta = document.createElement("meta");
+    meta.name = "description";
     meta.content = siteDescription;
     document.head.appendChild(meta);
   }
@@ -191,6 +193,25 @@ onMounted(() => {
   window.addEventListener("scroll", calculateScroll);
   window.addEventListener("contextmenu", openRightMenu);
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", changeSiteThemeType);
+  // Inject SwiperJS script and initialize Swiper components.
+  const script = document.createElement("script");
+  script.src = "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
+  script.onload = () => {
+    const swiper = new Swiper(".swiper", {
+      effect: "cards",
+      grabCursor: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  };
+  document.head.appendChild(script);
 });
 
 onBeforeUnmount(() => {

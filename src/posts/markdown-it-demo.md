@@ -269,3 +269,29 @@ Finally, **Maxwell's equations!**
 | $\nabla \cdot \vec{\mathbf{B}}  = 0$                                                                                                                                      | divergence of $\vec{\mathbf{B}}$ is zero                                               |
 | $\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t}  = \vec{\mathbf{0}}$                                                          | curl of $\vec{\mathbf{E}}$ is proportional to the rate of change of $\vec{\mathbf{B}}$ |
 | $\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} = \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} = 4 \pi \rho$ | _wha?_                                                                                 |
+
+### SwiperJS
+
+:::: swiper
+::: swiper-slide
+Slide 1
+:::
+::: swiper-slide
+Slide 2
+:::
+::: swiper-slide
+Slide 3
+:::
+::::
+
+:::: swiper
+::: swiper-slide-no-shadow
+![Image](https://img.cubik65536.top/vanierflossday24-3dswag-technicaldesignpreview.png)
+:::
+::: swiper-slide-no-shadow
+![Image](https://img.cubik65536.top/vanierflossday24-3dswag-technicaldesignpreview.png)
+:::
+::: swiper-slide-no-shadow
+![Image](https://img.cubik65536.top/vanierflossday24-3dswag-technicaldesignpreview.png)
+:::
+::::
