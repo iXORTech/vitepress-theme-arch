@@ -25,7 +25,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { smoothScrolling } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n, currentLang } = useI18n();
+const { i18n, i18nLinkDataName, i18nLinkDataDesc, currentLang } = useI18n();
 
 const linkData = ref([]);
 const allLinkData = computed(() => linkData.value.flatMap(item => item.entries));
@@ -64,7 +64,20 @@ function loadLinkData() {
 
     for (const path of sortedStandardPaths) {
       const data = standardModules[path].default || standardModules[path];
-      if (Array.isArray(data)) combinedData.push(...data);
+      console.log("Processing standard link data:", data);
+      if (Array.isArray(data)) {
+        const localizedData = data.map(entry => {
+          console.log("Processing entry:", entry);
+          return {
+            ...entry,
+            groupName: i18nLinkDataName(entry.group) || entry.groupName,
+            groupDesc: i18nLinkDataDesc(entry.group) || entry.groupDesc,
+          };
+        });
+        combinedData.push(...localizedData);
+      } else {
+        console.warn(`Standard link data at ${path} is not an array.`);
+      }
     }
 
     linkData.value = combinedData;

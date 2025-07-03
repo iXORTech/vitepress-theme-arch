@@ -1,5 +1,7 @@
 ---
 title: Friend Links & Recommended Sites
+localizedTitle:
+  zh-CN: 友链 & 推荐站点
 aside: false
 comment: true
 ---
