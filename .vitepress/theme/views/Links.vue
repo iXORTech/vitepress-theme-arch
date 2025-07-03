@@ -35,14 +35,37 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted } from 'vue';
 import { smoothScrolling } from "@/utils/helper";
-import linkData from "@/assets/linkData.mjs";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n()
+const { i18n } = useI18n();
 
-const allLinkData = computed(() => {
-  return linkData.flatMap((item) => item.entries);
+const linkData = ref([]);
+const allLinkData = computed(() => linkData.value.flatMap(item => item.entries));
+
+// Load data on mount
+onMounted(() => {
+  try {
+    const modules = import.meta.glob('@/assets/**/linksData.mjs', { eager: true });
+    const combinedData = [];
+
+    // Sort paths by directory depth (fewer segments = higher in hierarchy)
+    const sortedPaths = Object.keys(modules).sort((a, b) => {
+      return a.split('/').length - b.split('/').length;
+    });
+
+    // Process paths in order from highest in hierarchy to lowest
+    for (const path of sortedPaths) {
+      const data = modules[path].default || modules[path];
+      if (Array.isArray(data)) combinedData.push(...data);
+    }
+
+    linkData.value = combinedData;
+    console.log("Loaded link data from paths:", sortedPaths);
+  } catch (error) {
+    console.error("Error loading link data:", error);
+  }
 });
 
 const randomJump = () => {
