@@ -1,0 +1,4 @@
+[submodule ".vitepress/theme/assets/generatedLinkData"]
+	path = .vitepress/theme/assets/generatedLinkData
+	url = https://Qubik65536@github.com/iXORTech/blog-friend-links-data-generator-demo.git
+	branch = data
