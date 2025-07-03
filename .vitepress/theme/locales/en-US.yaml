@@ -93,6 +93,7 @@ components:
   footer-link:
     learn-more: "Learn More"
     go-back-to-top: "Go Back to Top"
+  footer-reference-title: "Footer"
   loading:
     hint: "Still showing this? Click anywhere to close it."
   mobile-menu:

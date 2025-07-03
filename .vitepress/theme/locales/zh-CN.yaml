@@ -93,6 +93,7 @@ components:
   footer-link:
     learn-more: "了解更多"
     go-back-to-top: "返回顶部"
+  footer-reference-title: "脚注"
   loading:
     hint: "一直显示？点击任意区域即可关闭"
   mobile-menu:

@@ -10,19 +10,6 @@ import sub_plugin from "markdown-it-sub";
 import sup_plugin from "markdown-it-sup";
 import temml from "markdown-it-math/temml";
 
-const configI18n = (themeConfig) => {
-  const { lang } = themeConfig.siteMeta;
-  const i18n = {
-    "zh-CN": {
-      footnoteOpenTitle: "脚注",
-    },
-    "en-US": {
-      footnoteOpenTitle: "Footnotes",
-    },
-  };
-  return i18n[lang];
-}
-
 // markdown-it
 const markdownConfig = (md, themeConfig) => {
   // Plugins
@@ -36,7 +23,7 @@ const markdownConfig = (md, themeConfig) => {
   // footnote
   md.renderer.rules.footnote_block_open = (tokens, idx, options) =>
     (options.xhtmlOut ? '<hr class="footnotes-sep" />\n' : '<hr class="footnotes-sep">\n') +
-    '<strong style="color: var(--main-color)">' + configI18n(themeConfig).footnoteOpenTitle + '</strong>\n' +
+    '<FooterReferenceTitle />\n' +
     '<section class="footnotes">\n' +
     '<ol class="footnotes-list">\n';
   md.use(mark_plugin);
