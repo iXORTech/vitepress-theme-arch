@@ -2,37 +2,31 @@
 
 const linksData = [
   {
-    entries: [
-      {
-        avatar: "https://github.com/Cubik65536.png",
-        description: "This is a sample of friend links.",
-        screenshot: "",
-        title: "Sample Link",
-        url: "https://github.com/Cubik65536"
-      }
-    ],
-    group: "friends",
-    groupDesc: "My Friends",
-    groupName: "Friends"
-  },
-  {
     entries: [],
     group: "frequently-visited",
     groupDesc: "Sites that I visit frequently.",
-    groupName: "Frequently Visited"
+    groupName: "Frequently Visited",
   },
   {
-    entries: [],
+    entries: [
+      {
+        avatar: "https://img.qubik.top/CubikAvatar/56728b-outline.PNG",
+        description: "This is a sample of friend links.",
+        screenshot: "",
+        title: "Sample Link",
+        url: "https://github.com/Qubik65536",
+      },
+    ],
     group: "developers",
     groupDesc: "Fellow Developers",
-    groupName: "Developers"
+    groupName: "Developers",
   },
   {
     entries: [],
     group: "github-friends",
     groupDesc: "Friends from Github",
-    groupName: "GitHub Friends"
-  }
+    groupName: "GitHub Friends",
+  },
 ];
 
 export default linksData;

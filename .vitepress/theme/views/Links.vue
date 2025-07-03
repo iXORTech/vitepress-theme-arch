@@ -35,37 +35,68 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { smoothScrolling } from "@/utils/helper";
 import { useI18n } from '@/utils/i18n'
 
-const { i18n } = useI18n();
+const { i18n, currentLang } = useI18n();
 
 const linkData = ref([]);
 const allLinkData = computed(() => linkData.value.flatMap(item => item.entries));
 
-// Load data on mount
-onMounted(() => {
+// Function to load and organize link data.
+function loadLinkData() {
   try {
-    const modules = import.meta.glob('@/assets/**/linksData.mjs', { eager: true });
+    // Load all localized files with static patterns.
+    const localizedModules = import.meta.glob('@/assets/**/linksData.*.mjs', { eager: true });
+
+    // Load standard linkData files.
+    const standardModules = import.meta.glob('@/assets/**/linksData.mjs', { eager: true });
+
     const combinedData = [];
 
-    // Sort paths by directory depth (fewer segments = higher in hierarchy)
-    const sortedPaths = Object.keys(modules).sort((a, b) => {
-      return a.split('/').length - b.split('/').length;
-    });
+    // Filter and process localized files that match current language.
+    const filteredLocalizedPaths = Object.keys(localizedModules).filter(path =>
+      path.includes(`linksData.${currentLang.value}.mjs`)
+    );
 
-    // Process paths in order from highest in hierarchy to lowest
-    for (const path of sortedPaths) {
-      const data = modules[path].default || modules[path];
+    // Sort localized paths by directory hierarchy.
+    const sortedLocalizedPaths = filteredLocalizedPaths.sort((a, b) =>
+      a.split('/').length - b.split('/').length
+    );
+
+    // Process matching localized files first.
+    for (const path of sortedLocalizedPaths) {
+      const data = localizedModules[path].default || localizedModules[path];
+      if (Array.isArray(data)) combinedData.push(...data);
+    }
+
+    // Then process standard files.
+    const sortedStandardPaths = Object.keys(standardModules).sort((a, b) =>
+      a.split('/').length - b.split('/').length
+    );
+
+    for (const path of sortedStandardPaths) {
+      const data = standardModules[path].default || standardModules[path];
       if (Array.isArray(data)) combinedData.push(...data);
     }
 
     linkData.value = combinedData;
-    console.log("Loaded link data from paths:", sortedPaths);
+    console.log("Loaded localized link data from:", sortedLocalizedPaths);
+    console.log("Loaded standard link data from:", sortedStandardPaths);
   } catch (error) {
     console.error("Error loading link data:", error);
   }
+}
+
+// Load data on mount
+onMounted(() => {
+  loadLinkData();
+});
+
+// Reload data when language changes
+watch(currentLang, () => {
+  loadLinkData();
 });
 
 const randomJump = () => {
