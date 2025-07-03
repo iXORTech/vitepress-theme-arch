@@ -2,14 +2,24 @@ import { computed, ref } from 'vue'
 import { useData } from 'vitepress'
 
 // Import language files
-import enUsYaml from '../locales/en-US.yaml'
-import zhCnYaml from '../locales/zh-CN.yaml'
+import enUsYaml from '@/locales/en-US.yaml'
+import zhCnYaml from '@/locales/zh-CN.yaml'
 
 const translations = {
   'en': enUsYaml,
   'en-US': enUsYaml,
   'zh': zhCnYaml,
   'zh-CN': zhCnYaml
+}
+
+import linkDataEnUs from '@/assets/linkDataLocales/en-US.yaml'
+import linkDataZhCn from '@/assets/linkDataLocales/zh-CN.yaml'
+
+const linkDataTranslations = {
+  'en': linkDataEnUs,
+  'en-US': linkDataEnUs,
+  'zh': linkDataZhCn,
+  'zh-CN': linkDataZhCn
 }
 
 // Create a reactive language reference that can be updated
@@ -60,6 +70,50 @@ export function useI18n() {
     }
 
     return value
+  }
+
+  const i18nLinkDataName = (key) => {
+    const keys = key.split('.')
+    let value = linkDataTranslations[currentLang.value]
+
+    if (!value) {
+      value = linkDataTranslations['en'] // Fallback to English
+    }
+
+    for (const k of keys) {
+      if (value === undefined) {
+        return null
+      }
+      value = value[k]
+    }
+
+    if (!value || !value["name"]) {
+      return null
+    }
+
+    return value["name"]
+  }
+
+  const i18nLinkDataDesc = (key) => {
+    const keys = key.split('.')
+    let value = linkDataTranslations[currentLang.value]
+
+    if (!value) {
+      value = linkDataTranslations['en'] // Fallback to English
+    }
+
+    for (const k of keys) {
+      if (value === undefined) {
+        return null
+      }
+      value = value[k]
+    }
+
+    if (!value || !value["desc"]) {
+      return null
+    }
+
+    return value["desc"]
   }
 
   // Get available languages
@@ -158,6 +212,8 @@ export function useI18n() {
 
   return {
     i18n,
+    i18nLinkDataName,
+    i18nLinkDataDesc,
     currentLang,
     setLanguage,
     availableLanguages,

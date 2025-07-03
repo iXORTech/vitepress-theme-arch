@@ -21,12 +21,6 @@ const linksData = [
     groupDesc: "Fellow Developers",
     groupName: "Developers",
   },
-  {
-    entries: [],
-    group: "github-friends",
-    groupDesc: "Friends from Github",
-    groupName: "GitHub Friends",
-  },
 ];
 
 export default linksData;
