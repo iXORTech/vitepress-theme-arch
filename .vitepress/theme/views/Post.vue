@@ -41,12 +41,12 @@
         <!-- Post Hotness -->
         <span class="hot meta">
           <i class="font-awesome fa-solid fa-fire" />
-          <span id="twikoo_visitors" class="artalk-pv-count">0</span>
+          <span id="twikoo_visitors" class="artalk-pv-count waline-pageview-count">0</span>
         </span>
         <!-- Comment Count -->
         <span class="chat meta hover" @click="commentRef?.scrollToComments">
           <i class="font-awesome fa-solid fa-comments" />
-          <span id="twikoo_comments" class="artalk-comment-count">0</span>
+          <span id="twikoo_comments" class="artalk-comment-count waline-comment-count">0</span>
         </span>
       </div>
     </div>

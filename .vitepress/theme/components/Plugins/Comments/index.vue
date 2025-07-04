@@ -19,6 +19,8 @@
     <!-- Different Comment Systems -->
     <Artalk v-if="theme.comment.type === 'artalk'" :fill="fill" />
     <Twikoo v-else-if="theme.comment.type === 'twikoo'" :fill="fill" />
+    <!-- We directly use the Waline Vue component, so our component is just a wrapper. -->
+    <WalineWrapper v-else-if="theme.comment.type === 'waline'" :fill="fill" />
   </div>
 </template>
 

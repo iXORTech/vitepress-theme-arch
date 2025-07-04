@@ -1,5 +1,6 @@
 import { loadScript, loadCSS } from "./commonTools.mjs";
 
+// NOTE: WalineWrapper doesn't depend on this file.
 const initComments = async (themeConfig) => {
   try {
     const option = themeConfig.comment;

@@ -316,10 +316,10 @@ export const themeConfig = {
   },
   // Comment System | 评论系统
   comment: {
-    enable: false,
+    enable: true,
     // Comment System Type | 评论系统类型
-    // artalk / twikoo
-    type: "artalk",
+    // artalk / twikoo / waline
+    type: "waline",
     // Artalk
     // https://artalk.js.org/
     artalk: {
@@ -333,6 +333,32 @@ export const themeConfig = {
       envId: "",
       lang: "zh-CN",
     },
+    waline: {
+      js: "https://gcore.jsdelivr.net/npm/@waline/client@3/dist/waline.js",
+      css: "https://gcore.jsdelivr.net/npm/@waline/client@3/dist/waline.css",
+      meta_css: "https://gcore.jsdelivr.net/npm/@waline/client@3/dist/waline-meta.css",
+      // WalineWrapper Server URL | WalineWrapper 服务器地址
+      serverURL: "",
+      // Custom Emoji | 自定义表情
+      emoji: [
+        "https://unpkg.com/@waline/emojis@1.0.1/weibo",
+        "https://unpkg.com/@waline/emojis@1.0.1/alus",
+        "https://unpkg.com/@waline/emojis@1.0.1/bilibili",
+        "https://unpkg.com/@waline/emojis@1.0.1/qq",
+        "https://unpkg.com/@waline/emojis@1.0.1/tieba",
+        "https://unpkg.com/@waline/emojis@1.0.1/tw-emoji",
+      ],
+      // Comment Info｜评论信息
+      meta: ["nick", "mail", "link"],
+      // Required Comment Info｜必填评论信息
+      requiredMeta: ["nick", "mail"],
+      // Login Forced｜强制登录
+      login: "enable",
+      // Comment Per Page｜每页评论数
+      pageSize: 10,
+      // Post Reaction｜文章点赞
+      reaction: false,
+    }
   },
   // Right-Side Sidebar | 右侧边栏
   aside: {
