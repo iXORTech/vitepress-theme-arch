@@ -9,11 +9,19 @@ import mark_plugin from "markdown-it-mark";
 import sub_plugin from "markdown-it-sub";
 import sup_plugin from "markdown-it-sup";
 import temml from "markdown-it-math/temml";
+import typst from '@lowmst/markdown-it-typst-math';
 
 // markdown-it
 const markdownConfig = (md, themeConfig) => {
   // Plugins
-  md.use(temml);
+  let useTemml = true; // Set to true to use temml plugin instead of typst.
+  if (useTemml) {
+    md.use(temml);
+  } else {
+    md.use(typst, {
+      typstInjection: "#show math.equation: set text(font: \"IBM Plex Math\", size: 1.1em)\n" // Set the font for math rendering.
+    });
+  }
   md.use(markdownItAttrs);
   md.use(tabsMarkdownPlugin);
   md.use(abbr_plugin);

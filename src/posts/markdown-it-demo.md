@@ -270,6 +270,18 @@ Finally, **Maxwell's equations!**
 | $\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t}  = \vec{\mathbf{0}}$                                                          | curl of $\vec{\mathbf{E}}$ is proportional to the rate of change of $\vec{\mathbf{B}}$ |
 | $\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} = \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} = 4 \pi \rho$ | _wha?_                                                                                 |
 
+Note that Typst math rendering is also supported:
+
+$$
+e^(i pi) + 1 = 0
+$$
+
+$$
+1/2 < floor(mod(floor(y / 17) dot 2^(-17 dot floor(x) - mod(floor(y), 17)), 2))
+$$
+
+To properly see them, modify the `markdownConfig.mjs` file in the `theme/utils` directory to enable the Typst.
+
 ### SwiperJS
 
 :::: swiper

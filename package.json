@@ -24,6 +24,7 @@
     "deploy:vercel": "vercel deploy"
   },
   "devDependencies": {
+    "@lowmst/markdown-it-typst-math": "^1.1.0",
     "@waline/client": "^3.5.7",
     "cheerio": "1.0.0-rc.12",
     "eslint": "^8.57.1",
