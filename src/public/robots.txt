@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Allow: /posts/
 
-Sitemap: https://blog.imsyy.top/sitemap.xml
+Sitemap: https://example.tld/sitemap.xml
