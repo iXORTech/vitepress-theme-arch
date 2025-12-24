@@ -30,7 +30,7 @@
         <span class="by">{{ i18n('components.footer.powered-by.suffix') }}</span>
       </div>
       <div class="meta">
-        <a class="rss link" href="https://blog.imsyy.top/rss.xml" target="_blank">
+        <a class="rss link" href="https://example.tld/rss.xml" target="_blank">
           <i class="font-awesome fa-solid fa-rss"></i>
           <span class="name">RSS</span>
         </a>
