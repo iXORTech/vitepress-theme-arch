@@ -33,7 +33,10 @@
           <div class="site-menu">
             <div v-for="(item, index) in navMenu" :key="index" class="menu-item">
               <div v-if="item.items">
-                <span class="link-btn" v-if="item.items">{{ item.text }}</span>
+                <span class="link-btn" v-if="item.items">
+                  <i v-if="item.icon" :class="`font-awesome ${item.icon}`" />
+                  {{ item.text }}
+                </span>
                 <div class="link-child">
                   <span
                     v-for="(child, childIndex) in item.items"
@@ -424,6 +427,12 @@ document.documentElement.style.setProperty('--back-to-top-text', `"${i18n('compo
             transition:
               color 0.3s,
               background-color 0.3s;
+
+            .font-awesome {
+              margin-right: 8px;
+              font-size: 20px;
+              transition: color 0.3s;
+            }
           }
 
           .link-btn-goto {

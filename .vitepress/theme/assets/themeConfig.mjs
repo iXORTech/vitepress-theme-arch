@@ -110,6 +110,7 @@ export const themeConfig = {
     "en-US": [
       {
         text: "Posts",
+        icon: "fa-solid fa-newspaper",
         items: [
           { text: "Archives", link: "/archives", icon: "fa-solid fa-newspaper" },
           { text: "All Categories", link: "/categories", icon: "fa-solid fa-folder-open" },
@@ -128,6 +129,7 @@ export const themeConfig = {
     "zh-CN": [
       {
         text: "文章",
+        icon: "fa-solid fa-newspaper",
         items: [
           { text: "归档", link: "/archives", icon: "fa-solid fa-newspaper" },
           { text: "全部分类", link: "/categories", icon: "fa-solid fa-folder-open" },
