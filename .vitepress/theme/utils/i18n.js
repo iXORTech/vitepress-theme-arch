@@ -28,6 +28,25 @@ const userSelectedLang = ref(null)
 export function useI18n() {
   const { theme } = useData()
 
+  // Initialize from localStorage if available.
+  if (!userSelectedLang.value && typeof window !== 'undefined') {
+    const savedLang = localStorage.getItem('preferred-language')
+    if (savedLang && translations[savedLang]) {
+      userSelectedLang.value = savedLang
+    }
+  }
+
+  // If possible, get the user's browser language preference and set it as default.
+  // Map all zh variations to zh-CN and all other languages to en-US.
+  if (!userSelectedLang.value && typeof navigator !== 'undefined') {
+    const browserLang = navigator.language || navigator.userLanguage
+    if (browserLang.startsWith('zh')) {
+      userSelectedLang.value = 'zh-CN'
+    } else {
+      userSelectedLang.value = 'en-US'
+    }
+  }
+
   // Use user selected language if available, otherwise fall back to theme config
   const currentLang = computed(() => 
     userSelectedLang.value || theme.value.siteMeta?.lang || 'en-US'
@@ -41,14 +60,6 @@ export function useI18n() {
       localStorage.setItem('preferred-language', lang)
     } else {
       console.warn(`Language ${lang} is not supported`)
-    }
-  }
-
-  // Initialize from localStorage if available
-  if (!userSelectedLang.value && typeof window !== 'undefined') {
-    const savedLang = localStorage.getItem('preferred-language')
-    if (savedLang && translations[savedLang]) {
-      userSelectedLang.value = savedLang
     }
   }
 
