@@ -157,12 +157,10 @@ onMounted(() => {
       flex-direction: row;
       align-items: center;
       .categories {
-        margin-right: 12px;
         .cat-item {
-          display: flex;
-          flex-direction: row;
           align-items: center;
           padding: 6px 12px;
+          margin-right: 6px;
           font-size: 14px;
           font-weight: bold;
           border-radius: 8px;
