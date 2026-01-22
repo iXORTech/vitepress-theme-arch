@@ -4,7 +4,7 @@
   <Control />
   <Nav />
   <!-- Main Contents -->
-  <main :class="['mian-layout', { loading: loadingStatus, 'is-post': isPostPage }]">
+  <main :class="['mian-layout', { loading: loadingStatus, 'is-post': isPostPage || isSeriesPost }]">
     <!-- 404 -->
     <NotFound v-if="page.isNotFound" />
     <!-- Home Page -->
@@ -13,12 +13,14 @@
     <template v-else>
       <!-- Post Page -->
       <Post v-if="isPostPage" />
+      <!-- Series Post Page -->
+      <SeriesPost v-else-if="isSeriesPost" />
       <!-- Regular Page -->
       <Page v-else-if="!page.isNotFound" />
     </template>
   </main>
   <!-- Footer -->
-  <FooterLink v-show="!loadingStatus" :showBar="isPostPage && !page.isNotFound" />
+  <FooterLink v-show="!loadingStatus" :showBar="(isPostPage || isSeriesPost) && !page.isNotFound" />
   <Footer v-show="!loadingStatus" />
   <!-- Menu -->
   <Teleport to="body">
@@ -62,6 +64,16 @@ const isPostPage = computed(() => {
   return routePath.includes("/posts/");
 });
 
+// Check if the page is a series post.
+const isSeriesPost = computed(() => {
+  const routePath = decodeURIComponent(route.path);
+  return (
+    routePath.includes("/series/") &&
+    !routePath.endsWith("/series") &&
+    !routePath.endsWith("/series/")
+  );
+});
+
 // Update document title when language changes
 watchEffect(() => {
   // Only run in client side
@@ -75,6 +87,15 @@ watchEffect(() => {
   if (isPostPage.value && page.value.relativePath) {
     const postId = generateId(page.value.relativePath);
     const post = theme.value.postData?.find((item) => item.id === postId);
+
+    if (post?.localizedTitle && post.localizedTitle[currentLang.value]) {
+      pageTitle = post.localizedTitle[currentLang.value];
+    }
+  }
+  // For series post pages, get localized title from series posts data
+  else if (isSeriesPost.value && page.value.relativePath) {
+    const postId = generateId(page.value.relativePath);
+    const post = theme.value.seriesPostsData?.find((item) => item.id === postId);
 
     if (post?.localizedTitle && post.localizedTitle[currentLang.value]) {
       pageTitle = post.localizedTitle[currentLang.value];

@@ -7,15 +7,23 @@ import {
   getAllCategories,
   getAllArchives,
 } from "./theme/utils/getPostData.mjs";
+import { getAllSeries, getAllSeriesPosts, getCombinedPosts } from "./theme/utils/getSeriesData.mjs";
 import { getThemeConfig } from "./init.mjs";
 import markdownConfig from "./theme/utils/markdownConfig.mjs";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import path from "path";
-import yaml from '@rollup/plugin-yaml'
+import yaml from "@rollup/plugin-yaml";
 
 const postData = await getAllPosts();
+const seriesData = await getAllSeries();
+const seriesPostsData = getAllSeriesPosts(seriesData);
 const themeConfig = await getThemeConfig();
+
+// Create combined post data if series posts should be included in home page
+const combinedPostData = themeConfig.series?.includeInHomePage
+  ? getCombinedPosts(postData, seriesPostsData)
+  : postData;
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(
@@ -33,9 +41,12 @@ export default withPwa(
     themeConfig: {
       ...themeConfig,
       postData: postData,
+      combinedPostData: combinedPostData,
       tagsData: getAllType(postData),
       categoriesData: getAllCategories(postData),
       archivesData: getAllArchives(postData),
+      seriesData: seriesData,
+      seriesPostsData: seriesPostsData,
     },
     markdown: {
       // Another LaTeX renderer is used, so this one is disabled.

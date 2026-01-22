@@ -58,6 +58,7 @@ components:
       no-data: "暂无友链数据"
     post-list:
       pinned: "置顶"
+      series: "专栏"
     type-bar:
       home: "主页"
       more: "更多"
@@ -225,6 +226,19 @@ utils:
 views:
   archives:
     posts: "文章"
+  series:
+    all_series: "全部专栏"
+    series_count_before: "共有"
+    series_count_after: "个专栏"
+    posts: "篇文章"
+    no_posts: "此专栏暂无文章"
+    no_series: "暂无专栏"
+  series_post:
+    series_navigation: "专栏导航"
+    previous: "上一篇"
+    next: "下一篇"
+    no_previous: "这是第一篇"
+    no_next: "这是最后一篇"
   cat_or_tag:
     all_categories: "全部分类"
     all_tags: "全部标签"

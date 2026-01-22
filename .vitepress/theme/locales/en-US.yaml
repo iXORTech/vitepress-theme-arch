@@ -58,6 +58,7 @@ components:
       no-data: "No Friend Links & Recommended Sites Data Yet"
     post-list:
       pinned: "Pinned"
+      series: "Series"
     type-bar:
       home: "Home"
       more: "More"
@@ -182,8 +183,8 @@ utils:
       today: "Today"
       days-ago: " days ago"
     copy-text:
-        success: "Copied Successfully. Please quote the source when using it."
-        failed: "Copy Failed, Please Try Again"
+      success: "Copied Successfully. Please quote the source when using it."
+      failed: "Copy Failed, Please Try Again"
     copy-image:
       success: "Image Copied to Clipboard"
       failed: "Error Copying Image, Please Try Again"
@@ -226,6 +227,19 @@ utils:
 views:
   archives:
     posts: "Posts"
+  series:
+    all_series: "All Series"
+    series_count_before: ""
+    series_count_after: "series in total"
+    posts: "posts"
+    no_posts: "No posts in this series yet"
+    no_series: "No series available yet"
+  series_post:
+    series_navigation: "Series Navigation"
+    previous: "Previous"
+    next: "Next"
+    no_previous: "This is the first post"
+    no_next: "This is the last post"
   cat_or_tag:
     all_categories: "All Categories"
     all_tags: "All Tags"

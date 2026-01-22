@@ -1,21 +1,35 @@
 <template>
-  <div class="post-lists" :class="{'layout-grid': layoutType === 'twoColumns'}" :style="gridStyle">
+  <div
+    class="post-lists"
+    :class="{ 'layout-grid': layoutType === 'twoColumns' }"
+    :style="gridStyle"
+  >
     <div
       v-for="(item, index) in listData"
       :key="index"
-      :class="['post-item', 's-card', 'hover',{ simple, cover: showCover(item),[`cover-${layoutType}`]: showCover(item) }]"
+      :class="[
+        'post-item',
+        's-card',
+        'hover',
+        { simple, cover: showCover(item), [`cover-${layoutType}`]: showCover(item) },
+      ]"
       :style="{ animationDelay: `${0.4 + index / 10}s` }"
       @click="toPost(item.regularPath)"
     >
       <div v-if="!simple && showCover(item)" class="post-cover">
-        <img :src="getCover(item)" :alt="item.title">
+        <img :src="getCover(item)" :alt="item.title" />
       </div>
-      
+
       <div class="post-content">
-        <div v-if="!simple && item?.categories" class="post-category">
+        <div v-if="!simple && (item?.categories || item?.isSeriesPost)" class="post-category">
           <span v-for="cat in item?.categories" :key="cat" class="cat-name">
             <i class="font-awesome fa-solid fa-folder-open" />
             {{ cat }}
+          </span>
+          <!-- Series Badge -->
+          <span v-if="item?.isSeriesPost" class="series-badge" @click.stop="router.go('/series')">
+            <i class="font-awesome fa-solid fa-layer-group" />
+            {{ getLocalizedSeriesTitle(item) }}
           </span>
           <!-- Pinned -->
           <span v-if="item?.top" class="top">
@@ -50,9 +64,9 @@
 <script setup>
 import { mainStore } from "@/store";
 import { formatTimestamp } from "@/utils/helper";
-import { useI18n } from '@/utils/i18n'
+import { useI18n } from "@/utils/i18n";
 
-const { i18n, currentLang } = useI18n()
+const { i18n, currentLang } = useI18n();
 
 const store = mainStore();
 const router = useRouter();
@@ -69,34 +83,38 @@ const props = defineProps({
   },
 });
 
-const { theme: themeConfig } = useData()
+const { theme: themeConfig } = useData();
 
-const layoutType = computed(() => 
-  themeConfig.value?.cover?.twoColumns ? 'twoColumns' : themeConfig.value?.cover?.showCover?.coverLayout ?? 'left'
-)
+const layoutType = computed(() =>
+  themeConfig.value?.cover?.twoColumns
+    ? "twoColumns"
+    : (themeConfig.value?.cover?.showCover?.coverLayout ?? "left"),
+);
 
-const gridStyle = computed(() => 
-  layoutType.value === 'twoColumns' ? {
-    '--grid-columns': 2,
-    '--grid-gap': '1rem'
-  } : {}
-)
+const gridStyle = computed(() =>
+  layoutType.value === "twoColumns"
+    ? {
+        "--grid-columns": 2,
+        "--grid-gap": "1rem",
+      }
+    : {},
+);
 
 const showCover = ({ cover: itemCover }) => {
-  if (!itemCover && !themeConfig.value.cover.showCover.defaultCover) return false
-  return themeConfig.value?.cover?.showCover?.enable
-}
+  if (!itemCover && !themeConfig.value.cover.showCover.defaultCover) return false;
+  return themeConfig.value?.cover?.showCover?.enable;
+};
 
 const getCover = ({ cover: itemCover }) => {
-  const { cover } = themeConfig.value ?? {}
-  
-  if (!cover?.showCover?.enable) return false
-  if (itemCover) return itemCover
-  
-  return Array.isArray(cover.showCover.defaultCover) 
+  const { cover } = themeConfig.value ?? {};
+
+  if (!cover?.showCover?.enable) return false;
+  if (itemCover) return itemCover;
+
+  return Array.isArray(cover.showCover.defaultCover)
     ? cover.showCover.defaultCover[Math.floor(Math.random() * cover.showCover.defaultCover.length)]
-    : false
-}
+    : false;
+};
 
 // Helper to get localized title for a post
 const getLocalizedTitle = (post) => {
@@ -114,6 +132,14 @@ const getLocalizedDescription = (post) => {
   return post.description;
 };
 
+// Helper to get localized series title for a series post
+const getLocalizedSeriesTitle = (post) => {
+  if (post.seriesLocalizedTitle && post.seriesLocalizedTitle[currentLang.value]) {
+    return post.seriesLocalizedTitle[currentLang.value];
+  }
+  return post.seriesTitle;
+};
+
 const toPost = (path) => {
   if (typeof window !== "undefined") {
     const scrollY = window.scrollY;
@@ -126,26 +152,28 @@ const toPost = (path) => {
 <style lang="scss" scoped>
 .post-lists {
   .post-item {
-    padding: 0!important;
+    padding: 0 !important;
     display: flex;
     margin-bottom: 1rem;
     animation: fade-up 0.6s 0.4s backwards;
     cursor: pointer;
     overflow: hidden;
     height: 200px;
-    
+
     .post-cover {
       flex: 0 0 35%;
       overflow: hidden;
       transform: translateZ(0);
-      
+
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transform-origin: center center;
         will-change: transform, filter;
-        transition: transform 0.5s ease-out, filter 0.5s ease-out;
+        transition:
+          transform 0.5s ease-out,
+          filter 0.5s ease-out;
         backface-visibility: hidden;
       }
     }
@@ -156,7 +184,7 @@ const toPost = (path) => {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      
+
       .post-category {
         display: flex;
         flex-wrap: wrap;
@@ -180,6 +208,27 @@ const toPost = (path) => {
           .font-awesome {
             opacity: 0.8;
             color: var(--main-color);
+          }
+        }
+        .series-badge {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-left: 8px;
+          padding: 2px 8px;
+          font-size: 12px;
+          border-radius: 6px;
+          background-color: var(--main-color-bg);
+          color: var(--main-color);
+          cursor: pointer;
+          transition: all 0.3s;
+          .font-awesome {
+            margin-right: 4px;
+            font-size: 11px;
+          }
+          &:hover {
+            background-color: var(--main-color);
+            color: var(--main-card-background);
           }
         }
       }
@@ -267,7 +316,7 @@ const toPost = (path) => {
     }
     &:hover {
       .post-cover img {
-        filter: brightness(.8);
+        filter: brightness(0.8);
         transform: scale(1.05);
       }
       .post-content {
@@ -282,7 +331,7 @@ const toPost = (path) => {
     @media (max-width: 768px) {
       flex-direction: column;
       height: auto;
-      
+
       .post-cover {
         flex: none;
         width: 100%;

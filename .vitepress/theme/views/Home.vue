@@ -15,11 +15,7 @@
           :limit="postSize"
           :useParams="showCategories || showTags ? true : false"
           :routePath="
-            showCategories
-              ? `/categories/${showCategories}`
-              : showTags
-                ? `/tags/${showTags}`
-                : ''
+            showCategories ? `/categories/${showCategories}` : showTags ? `/tags/${showTags}` : ''
           "
         />
       </div>
@@ -56,13 +52,21 @@ const props = defineProps({
 // Number of Posts per Page
 const postSize = theme.value.postSize;
 
+// Check if series posts should be included in home page
+const includeSeriesInHome = theme.value.series?.includeInHomePage ?? false;
+
+// Get the appropriate post data source (combined or regular)
+const getHomePostData = () => {
+  return includeSeriesInHome ? theme.value.combinedPostData : theme.value.postData;
+};
+
 // Number of Posts in Total
 const allListTotal = computed(() => {
   const data = props.showCategories
     ? theme.value.categoriesData[props.showCategories]?.articles
     : props.showTags
       ? theme.value.tagsData[props.showTags]?.articles
-      : theme.value.postData;
+      : getHomePostData();
   return data ? data.length : 0;
 });
 
@@ -92,9 +96,9 @@ const postData = computed(() => {
   else if (props.showTags) {
     data = theme.value.tagsData[props.showTags]?.articles;
   }
-  // Post Data
+  // Post Data (use combined data if series should be included)
   else {
-    data = theme.value.postData;
+    data = getHomePostData();
   }
   // Return All Data
   return data ? data.slice(page * postSize, page * postSize + postSize) : [];
