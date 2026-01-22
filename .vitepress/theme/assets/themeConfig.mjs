@@ -16,7 +16,7 @@ export const themeConfig = {
     // },
     localizedDescription: {
       "en-US": "Hello World",
-      "zh-CN": "你好，世界"
+      "zh-CN": "你好，世界",
     },
     // localizedWelcomeMessage: {
     //   "en-US": "Welcome to my site!",
@@ -44,6 +44,12 @@ export const themeConfig = {
   since: "1970-01-01T00:00:00.000Z",
   // Number of Posts to Show per Page
   postSize: 8,
+  // Series Configuration | 专栏文章配置
+  series: {
+    // Include series posts in the home page post list
+    // 在首页文章列表中包含专栏文章
+    includeInHomePage: true,
+  },
   // Inject
   inject: {
     // Head
@@ -117,6 +123,7 @@ export const themeConfig = {
           { text: "All Tags", link: "/tags", icon: "fa-solid fa-hashtag" },
         ],
       },
+      { text: "Series", link: "/series", icon: "fa-solid fa-layer-group" },
       {
         text: "Page Group",
         items: [
@@ -136,6 +143,7 @@ export const themeConfig = {
           { text: "全部标签", link: "/tags", icon: "fa-solid fa-hashtag" },
         ],
       },
+      { text: "专栏", link: "/series", icon: "fa-solid fa-layer-group" },
       {
         text: "页面组",
         items: [
@@ -144,7 +152,7 @@ export const themeConfig = {
         ],
       },
       { text: "关于", link: "/about", icon: "fa-solid fa-address-card" },
-    ]
+    ],
   },
   // Fallback for backward compatibility
   nav: [
@@ -191,7 +199,7 @@ export const themeConfig = {
           },
         ],
       },
-    ]
+    ],
   },
   navMore: [
     {
@@ -214,11 +222,11 @@ export const themeConfig = {
       enable: true,
       // Cover Layout: 'left' | 'right' | 'both'
       // 封面布局: 'left' | 'right' | 'both'
-      coverLayout: 'both',
+      coverLayout: "both",
       // Default Covers (displayed randomly)
       // defaultCover: [
       // ]
-    }
+    },
   },
   // Enable FakeGPT or Not
   fakeGPT: true,
@@ -360,7 +368,7 @@ export const themeConfig = {
       pageSize: 10,
       // Post Reaction｜文章点赞
       reaction: false,
-    }
+    },
   },
   // Right-Side Sidebar | 右侧边栏
   aside: {
@@ -370,8 +378,8 @@ export const themeConfig = {
       text: "This is a simple <strong>VitePress</strong> theme.",
       localizedText: {
         "zh-CN": "这是个 <strong>VitePress</strong> 主题。",
-        "en-US": "This is a simple <strong>VitePress</strong> theme."
-      }
+        "en-US": "This is a simple <strong>VitePress</strong> theme.",
+      },
     },
     // Table of Contents | 文章目录
     toc: {
