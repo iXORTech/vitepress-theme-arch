@@ -44,6 +44,7 @@ const loadSeriesConfig = async (seriesName) => {
         icon: null,
         localizedTitle: {},
         localizedDescription: {},
+        order: 0,
       };
     }
 
@@ -67,6 +68,7 @@ const loadSeriesConfig = async (seriesName) => {
       icon: null,
       localizedTitle: {},
       localizedDescription: {},
+      order: 0,
     };
   }
 };
@@ -180,15 +182,17 @@ export const getAllSeries = async () => {
       }),
     );
 
-    // Sort series by order, then by title
+    // Sort series by order (larger first), then alphabetically by title
     seriesData.sort((a, b) => {
-      const orderA = a.order ?? Infinity;
-      const orderB = b.order ?? Infinity;
+      const orderA = a.order ?? 0;
+      const orderB = b.order ?? 0;
 
+      // Larger order numbers appear first (descending)
       if (orderA !== orderB) {
-        return orderA - orderB;
+        return orderB - orderA;
       }
 
+      // Same order: sort alphabetically by title
       return a.title.localeCompare(b.title);
     });
 

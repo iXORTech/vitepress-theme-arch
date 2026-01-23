@@ -93,8 +93,41 @@ const { i18n, currentLang } = useI18n();
 const { theme } = useData();
 const router = useRouter();
 
+// localStorage key for storing expanded series state
+const STORAGE_KEY = "series-expanded-state";
+
 // Track which series are expanded
 const expandedSeries = ref([]);
+
+// Check if user has visited the series page before
+const hasVisitedBefore = () => {
+  if (typeof localStorage === "undefined") return false;
+  return localStorage.getItem(STORAGE_KEY) !== null;
+};
+
+// Load expanded state from localStorage
+const loadExpandedState = () => {
+  if (typeof localStorage === "undefined") return [];
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch (e) {
+    console.error("Error loading series expanded state:", e);
+  }
+  return [];
+};
+
+// Save expanded state to localStorage
+const saveExpandedState = () => {
+  if (typeof localStorage === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(expandedSeries.value));
+  } catch (e) {
+    console.error("Error saving series expanded state:", e);
+  }
+};
 
 // Toggle series expansion
 const toggleSeries = (seriesId) => {
@@ -104,6 +137,8 @@ const toggleSeries = (seriesId) => {
   } else {
     expandedSeries.value.splice(index, 1);
   }
+  // Save state after toggling
+  saveExpandedState();
 };
 
 // Get localized title for a series
@@ -138,11 +173,18 @@ const getLocalizedPostDescription = (post) => {
   return post.description;
 };
 
-// Expand all series by default on mount
+// Initialize expanded state on mount
 onMounted(() => {
   if (theme.value.seriesData && theme.value.seriesData.length > 0) {
-    // Optionally expand the first series by default
-    expandedSeries.value = [theme.value.seriesData[0].id];
+    if (hasVisitedBefore()) {
+      // User has visited before, restore their saved state
+      expandedSeries.value = loadExpandedState();
+    } else {
+      // First visit, expand all series
+      expandedSeries.value = theme.value.seriesData.map((series) => series.id);
+      // Save the initial state
+      saveExpandedState();
+    }
   }
 });
 </script>
