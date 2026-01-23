@@ -7,7 +7,7 @@ export default {
   icon: "fa-solid fa-rocket",
   // Optional: Cover image for the series
   // cover: "/images/series/getting-started.webp",
-  // Optional: Order for sorting series (lower numbers appear first)
+  // Optional: Order for sorting series (lower numbers appear later), default is 0.
   order: 1,
   // Localized titles
   localizedTitle: {
