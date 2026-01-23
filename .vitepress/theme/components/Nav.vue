@@ -50,10 +50,7 @@
                 </div>
               </div>
               <div v-else>
-                <span
-                  class="link-btn-goto"
-                  @click="router.go(item.link)"
-                >
+                <span class="link-btn-goto" @click="router.go(item.link)">
                   <i v-if="item.icon" :class="`font-awesome ${item.icon}`" />
                   {{ item.text }}
                 </span>
@@ -61,7 +58,11 @@
             </div>
           </div>
           <span class="site-title" @click="smoothScrolling">
-            {{ (frontmatter.value && frontmatter.value.home ? getLocalizedSiteDescription() : pageTitle) || getLocalizedSiteDescription() }}
+            {{
+              (frontmatter.value && frontmatter.value.home
+                ? getLocalizedSiteDescription()
+                : pageTitle) || getLocalizedSiteDescription()
+            }}
           </span>
         </div>
         <div class="right-nav">
@@ -115,7 +116,11 @@
             <div class="to-top-btn">
               <Transition name="fade" mode="out-in">
                 <span :key="scrollData.percentage > 90" class="num">
-                  {{ scrollData.percentage <= 90 ? scrollData.percentage : i18n('components.nav.go-back-to-top') }}
+                  {{
+                    scrollData.percentage <= 90
+                      ? scrollData.percentage
+                      : i18n("components.nav.go-back-to-top")
+                  }}
                 </span>
               </Transition>
               <i class="font-awesome fa-solid fa-angles-up"></i>
@@ -145,9 +150,10 @@
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { shufflePost, smoothScrolling } from "@/utils/helper";
-import { useI18n } from '@/utils/i18n'
+import { useI18n } from "@/utils/i18n";
 
-const { i18n, navMenu, navMore, currentLang, getLocalizedSiteTitle, getLocalizedSiteDescription } = useI18n()
+const { i18n, navMenu, navMore, currentLang, getLocalizedSiteTitle, getLocalizedSiteDescription } =
+  useI18n();
 const router = useRouter();
 const store = mainStore();
 const { scrollData } = storeToRefs(store);
@@ -155,15 +161,21 @@ const { site, theme, frontmatter, page } = useData();
 
 // Get localized title for display in the nav
 const pageTitle = computed(() => {
-  if (frontmatter.value && frontmatter.value.localizedTitle &&
-      frontmatter.value.localizedTitle[currentLang.value]) {
+  if (
+    frontmatter.value &&
+    frontmatter.value.localizedTitle &&
+    frontmatter.value.localizedTitle[currentLang.value]
+  ) {
     return frontmatter.value.localizedTitle[currentLang.value];
   }
   return page.value.title;
 });
 
 // Set CSS custom property for back to top text
-document.documentElement.style.setProperty('--back-to-top-text', `"${i18n('components.nav.go-back-to-top')}"`);
+document.documentElement.style.setProperty(
+  "--back-to-top-text",
+  `"${i18n("components.nav.go-back-to-top")}"`,
+);
 </script>
 
 <style lang="scss" scoped>
@@ -350,7 +362,7 @@ document.documentElement.style.setProperty('--back-to-top-text', `"${i18n('compo
 
         &::after {
           content: "\f015";
-          font-family: "Font Awesome 6 Free";
+          font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro";
           display: flex;
           align-items: center;
           justify-content: center;

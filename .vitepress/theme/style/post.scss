@@ -211,7 +211,7 @@
         justify-content: center;
         background-color: transparent;
         border: none;
-        font-family: "Font Awesome 6 Free";
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro";
         font-size: 20px;
         font-style: normal;
         z-index: 1;
@@ -466,7 +466,7 @@
         cursor: pointer;
         &::before {
           content: "\f0da";
-          font-family: "Font Awesome 6 Free";
+          font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro";
           margin-right: 6px;
           font-size: 18px;
           transition: transform 0.3s;
