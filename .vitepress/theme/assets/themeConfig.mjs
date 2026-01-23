@@ -46,9 +46,20 @@ export const themeConfig = {
   postSize: 8,
   // Series Configuration | 专栏文章配置
   series: {
-    // Include series posts in the home page post list
-    // 在首页文章列表中包含专栏文章
-    includeInHomePage: true,
+    // Default aggregation settings for series posts
+    // These serve as defaults and can be overridden per-series in each series' index.mjs
+    // 专栏文章的默认聚合设置，可在每个专栏的 index.mjs 中单独覆盖
+    aggregation: {
+      // Include series posts in the home page post list
+      // 在首页文章列表中包含专栏文章
+      home: true,
+      // Include series posts in the archives page
+      // 在归档页面中包含专栏文章
+      archives: true,
+      // Include series posts in categories and tags pages
+      // 在分类和标签页面中包含专栏文章
+      categoriesAndTags: true,
+    },
   },
   // Inject
   inject: {

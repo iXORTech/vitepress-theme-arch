@@ -52,12 +52,9 @@ const props = defineProps({
 // Number of Posts per Page
 const postSize = theme.value.postSize;
 
-// Check if series posts should be included in home page
-const includeSeriesInHome = theme.value.series?.includeInHomePage ?? false;
-
-// Get the appropriate post data source (combined or regular)
+// Get the appropriate post data source (uses combinedHomeData which respects aggregation settings)
 const getHomePostData = () => {
-  return includeSeriesInHome ? theme.value.combinedPostData : theme.value.postData;
+  return theme.value.combinedHomeData ?? theme.value.postData;
 };
 
 // Number of Posts in Total

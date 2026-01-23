@@ -17,13 +17,18 @@ import yaml from "@rollup/plugin-yaml";
 
 const postData = await getAllPosts();
 const seriesData = await getAllSeries();
-const seriesPostsData = getAllSeriesPosts(seriesData);
 const themeConfig = await getThemeConfig();
 
-// Create combined post data if series posts should be included in home page
-const combinedPostData = themeConfig.series?.includeInHomePage
-  ? getCombinedPosts(postData, seriesPostsData)
-  : postData;
+// Get global aggregation settings
+const globalAggregation = themeConfig.series?.aggregation ?? {};
+
+// Get all series posts with aggregation info
+const seriesPostsData = getAllSeriesPosts(seriesData, globalAggregation);
+
+// Create combined post data for different contexts based on aggregation settings
+const combinedHomeData = getCombinedPosts(postData, seriesPostsData, "home");
+const combinedArchivesData = getCombinedPosts(postData, seriesPostsData, "archives");
+const combinedCatTagData = getCombinedPosts(postData, seriesPostsData, "categoriesAndTags");
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(
@@ -41,10 +46,12 @@ export default withPwa(
     themeConfig: {
       ...themeConfig,
       postData: postData,
-      combinedPostData: combinedPostData,
-      tagsData: getAllType(postData),
-      categoriesData: getAllCategories(postData),
-      archivesData: getAllArchives(postData),
+      combinedHomeData: combinedHomeData,
+      combinedArchivesData: combinedArchivesData,
+      combinedCatTagData: combinedCatTagData,
+      tagsData: getAllType(combinedCatTagData),
+      categoriesData: getAllCategories(combinedCatTagData),
+      archivesData: getAllArchives(combinedArchivesData),
       seriesData: seriesData,
       seriesPostsData: seriesPostsData,
     },

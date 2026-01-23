@@ -2,6 +2,31 @@
 <template>
   <div v-if="postMetaData" class="series-post">
     <div class="series-post-meta">
+      <!-- Categories and Tags -->
+      <div class="meta">
+        <div class="categories" v-if="postMetaData.categories && postMetaData.categories.length">
+          <a
+            v-for="(item, index) in postMetaData.categories"
+            :key="index"
+            :href="`/categories/${item}`"
+            class="cat-item"
+          >
+            <i class="font-awesome fa-solid fa-folder-open" />
+            <span class="name">{{ item }}</span>
+          </a>
+        </div>
+        <div class="tags" v-if="postMetaData.tags && postMetaData.tags.length">
+          <a
+            v-for="(item, index) in postMetaData.tags"
+            :key="index"
+            :href="`/tags/${item}`"
+            class="tag-item"
+          >
+            <i class="font-awesome fa-solid fa-hashtag" />
+            <span class="name">{{ item }}</span>
+          </a>
+        </div>
+      </div>
       <!-- Series Navigation -->
       <div class="series-nav" v-if="seriesInfo">
         <a :href="`/series`" class="series-link">
@@ -15,7 +40,7 @@
         </span>
       </div>
       <h1 class="title">
-        {{ localizedTitle || postMetaData.title || i18n('views.post.unnamed_post') }}
+        {{ localizedTitle || postMetaData.title || i18n("views.post.unnamed_post") }}
       </h1>
       <div class="other-meta">
         <span class="meta date">
@@ -42,7 +67,9 @@
       <article class="series-post-article s-card">
         <!-- Info Expiry Reminder -->
         <div class="expired s-card" v-if="postMetaData?.expired >= 180">
-          {{ i18n('views.post.info_expiry_reminder_before') }} <strong>{{ postMetaData?.expired }}</strong> {{ i18n('views.post.info_expiry_reminder_after') }}
+          {{ i18n("views.post.info_expiry_reminder_before") }}
+          <strong>{{ postMetaData?.expired }}</strong>
+          {{ i18n("views.post.info_expiry_reminder_after") }}
         </div>
         <!-- "AI" Summary -->
         <ArticleGPT />
@@ -56,42 +83,34 @@
         <div class="series-nav-bottom" v-if="seriesInfo">
           <div class="nav-title">
             <i class="font-awesome fa-solid fa-book" />
-            {{ i18n('views.series_post.series_navigation') }}
+            {{ i18n("views.series_post.series_navigation") }}
           </div>
           <div class="nav-items">
-            <a
-              v-if="prevPost"
-              :href="prevPost.regularPath"
-              class="nav-item prev s-card hover"
-            >
+            <a v-if="prevPost" :href="prevPost.regularPath" class="nav-item prev s-card hover">
               <i class="font-awesome fa-solid fa-arrow-left" />
               <div class="nav-info">
-                <span class="nav-label">{{ i18n('views.series_post.previous') }}</span>
+                <span class="nav-label">{{ i18n("views.series_post.previous") }}</span>
                 <span class="nav-post-title">{{ getLocalizedPostTitle(prevPost) }}</span>
               </div>
             </a>
             <div v-else class="nav-item prev disabled">
               <i class="font-awesome fa-solid fa-arrow-left" />
               <div class="nav-info">
-                <span class="nav-label">{{ i18n('views.series_post.previous') }}</span>
-                <span class="nav-post-title">{{ i18n('views.series_post.no_previous') }}</span>
+                <span class="nav-label">{{ i18n("views.series_post.previous") }}</span>
+                <span class="nav-post-title">{{ i18n("views.series_post.no_previous") }}</span>
               </div>
             </div>
-            <a
-              v-if="nextPost"
-              :href="nextPost.regularPath"
-              class="nav-item next s-card hover"
-            >
+            <a v-if="nextPost" :href="nextPost.regularPath" class="nav-item next s-card hover">
               <div class="nav-info">
-                <span class="nav-label">{{ i18n('views.series_post.next') }}</span>
+                <span class="nav-label">{{ i18n("views.series_post.next") }}</span>
                 <span class="nav-post-title">{{ getLocalizedPostTitle(nextPost) }}</span>
               </div>
               <i class="font-awesome fa-solid fa-arrow-right" />
             </a>
             <div v-else class="nav-item next disabled">
               <div class="nav-info">
-                <span class="nav-label">{{ i18n('views.series_post.next') }}</span>
-                <span class="nav-post-title">{{ i18n('views.series_post.no_next') }}</span>
+                <span class="nav-label">{{ i18n("views.series_post.next") }}</span>
+                <span class="nav-post-title">{{ i18n("views.series_post.no_next") }}</span>
               </div>
               <i class="font-awesome fa-solid fa-arrow-right" />
             </div>
@@ -99,13 +118,24 @@
         </div>
         <!-- Other Info -->
         <div class="other-meta">
+          <div class="all-tags" v-if="postMetaData.tags && postMetaData.tags.length">
+            <a
+              v-for="(item, index) in postMetaData.tags"
+              :key="index"
+              :href="`/tags/${item}`"
+              class="tag-item"
+            >
+              <i class="font-awesome fa-solid fa-hashtag" />
+              <span class="name">{{ item }}</span>
+            </a>
+          </div>
           <a
             href="https://github.com/iXORTech/vitepress-theme-arch/issues"
             class="report"
             target="_blank"
           >
             <i class="font-awesome fa-solid fa-circle-exclamation"></i>
-            {{ i18n('views.post.report') }}
+            {{ i18n("views.post.report") }}
           </a>
         </div>
         <RewardBtn />
@@ -121,9 +151,9 @@
 import { formatTimestamp } from "@/utils/helper";
 import { generateId } from "@/utils/commonTools";
 import initFancybox from "@/utils/initFancybox";
-import { useI18n } from '@/utils/i18n'
+import { useI18n } from "@/utils/i18n";
 
-const { i18n, currentLang } = useI18n()
+const { i18n, currentLang } = useI18n();
 const { page, theme, frontmatter } = useData();
 
 const commentRef = ref(null);
@@ -202,6 +232,71 @@ onMounted(() => {
   .series-post-meta {
     padding: 2rem 0 3rem 18px;
     width: 100%;
+
+    .meta {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .categories {
+        .cat-item {
+          align-items: center;
+          padding: 6px 12px;
+          margin-right: 6px;
+          font-size: 14px;
+          font-weight: bold;
+          border-radius: 8px;
+          background-color: var(--main-mask-Inverse-background);
+          opacity: 0.8;
+
+          .font-awesome {
+            margin-right: 6px;
+          }
+
+          &:hover {
+            color: var(--main-color);
+            background-color: var(--main-color-bg);
+
+            .font-awesome {
+              color: var(--main-color);
+            }
+          }
+        }
+      }
+
+      .tags {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .tag-item {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 6px 12px;
+          font-size: 14px;
+          font-weight: bold;
+          border-radius: 8px;
+          opacity: 0.8;
+
+          .font-awesome {
+            margin-right: 4px;
+            opacity: 0.6;
+            font-weight: normal;
+          }
+
+          &:hover {
+            color: var(--main-color);
+            background-color: var(--main-color-bg);
+
+            .font-awesome {
+              color: var(--main-color);
+            }
+          }
+        }
+      }
+    }
 
     .series-nav {
       display: flex;
@@ -282,7 +377,9 @@ onMounted(() => {
         }
 
         &.hover {
-          transition: color 0.3s, background-color 0.3s;
+          transition:
+            color 0.3s,
+            background-color 0.3s;
           cursor: pointer;
 
           &:hover {
@@ -413,9 +510,42 @@ onMounted(() => {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
         margin: 2rem 0;
         opacity: 0.8;
+
+        .all-tags {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .tag-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 8px;
+            background-color: var(--main-card-border);
+            margin-right: 12px;
+
+            .font-awesome {
+              margin-right: 4px;
+              opacity: 0.6;
+              font-weight: normal;
+            }
+
+            &:hover {
+              color: var(--main-color);
+              background-color: var(--main-color-bg);
+
+              .font-awesome {
+                color: var(--main-color);
+              }
+            }
+          }
+        }
 
         .report {
           display: flex;
@@ -463,6 +593,18 @@ onMounted(() => {
     .series-post-meta {
       padding: 4rem 1.5rem;
 
+      .meta {
+        justify-content: center;
+
+        .categories {
+          margin-right: 0;
+        }
+
+        .tags {
+          display: none;
+        }
+      }
+
       .series-nav {
         justify-content: center;
         flex-wrap: wrap;
@@ -501,7 +643,20 @@ onMounted(() => {
         }
 
         .other-meta {
-          justify-content: center;
+          margin: 1rem 0 2rem 0;
+          flex-direction: column;
+
+          .all-tags {
+            flex-wrap: wrap;
+
+            .tag-item {
+              margin-top: 12px;
+            }
+          }
+
+          .report {
+            margin-top: 20px;
+          }
         }
       }
     }

@@ -45,6 +45,8 @@ const loadSeriesConfig = async (seriesName) => {
         localizedTitle: {},
         localizedDescription: {},
         order: 0,
+        // Per-series aggregation settings (null means use global default)
+        aggregation: null,
       };
     }
 
@@ -58,6 +60,8 @@ const loadSeriesConfig = async (seriesName) => {
       localizedTitle: config.default?.localizedTitle || {},
       localizedDescription: config.default?.localizedDescription || {},
       order: config.default?.order || 0,
+      // Per-series aggregation settings (null/undefined means use global default)
+      aggregation: config.default?.aggregation || null,
     };
   } catch (error) {
     console.error(`Error loading config for series '${seriesName}': `, error);
@@ -69,6 +73,7 @@ const loadSeriesConfig = async (seriesName) => {
       localizedTitle: {},
       localizedDescription: {},
       order: 0,
+      aggregation: null,
     };
   }
 };
@@ -129,8 +134,17 @@ const getSeriesPosts = async (seriesName) => {
 
           const { birthtimeMs, mtimeMs } = stat;
           const { data } = matter(content);
-          const { title, date, description, order, cover, localizedTitle, localizedDescription } =
-            data;
+          const {
+            title,
+            date,
+            description,
+            order,
+            cover,
+            localizedTitle,
+            localizedDescription,
+            tags,
+            categories,
+          } = data;
 
           return {
             id: generateId(relativePath),
@@ -143,6 +157,8 @@ const getSeriesPosts = async (seriesName) => {
             cover,
             localizedTitle,
             localizedDescription,
+            tags: tags || null,
+            categories: categories || null,
           };
         } catch (error) {
           console.error(`Error processing series post '${item}': `, error);
@@ -206,12 +222,21 @@ export const getAllSeries = async () => {
 /**
  * Get a flat list of all series posts for use in routing and search.
  * @param {Object[]} seriesData - Array of series objects.
+ * @param {Object} globalAggregation - Global aggregation settings from themeConfig.
  * @returns {Object[]} - Flat array of all series posts with series info attached.
  */
-export const getAllSeriesPosts = (seriesData) => {
+export const getAllSeriesPosts = (seriesData, globalAggregation = {}) => {
   const allPosts = [];
 
   seriesData.forEach((series) => {
+    // Merge series-specific aggregation with global defaults
+    const aggregation = {
+      home: series.aggregation?.home ?? globalAggregation.home ?? true,
+      archives: series.aggregation?.archives ?? globalAggregation.archives ?? true,
+      categoriesAndTags:
+        series.aggregation?.categoriesAndTags ?? globalAggregation.categoriesAndTags ?? true,
+    };
+
     series.posts.forEach((post) => {
       allPosts.push({
         ...post,
@@ -221,6 +246,8 @@ export const getAllSeriesPosts = (seriesData) => {
         seriesLocalizedTitle: series.localizedTitle,
         // Mark this as a series post for identification
         isSeriesPost: true,
+        // Include aggregation settings for filtering
+        aggregation,
       });
     });
   });
@@ -232,11 +259,17 @@ export const getAllSeriesPosts = (seriesData) => {
  * Combine regular posts with series posts and sort by date.
  * @param {Object[]} postData - Array of regular post objects.
  * @param {Object[]} seriesPostsData - Array of series post objects.
+ * @param {string} filterType - Type of aggregation to filter by: 'home', 'archives', or 'categoriesAndTags'.
  * @returns {Object[]} - Combined and sorted array of all posts.
  */
-export const getCombinedPosts = (postData, seriesPostsData) => {
+export const getCombinedPosts = (postData, seriesPostsData, filterType = "home") => {
+  // Filter series posts based on their aggregation settings
+  const filteredSeriesPosts = seriesPostsData.filter((post) => {
+    return post.aggregation?.[filterType] ?? true;
+  });
+
   // Combine both arrays
-  const combined = [...postData, ...seriesPostsData];
+  const combined = [...postData, ...filteredSeriesPosts];
 
   // Sort by priority (top/pinned first) then by date (newest first)
   combined.sort((a, b) => {
