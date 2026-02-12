@@ -45,13 +45,13 @@
         <div v-if="!simple" class="post-meta">
           <div v-if="item?.tags" class="post-tags">
             <span
-              v-for="tags in item?.tags"
-              :key="tags"
+              v-for="(tag, tagIndex) in item?.tags"
+              :key="tag"
               class="tags-name"
-              @click.stop="router.go(`/tags/${tags}`)"
+              @click.stop="router.go(`/tags/${tag}`)"
             >
               <i class="font-awesome fa-solid fa-hashtag" />
-              {{ tags }}
+              {{ getLocalizedTag(item, tagIndex) }}
             </span>
           </div>
           <span class="post-time">{{ formatTimestamp(item?.date) }}</span>
@@ -66,7 +66,7 @@ import { mainStore } from "@/store";
 import { formatTimestamp } from "@/utils/helper";
 import { useI18n } from "@/utils/i18n";
 
-const { i18n, currentLang } = useI18n();
+const { i18n, currentLang, getLocalizedTag } = useI18n();
 
 const store = mainStore();
 const router = useRouter();
@@ -180,10 +180,12 @@ const toPost = (path) => {
 
     .post-content {
       flex: 1;
+      min-width: 0;
       padding: 1.6rem 2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
 
       .post-category {
         display: flex;
@@ -240,9 +242,11 @@ const toPost = (path) => {
         transition: color 0.3s;
         display: -webkit-box;
         overflow: hidden;
-        word-break: break-all;
+        word-break: break-word;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
+        flex-shrink: 1;
+        min-height: 0;
       }
       .post-desc {
         margin-top: -0.4rem;
@@ -251,19 +255,22 @@ const toPost = (path) => {
         line-height: 30px;
         display: -webkit-box;
         overflow: hidden;
-        word-break: break-all;
+        word-break: break-word;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
+        flex-shrink: 1;
+        min-height: 0;
       }
       .post-meta {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        flex-shrink: 0;
         color: var(--main-font-second-color);
         .post-tags {
           display: flex;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
           opacity: 0.8;
           margin-right: 20px;
           overflow: hidden;
@@ -293,9 +300,6 @@ const toPost = (path) => {
                 color: var(--main-color);
               }
             }
-          }
-          @media (max-width: 768px) {
-            flex-wrap: nowrap;
           }
         }
         .post-time {

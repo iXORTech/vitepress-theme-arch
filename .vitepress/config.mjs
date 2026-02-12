@@ -6,6 +6,7 @@ import {
   getAllType,
   getAllCategories,
   getAllArchives,
+  getTagLocaleMap,
 } from "./theme/utils/getPostData.mjs";
 import { getAllSeries, getAllSeriesPosts, getCombinedPosts } from "./theme/utils/getSeriesData.mjs";
 import { getThemeConfig } from "./init.mjs";
@@ -50,6 +51,7 @@ export default withPwa(
       combinedArchivesData: combinedArchivesData,
       combinedCatTagData: combinedCatTagData,
       tagsData: getAllType(combinedCatTagData),
+      tagLocaleMap: getTagLocaleMap(combinedCatTagData),
       categoriesData: getAllCategories(combinedCatTagData),
       archivesData: getAllArchives(combinedArchivesData),
       seriesData: seriesData,

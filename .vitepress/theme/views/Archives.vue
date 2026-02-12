@@ -1,7 +1,7 @@
 <template>
   <div class="archives s-card">
     <div class="title">
-      <h1 class="name">{{ i18n('views.archives.posts') }}</h1>
+      <h1 class="name">{{ i18n("views.archives.posts") }}</h1>
       <sup v-if="theme.postData?.length" class="num">{{ theme.postData.length }}</sup>
     </div>
     <div class="archives-list">
@@ -17,13 +17,13 @@
             <span class="title">{{ getLocalizedTitle(post) }}</span>
             <div class="tags">
               <a
-                v-for="(tags, tagsIndex) in post.tags"
-                :key="tagsIndex"
-                :href="`/tags/${tags}`"
+                v-for="(tag, tagIndex) in post.tags"
+                :key="tagIndex"
+                :href="`/tags/${tag}`"
                 class="type-item"
               >
                 <i class="font-awesome fa-solid fa-hashtag" />
-                <span class="name">{{ tags }}</span>
+                <span class="name">{{ getLocalizedTag(post, tagIndex) }}</span>
               </a>
             </div>
           </div>
@@ -34,9 +34,9 @@
 </template>
 
 <script setup>
-import { useI18n } from '@/utils/i18n'
+import { useI18n } from "@/utils/i18n";
 
-const { i18n, currentLang } = useI18n()
+const { i18n, currentLang, getLocalizedTag } = useI18n();
 const { theme } = useData();
 const router = useRouter();
 

@@ -23,7 +23,7 @@
             class="tag-item"
           >
             <i class="font-awesome fa-solid fa-hashtag" />
-            <span class="name">{{ item }}</span>
+            <span class="name">{{ getLocalizedTag(postMetaData, index) }}</span>
           </a>
         </div>
       </div>
@@ -126,7 +126,7 @@
               class="tag-item"
             >
               <i class="font-awesome fa-solid fa-hashtag" />
-              <span class="name">{{ item }}</span>
+              <span class="name">{{ getLocalizedTag(postMetaData, index) }}</span>
             </a>
           </div>
           <a
@@ -153,7 +153,7 @@ import { generateId } from "@/utils/commonTools";
 import initFancybox from "@/utils/initFancybox";
 import { useI18n } from "@/utils/i18n";
 
-const { i18n, currentLang } = useI18n();
+const { i18n, currentLang, getLocalizedTag } = useI18n();
 const { page, theme, frontmatter } = useData();
 
 const commentRef = ref(null);

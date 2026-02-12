@@ -3,7 +3,7 @@
   <div class="tags-cloud s-card">
     <div class="title">
       <i class="font-awesome fa-solid fa-hashtag"></i>
-      <span class="title-name">{{ i18n('components.aside.widgets.tags.popular_tags') }}</span>
+      <span class="title-name">{{ i18n("components.aside.widgets.tags.popular_tags") }}</span>
     </div>
     <div class="all-tags">
       <a
@@ -12,18 +12,18 @@
         :href="`/tags/${tag}`"
         class="tags"
       >
-        <span class="name">{{ tag }}</span>
+        <span class="name">{{ getLocalizedTagName(tag) }}</span>
         <sup class="num">{{ item.count }}</sup>
       </a>
     </div>
-    <a href="/tags" class="more-tags">{{ i18n('components.aside.widgets.tags.show_all_tags') }}</a>
+    <a href="/tags" class="more-tags">{{ i18n("components.aside.widgets.tags.show_all_tags") }}</a>
   </div>
 </template>
 
 <script setup>
-import { useI18n } from '@/utils/i18n'
+import { useI18n } from "@/utils/i18n";
 
-const { i18n } = useI18n()
+const { i18n, getLocalizedTagName } = useI18n();
 const { theme } = useData();
 </script>
 

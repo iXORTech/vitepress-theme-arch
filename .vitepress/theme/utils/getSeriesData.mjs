@@ -142,6 +142,7 @@ const getSeriesPosts = async (seriesName) => {
             cover,
             localizedTitle,
             localizedDescription,
+            localizedTags,
             tags,
             categories,
           } = data;
@@ -157,6 +158,7 @@ const getSeriesPosts = async (seriesName) => {
             cover,
             localizedTitle,
             localizedDescription,
+            localizedTags,
             tags: tags || null,
             categories: categories || null,
           };

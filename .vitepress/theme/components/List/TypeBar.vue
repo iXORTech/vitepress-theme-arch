@@ -1,14 +1,12 @@
 <template>
   <div v-if="type === 'categories'" class="type-bar s-card hover">
     <div class="all-type">
-      <a
-        v-if="currentTypeName"
-        :href="`/categories/${currentTypeName}`"
-        class="type-item choose"
-      >
+      <a v-if="currentTypeName" :href="`/categories/${currentTypeName}`" class="type-item choose">
         {{ currentTypeName }}
       </a>
-      <a href="/" :class="['type-item', { choose: !currentTypeName }]">{{ i18n('components.list.type-bar.home') }}</a>
+      <a href="/" :class="['type-item', { choose: !currentTypeName }]">{{
+        i18n("components.list.type-bar.home")
+      }}</a>
       <a
         v-for="(_, key, index) in theme.categoriesData"
         :key="index"
@@ -20,13 +18,13 @@
     </div>
     <a href="/categories" class="more-type">
       <i class="font-awesome fa-solid fa-angles-right" />
-      {{ i18n('components.list.type-bar.more') }}
+      {{ i18n("components.list.type-bar.more") }}
     </a>
   </div>
   <div v-else-if="type === 'tags'" class="type-bar s-card hover">
     <div class="all-type">
       <a v-if="currentTypeName" :href="`/tags/${currentTypeName}`" class="type-item choose">
-        {{ currentTypeName }}
+        {{ getLocalizedTagName(currentTypeName) }}
         <span class="num">{{ theme.tagsData?.[currentTypeName]?.count || 0 }}</span>
       </a>
       <a
@@ -35,21 +33,21 @@
         :href="`/tags/${key}`"
         :class="['type-item', { hidden: currentTypeName === key }]"
       >
-        {{ key }}
+        {{ getLocalizedTagName(key) }}
         <span class="num">{{ item.count }}</span>
       </a>
     </div>
     <a href="/tags" class="more-type">
       <i class="font-awesome fa-solid fa-angles-right" />
-      {{ i18n('components.list.type-bar.more') }}
+      {{ i18n("components.list.type-bar.more") }}
     </a>
   </div>
 </template>
 
 <script setup>
-import { useI18n } from '@/utils/i18n'
+import { useI18n } from "@/utils/i18n";
 
-const { i18n } = useI18n()
+const { i18n, getLocalizedTagName } = useI18n();
 const { theme, params } = useData();
 const props = defineProps({
   type: {

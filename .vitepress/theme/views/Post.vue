@@ -14,6 +14,7 @@
             <span class="name">{{ item }}</span>
           </a>
         </div>
+        <br />
         <div class="tags">
           <a
             v-for="(item, index) in postMetaData.tags"
@@ -22,12 +23,12 @@
             class="tag-item"
           >
             <i class="font-awesome fa-solid fa-hashtag" />
-            <span class="name">{{ item }}</span>
+            <span class="name">{{ getLocalizedTag(postMetaData, index) }}</span>
           </a>
         </div>
       </div>
       <h1 class="title">
-        {{ localizedTitle || postMetaData.title || i18n('views.post.unnamed_post') }}
+        {{ localizedTitle || postMetaData.title || i18n("views.post.unnamed_post") }}
       </h1>
       <div class="other-meta">
         <span class="meta date">
@@ -54,7 +55,9 @@
       <article class="post-article s-card">
         <!-- Info Expiry Reminder -->
         <div class="expired s-card" v-if="postMetaData?.expired >= 180">
-          {{ i18n('views.post.info_expiry_reminder_before') }} <strong>{{ postMetaData?.expired }}</strong> {{ i18n('views.post.info_expiry_reminder_after') }}
+          {{ i18n("views.post.info_expiry_reminder_before") }}
+          <strong>{{ postMetaData?.expired }}</strong>
+          {{ i18n("views.post.info_expiry_reminder_after") }}
         </div>
         <!-- "AI" Summary -->
         <ArticleGPT />
@@ -74,7 +77,7 @@
               class="tag-item"
             >
               <i class="font-awesome fa-solid fa-hashtag" />
-              <span class="name">{{ item }}</span>
+              <span class="name">{{ getLocalizedTag(postMetaData, index) }}</span>
             </a>
           </div>
           <a
@@ -83,7 +86,7 @@
             target="_blank"
           >
             <i class="font-awesome fa-solid fa-circle-exclamation"></i>
-            {{ i18n('views.post.report') }}
+            {{ i18n("views.post.report") }}
           </a>
         </div>
         <RewardBtn />
@@ -103,9 +106,9 @@
 import { formatTimestamp } from "@/utils/helper";
 import { generateId } from "@/utils/commonTools";
 import initFancybox from "@/utils/initFancybox";
-import { useI18n } from '@/utils/i18n'
+import { useI18n } from "@/utils/i18n";
 
-const { i18n, currentLang } = useI18n()
+const { i18n, currentLang, getLocalizedTag } = useI18n();
 const { page, theme, frontmatter } = useData();
 
 const commentRef = ref(null);
@@ -130,7 +133,10 @@ const localizedTitle = computed(() => {
 const localizedDescription = computed(() => {
   if (!postMetaData.value) return null;
 
-  if (postMetaData.value.localizedDescription && postMetaData.value.localizedDescription[currentLang.value]) {
+  if (
+    postMetaData.value.localizedDescription &&
+    postMetaData.value.localizedDescription[currentLang.value]
+  ) {
     return postMetaData.value.localizedDescription[currentLang.value];
   }
   return postMetaData.value.description;

@@ -60,7 +60,18 @@ export const getAllPosts = async () => {
           const { birthtimeMs, mtimeMs } = stat;
           // Parse teh front matter of the file.
           const { data } = matter(content);
-          const { title, date, categories, description, tags, top, cover, localizedTitle, localizedDescription } = data;
+          const {
+            title,
+            date,
+            categories,
+            description,
+            tags,
+            top,
+            cover,
+            localizedTitle,
+            localizedDescription,
+            localizedTags,
+          } = data;
           const expired = Math.floor(
             (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24),
           );
@@ -68,9 +79,7 @@ export const getAllPosts = async () => {
           return {
             id: generateId(item),
             // If the title is not defined, use the file name as the title.
-            title: title ||
-              item.replace(/\.md$/, "")
-                .replace(/_/g, " "),
+            title: title || item.replace(/\.md$/, "").replace(/_/g, " "),
             date: date ? new Date(date).getTime() : birthtimeMs,
             lastModified: mtimeMs,
             expired,
@@ -82,6 +91,7 @@ export const getAllPosts = async () => {
             cover,
             localizedTitle,
             localizedDescription,
+            localizedTags,
           };
         } catch (error) {
           console.error(`Error processing file '${item}': `, error);
@@ -127,6 +137,30 @@ export const getAllType = (postData) => {
     });
   });
   return tagData;
+};
+
+/**
+ * Build a global locale map for tags from all posts' localizedTags.
+ * @param {Object[]} postData - Array containing post data.
+ * @returns {Object} - Object mapping tag names to their localized names per locale.
+ *   e.g. { "Programming Languages": { "zh-CN": "编程语言" } }
+ */
+export const getTagLocaleMap = (postData) => {
+  const localeMap = {};
+  postData.forEach((item) => {
+    if (!item.tags || !item.localizedTags) return;
+    const tags = typeof item.tags === "string" ? item.tags.split(",") : item.tags;
+    for (const [lang, localizedArray] of Object.entries(item.localizedTags)) {
+      if (!Array.isArray(localizedArray)) continue;
+      tags.forEach((tag, index) => {
+        if (localizedArray[index]) {
+          if (!localeMap[tag]) localeMap[tag] = {};
+          localeMap[tag][lang] = localizedArray[index];
+        }
+      });
+    }
+  });
+  return localeMap;
 };
 
 /**

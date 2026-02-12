@@ -2,12 +2,22 @@
 <template>
   <div class="cat-or-tag">
     <div class="title">
-      <h1 class="title-name">{{ type === "categories" ? i18n('views.cat_or_tag.all_categories') : i18n('views.cat_or_tag.all_tags') }}</h1>
+      <h1 class="title-name">
+        {{
+          type === "categories"
+            ? i18n("views.cat_or_tag.all_categories")
+            : i18n("views.cat_or_tag.all_tags")
+        }}
+      </h1>
       <span v-if="type === 'categories'" class="title-num">
-        {{ i18n('views.cat_or_tag.categories_count_before') }} {{ Object.keys(theme.categoriesData)?.length || 0 }} {{ i18n('views.cat_or_tag.categories_count_after') }}
+        {{ i18n("views.cat_or_tag.categories_count_before") }}
+        {{ Object.keys(theme.categoriesData)?.length || 0 }}
+        {{ i18n("views.cat_or_tag.categories_count_after") }}
       </span>
       <span v-else class="title-num">
-        {{ i18n('views.cat_or_tag.tags_count_before') }} {{ Object.keys(theme.categoriesData)?.length || 0 }} {{ i18n('views.cat_or_tag.tags_count_after') }}
+        {{ i18n("views.cat_or_tag.tags_count_before") }}
+        {{ Object.keys(theme.categoriesData)?.length || 0 }}
+        {{ i18n("views.cat_or_tag.tags_count_after") }}
       </span>
     </div>
     <div v-if="type === 'categories'" class="type-lists">
@@ -30,7 +40,7 @@
         class="type-item s-card"
       >
         <i class="font-awesome fa-solid fa-hashtag" />
-        <span class="name">{{ key }}</span>
+        <span class="name">{{ getLocalizedTagName(key) }}</span>
         <span class="num">{{ item.count }}</span>
       </a>
     </div>
@@ -38,9 +48,9 @@
 </template>
 
 <script setup>
-import { useI18n } from '@/utils/i18n'
+import { useI18n } from "@/utils/i18n";
 
-const { i18n } = useI18n()
+const { i18n, getLocalizedTagName } = useI18n();
 const { theme } = useData();
 const props = defineProps({
   // 页面类型
